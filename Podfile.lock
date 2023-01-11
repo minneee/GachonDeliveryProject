@@ -1,0 +1,32 @@
+PODS:
+  - Alamofire (5.5.0)
+  - DropDown (2.3.13)
+  - IQKeyboardManagerSwift (6.5.9)
+  - SnapKit (5.0.1)
+  - Then (3.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - DropDown
+  - IQKeyboardManagerSwift
+  - SnapKit
+  - Then
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - DropDown
+    - IQKeyboardManagerSwift
+    - SnapKit
+    - Then
+
+SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
+
+PODFILE CHECKSUM: c24e0cf3bbdafa16ecbefda8ef90bcf26ed43fe3
+
+COCOAPODS: 1.11.2

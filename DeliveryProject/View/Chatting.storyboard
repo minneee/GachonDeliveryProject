@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Chatting View Controller-->
+        <scene sceneID="rY4-lC-2Ho">
+            <objects>
+                <viewController storyboardIdentifier="ChattingViewController" id="hMF-AN-5TZ" customClass="ChattingViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7dm-h5-C0H">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnh-09-HeR" userLabel="BottomView">
+                                <rect key="frame" x="0.0" y="188" width="414" height="674"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CZk-wL-sSe" customClass="ChattingUITableView" customModule="DeliveryProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <sections/>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5R6-3Y-D2n" userLabel="ChattingBarView">
+                                        <rect key="frame" x="0.0" y="620" width="414" height="54"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZM-4p-2b1">
+                                                <rect key="frame" x="20" y="7" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="29A-kv-Wns"/>
+                                                    <constraint firstAttribute="width" secondItem="cZM-4p-2b1" secondAttribute="height" id="BR4-rU-YaW"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="gray"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배달완료" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hd9-wl-CI6">
+                                                <rect key="frame" x="30" y="12" width="21" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem i" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BAd-S2-LgM">
+                                                <rect key="frame" x="75" y="7" width="277" height="40"/>
+                                                <color key="backgroundColor" red="0.96078431610000004" green="0.96078431610000004" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pH4-hW-uAV">
+                                                <rect key="frame" x="345" y="5" width="54" height="44"/>
+                                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" imagePadding="0.0">
+                                                    <imageReference key="image" image="sendMessageBtn" symbolScale="large"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="BAd-S2-LgM" firstAttribute="top" secondItem="5R6-3Y-D2n" secondAttribute="top" constant="7" id="5y9-Pp-npR"/>
+                                            <constraint firstItem="cZM-4p-2b1" firstAttribute="bottom" secondItem="hd9-wl-CI6" secondAttribute="bottom" constant="5" id="9Be-ae-9Ej"/>
+                                            <constraint firstItem="BAd-S2-LgM" firstAttribute="top" secondItem="cZM-4p-2b1" secondAttribute="top" id="C1I-Lm-qUB"/>
+                                            <constraint firstItem="hd9-wl-CI6" firstAttribute="top" secondItem="cZM-4p-2b1" secondAttribute="top" constant="5" id="FWn-Rg-7JU"/>
+                                            <constraint firstAttribute="bottom" secondItem="BAd-S2-LgM" secondAttribute="bottom" constant="7" id="PXg-4P-14D"/>
+                                            <constraint firstItem="cZM-4p-2b1" firstAttribute="trailing" secondItem="hd9-wl-CI6" secondAttribute="trailing" constant="9" id="YuZ-Y4-TQC"/>
+                                            <constraint firstItem="cZM-4p-2b1" firstAttribute="leading" secondItem="5R6-3Y-D2n" secondAttribute="leading" constant="20" id="crc-R7-tuY"/>
+                                            <constraint firstItem="BAd-S2-LgM" firstAttribute="leading" secondItem="cZM-4p-2b1" secondAttribute="trailing" constant="15" id="fON-m9-7hX"/>
+                                            <constraint firstItem="hd9-wl-CI6" firstAttribute="leading" secondItem="cZM-4p-2b1" secondAttribute="leading" constant="10" id="gMk-B0-aG4"/>
+                                            <constraint firstItem="pH4-hW-uAV" firstAttribute="centerY" secondItem="5R6-3Y-D2n" secondAttribute="centerY" id="ipS-4v-ZDY"/>
+                                            <constraint firstAttribute="trailing" secondItem="pH4-hW-uAV" secondAttribute="trailing" constant="15" id="sCL-z8-m7t"/>
+                                            <constraint firstItem="cZM-4p-2b1" firstAttribute="centerY" secondItem="5R6-3Y-D2n" secondAttribute="centerY" id="sph-0i-UDS"/>
+                                            <constraint firstItem="pH4-hW-uAV" firstAttribute="leading" secondItem="BAd-S2-LgM" secondAttribute="trailing" constant="-7" id="xzE-Nv-FHr"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="CZk-wL-sSe" firstAttribute="top" secondItem="fnh-09-HeR" secondAttribute="top" id="07a-Lo-Vf1"/>
+                                    <constraint firstAttribute="trailing" secondItem="CZk-wL-sSe" secondAttribute="trailing" id="Acm-XJ-KLz"/>
+                                    <constraint firstItem="CZk-wL-sSe" firstAttribute="leading" secondItem="fnh-09-HeR" secondAttribute="leading" id="YBy-TM-s5A"/>
+                                    <constraint firstAttribute="trailing" secondItem="5R6-3Y-D2n" secondAttribute="trailing" id="dxz-N0-ryh"/>
+                                    <constraint firstItem="5R6-3Y-D2n" firstAttribute="top" secondItem="CZk-wL-sSe" secondAttribute="bottom" id="iBS-15-Rk6"/>
+                                    <constraint firstItem="5R6-3Y-D2n" firstAttribute="leading" secondItem="fnh-09-HeR" secondAttribute="leading" id="wE6-8O-5YX"/>
+                                    <constraint firstAttribute="bottom" secondItem="5R6-3Y-D2n" secondAttribute="bottom" id="zB7-Bb-kMs"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M0C-RI-vaW">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="107"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="w24-7l-PBh">
+                                        <rect key="frame" x="10" y="67" width="25" height="21.5"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="57v-gV-KSQ"/>
+                                            <constraint firstAttribute="width" secondItem="w24-7l-PBh" secondAttribute="height" multiplier="1:1" id="GcI-d9-7BF"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="o9T-YY-Iiv">
+                                        <rect key="frame" x="47" y="53" width="50" height="49"/>
+                                        <color key="tintColor" red="0.88235294819999999" green="0.86666667460000002" blue="0.88235294819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="o9T-YY-Iiv" secondAttribute="height" multiplier="1:1" id="1kB-mc-cg0"/>
+                                            <constraint firstAttribute="height" constant="50" id="7mS-rd-D84"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Y1O-ii-wtM">
+                                        <rect key="frame" x="371" y="61" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Y1O-ii-wtM" secondAttribute="height" id="GuQ-Mz-dLr"/>
+                                            <constraint firstAttribute="width" constant="30" id="WCP-ei-R75"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임은일곱개" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wc-KV-Im8">
+                                        <rect key="frame" x="107" y="60.5" width="97" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="한줄소개는열다섯글자가좋다구요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kT5-mw-eyG">
+                                        <rect key="frame" x="107" y="83.5" width="169" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PinwheelColor" translatesAutoresizingMaskIntoConstraints="NO" id="osP-KK-ZIt">
+                                        <rect key="frame" x="212" y="62.5" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="osP-KK-ZIt" secondAttribute="height" multiplier="1:1" id="FZw-2w-FPs"/>
+                                            <constraint firstAttribute="width" constant="16" id="p8K-NC-FQM"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PinwheelColor" translatesAutoresizingMaskIntoConstraints="NO" id="KzR-w0-Nc0">
+                                        <rect key="frame" x="232" y="62.5" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="KzR-w0-Nc0" secondAttribute="height" multiplier="1:1" id="KHS-UV-cA5"/>
+                                            <constraint firstAttribute="width" constant="16" id="OLa-J1-XNf"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PinwheelBlack" translatesAutoresizingMaskIntoConstraints="NO" id="qhk-Jp-nWQ">
+                                        <rect key="frame" x="252" y="62.5" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="qhk-Jp-nWQ" secondAttribute="height" multiplier="1:1" id="GbQ-Ml-spu"/>
+                                            <constraint firstAttribute="width" constant="16" id="shv-W0-pGY"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PinwheelBlack" translatesAutoresizingMaskIntoConstraints="NO" id="Bfe-rF-6PM">
+                                        <rect key="frame" x="272" y="62.5" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="16" id="0jF-TN-jAz"/>
+                                            <constraint firstAttribute="width" secondItem="Bfe-rF-6PM" secondAttribute="height" multiplier="1:1" id="Vd2-yY-lc3"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PinwheelBlack" translatesAutoresizingMaskIntoConstraints="NO" id="MNG-5C-FQa">
+                                        <rect key="frame" x="292" y="62.5" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="MNG-5C-FQa" secondAttribute="height" multiplier="1:1" id="8NF-sY-sBs"/>
+                                            <constraint firstAttribute="width" constant="16" id="Hr9-zI-62h"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="w24-7l-PBh" secondAttribute="bottom" constant="17" id="6AO-yt-Gxh"/>
+                                    <constraint firstItem="Bfe-rF-6PM" firstAttribute="leading" secondItem="qhk-Jp-nWQ" secondAttribute="trailing" constant="4" id="7q0-h4-JWK"/>
+                                    <constraint firstItem="osP-KK-ZIt" firstAttribute="centerY" secondItem="5wc-KV-Im8" secondAttribute="centerY" id="Co2-ld-KyR"/>
+                                    <constraint firstItem="qhk-Jp-nWQ" firstAttribute="centerY" secondItem="KzR-w0-Nc0" secondAttribute="centerY" id="DOp-dg-BUO"/>
+                                    <constraint firstItem="5wc-KV-Im8" firstAttribute="leading" secondItem="o9T-YY-Iiv" secondAttribute="trailing" constant="10" id="Eb4-2g-8kn"/>
+                                    <constraint firstItem="kT5-mw-eyG" firstAttribute="leading" secondItem="5wc-KV-Im8" secondAttribute="leading" id="GAo-gM-Whl"/>
+                                    <constraint firstItem="5wc-KV-Im8" firstAttribute="top" secondItem="o9T-YY-Iiv" secondAttribute="top" constant="8" id="O5P-84-SkD"/>
+                                    <constraint firstItem="w24-7l-PBh" firstAttribute="leading" secondItem="M0C-RI-vaW" secondAttribute="leading" constant="10" id="OKP-7j-aEo"/>
+                                    <constraint firstItem="osP-KK-ZIt" firstAttribute="leading" secondItem="5wc-KV-Im8" secondAttribute="trailing" constant="8" symbolic="YES" id="Pci-7c-dm3"/>
+                                    <constraint firstItem="Bfe-rF-6PM" firstAttribute="centerY" secondItem="qhk-Jp-nWQ" secondAttribute="centerY" id="UMs-G7-Vgy"/>
+                                    <constraint firstAttribute="bottom" secondItem="Y1O-ii-wtM" secondAttribute="bottom" constant="16" id="dRg-AS-JCD"/>
+                                    <constraint firstItem="o9T-YY-Iiv" firstAttribute="centerY" secondItem="w24-7l-PBh" secondAttribute="centerY" id="esf-em-Jkx"/>
+                                    <constraint firstItem="MNG-5C-FQa" firstAttribute="leading" secondItem="Bfe-rF-6PM" secondAttribute="trailing" constant="4" id="gpB-wE-MFf"/>
+                                    <constraint firstItem="KzR-w0-Nc0" firstAttribute="centerY" secondItem="osP-KK-ZIt" secondAttribute="centerY" id="hAL-x6-1Si"/>
+                                    <constraint firstItem="qhk-Jp-nWQ" firstAttribute="leading" secondItem="KzR-w0-Nc0" secondAttribute="trailing" constant="4" id="hW3-Re-Z1I"/>
+                                    <constraint firstItem="kT5-mw-eyG" firstAttribute="top" secondItem="5wc-KV-Im8" secondAttribute="bottom" constant="3.5" id="ju0-UI-RIU"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y1O-ii-wtM" secondAttribute="trailing" constant="13" id="nj1-q0-NQN"/>
+                                    <constraint firstItem="MNG-5C-FQa" firstAttribute="centerY" secondItem="Bfe-rF-6PM" secondAttribute="centerY" id="q9h-3B-dhT"/>
+                                    <constraint firstItem="KzR-w0-Nc0" firstAttribute="leading" secondItem="osP-KK-ZIt" secondAttribute="trailing" constant="4" id="xOH-R8-5EJ"/>
+                                    <constraint firstItem="o9T-YY-Iiv" firstAttribute="leading" secondItem="w24-7l-PBh" secondAttribute="trailing" constant="12" id="zco-25-W49"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EsN-ZM-GLK">
+                                <rect key="frame" x="10" y="107" width="394" height="76"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lj6-cF-rE4">
+                                        <rect key="frame" x="15" y="10" width="364" height="53"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="🚨">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="주의">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=": ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="경고문구">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="어쩌고">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="저쩌고">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="적어두면">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="됩니다">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="문구를">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="머라고적지">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="머라모리머">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="마라탕">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="머거야지">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="!">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="경고문구">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="어쩌고">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="저쩌고">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="적어두면">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="됩니다">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="문구를">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="머라고적지">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="머라모리머">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="마라탕">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="머거야지">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="!">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96078431610000004" green="0.96078431610000004" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Lj6-cF-rE4" secondAttribute="bottom" constant="13" id="GaQ-BN-ioX"/>
+                                    <constraint firstItem="Lj6-cF-rE4" firstAttribute="top" secondItem="EsN-ZM-GLK" secondAttribute="top" constant="10" id="Yeq-19-WfW"/>
+                                    <constraint firstItem="Lj6-cF-rE4" firstAttribute="leading" secondItem="EsN-ZM-GLK" secondAttribute="leading" constant="15" id="sJf-DN-The"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lj6-cF-rE4" secondAttribute="trailing" constant="15" id="urk-vi-gKO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JKN-95-c8L"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="M0C-RI-vaW" firstAttribute="leading" secondItem="JKN-95-c8L" secondAttribute="leading" id="5AM-kZ-NHL"/>
+                            <constraint firstItem="EsN-ZM-GLK" firstAttribute="top" secondItem="M0C-RI-vaW" secondAttribute="bottom" id="91x-Xu-HPu"/>
+                            <constraint firstItem="JKN-95-c8L" firstAttribute="top" secondItem="EsN-ZM-GLK" secondAttribute="bottom" constant="-139" id="EYO-Nj-VJ0"/>
+                            <constraint firstItem="JKN-95-c8L" firstAttribute="bottom" secondItem="fnh-09-HeR" secondAttribute="bottom" id="IjT-dw-Cl9"/>
+                            <constraint firstItem="EsN-ZM-GLK" firstAttribute="leading" secondItem="JKN-95-c8L" secondAttribute="leading" constant="10" id="KTb-sW-H9D"/>
+                            <constraint firstItem="fnh-09-HeR" firstAttribute="leading" secondItem="JKN-95-c8L" secondAttribute="leading" id="LJ3-jj-6SS"/>
+                            <constraint firstItem="JKN-95-c8L" firstAttribute="trailing" secondItem="fnh-09-HeR" secondAttribute="trailing" id="MYs-2S-HJi"/>
+                            <constraint firstItem="fnh-09-HeR" firstAttribute="top" secondItem="EsN-ZM-GLK" secondAttribute="bottom" constant="5" id="SXr-DB-qyS"/>
+                            <constraint firstItem="M0C-RI-vaW" firstAttribute="top" secondItem="7dm-h5-C0H" secondAttribute="top" id="Sqc-LI-B4j"/>
+                            <constraint firstItem="JKN-95-c8L" firstAttribute="trailing" secondItem="EsN-ZM-GLK" secondAttribute="trailing" constant="10" id="cxG-Cr-YMB"/>
+                            <constraint firstItem="M0C-RI-vaW" firstAttribute="trailing" secondItem="JKN-95-c8L" secondAttribute="trailing" id="vX2-bm-8XR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="83H-az-8XG"/>
+                    <connections>
+                        <outlet property="announcementView" destination="EsN-ZM-GLK" id="liK-ji-gxG"/>
+                        <outlet property="bottomConstraints" destination="zB7-Bb-kMs" id="HEn-76-8YW"/>
+                        <outlet property="bottomView" destination="fnh-09-HeR" id="OmC-XF-WAC"/>
+                        <outlet property="chattingBarView" destination="5R6-3Y-D2n" id="Iw9-zn-Pje"/>
+                        <outlet property="chattingTableView" destination="CZk-wL-sSe" id="6Sq-Oe-5gb"/>
+                        <outlet property="profileView" destination="M0C-RI-vaW" id="qlJ-8c-p0j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QDW-me-bys" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-801" y="172"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="PinwheelBlack" width="12" height="12"/>
+        <image name="PinwheelColor" width="16" height="16"/>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="menuBtn" width="21" height="21"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
+        <image name="sendMessageBtn" width="30" height="30"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

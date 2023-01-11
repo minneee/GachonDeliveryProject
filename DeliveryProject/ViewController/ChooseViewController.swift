@@ -30,20 +30,23 @@ class ChooseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        receiveDelivery.layer.cornerRadius = receiveDelivery.frame.width/2
-//        doDelivery.layer.cornerRadius = doDelivery.frame.width/2
-//        
+        //스토리보드 지정
+                let storyBD = UIStoryboard(name: "Notice", bundle: nil)
+                //스토리보드 중에 어떤 뷰컨으로 갈지 선텍
+                let VC2 = storyBD.instantiateViewController(identifier: "NoticeViewController")
+                //이동 함수 호출
+                changeRootViewController(VC2)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    func changeRootViewController(_ viewControllerToPresent: UIViewController) {
+                if let window = UIApplication.shared.windows.first {
+                    window.rootViewController = viewControllerToPresent
+                    UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+                } else {
+                    viewControllerToPresent.modalPresentationStyle = .overFullScreen
+                    self.present(viewControllerToPresent, animated: true, completion: nil)
+                }
+        }
 
 }

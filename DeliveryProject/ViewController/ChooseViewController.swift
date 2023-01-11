@@ -31,9 +31,9 @@ class ChooseViewController: UIViewController {
         super.viewDidLoad()
 
         //스토리보드 지정
-                let storyBD = UIStoryboard(name: "Notice", bundle: nil)
+                let storyBD = UIStoryboard(name: "setting", bundle: nil)
                 //스토리보드 중에 어떤 뷰컨으로 갈지 선텍
-                let VC2 = storyBD.instantiateViewController(identifier: "NoticeViewController")
+                let VC2 = storyBD.instantiateViewController(identifier: "SettingViewController")
                 //이동 함수 호출
                 changeRootViewController(VC2)
         

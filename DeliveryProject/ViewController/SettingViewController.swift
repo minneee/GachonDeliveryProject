@@ -13,20 +13,20 @@ import Alamofire
 class SettingViewController: UIViewController {
 
     //네비게이션 바
-    lazy var navigationBar : UINavigationBar = {
-        let navigationBar = UINavigationBar()
+//    lazy var navigationBar : UINavigationBar = {
+//        let navigationBar = UINavigationBar()
+//
+//        navigationBar.translatesAutoresizingMaskIntoConstraints = false
+//        navigationBar.barTintColor = .white
+//        navigationBar.tintColor = .black
+//
         
-        navigationBar.translatesAutoresizingMaskIntoConstraints = false
-        navigationBar.barTintColor = .white
-        navigationBar.tintColor = .black
-        
-        let navItem = UINavigationItem(title: "설정")
 //        let leftButton = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .plain, target: SettingViewController.self, action: nil)
 //        navItem.leftBarButtonItem = leftButton
-        navigationBar.setItems([navItem], animated: true)
-        
-        return navigationBar
-    }()
+//        navigationBar.setItems([navItem], animated: true)
+//
+//        return navigationBar
+//    }()
     
     //프로필 박스
     lazy var blueBoxView = { () -> UIView in
@@ -140,6 +140,9 @@ class SettingViewController: UIViewController {
         $0.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
     }
     
+    
+
+    
     //line1
     lazy var line1 = UIView().then {
         $0.backgroundColor = UIColor(red: 229/255, green: 230/255, blue: 255/255, alpha: 1)
@@ -207,7 +210,7 @@ class SettingViewController: UIViewController {
         self.view.backgroundColor = .white
         
         //뷰 추가
-        self.view.addSubview(navigationBar)
+  //      self.view.addSubview(navigationBar)
         self.view.addSubview(blueBoxView)
         self.view.addSubview(profileEditLabel)
         self.view.addSubview(profileImageView)
@@ -230,14 +233,14 @@ class SettingViewController: UIViewController {
         self.view.addSubview(line5)
         
         //오토레이아웃
-        navigationBar.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
-        }
+      //  navigationBar.snp.makeConstraints { (make) in
+//            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+//            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
+//            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
+//        }
         
         blueBoxView.snp.makeConstraints{ (make) in
-            make.top.equalTo(navigationBar.snp.bottom).offset(30)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(20)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-20)
             make.bottom.equalTo(lineView.snp.bottom).offset(55)
@@ -372,6 +375,17 @@ class SettingViewController: UIViewController {
             make.height.equalTo(0.5)
         }
         
+        // 공지사항 버튼
+        noticeButton.addTarget(self, action: #selector(goToNoticeVC),for: .touchUpInside)
+        
+        // 이용내역 버튼
+        usageListButton.addTarget(self, action: #selector(goToUsageListVC),for: .touchUpInside)
+        
+        // 문의하기 버튼
+        inquiryButton.addTarget(self, action: #selector(goToInquiryVC),for: .touchUpInside)
+        
+        // 프로필 편집
+        noticeButton.addTarget(self, action: #selector(goToNoticeVC),for: .touchUpInside)
         
         //let safeArea = self.view.safeAreaLayoutGuide
         
@@ -394,7 +408,26 @@ class SettingViewController: UIViewController {
         
     }
     
-
+    // 공지사항으로 화면 이동
+    @objc func goToNoticeVC(){
+        guard let noticeVC = storyboard?.instantiateViewController(withIdentifier: "NoticeViewController") else {return}
+        navigationController?.pushViewController(noticeVC, animated: true)
+        noticeVC.navigationItem.title = "공지사항"
+    }
+    
+    // 이용내역으로 화면 이동
+    @objc func goToUsageListVC(){
+        guard let UsageListVC = storyboard?.instantiateViewController(withIdentifier: "MyOrderedListVC") else {return}
+        navigationController?.pushViewController(UsageListVC, animated: true)
+        // UsageListVC.navigationItem.title = "이용내역"
+    }
+    
+    // 문의하기로 화면 이동
+    @objc func goToInquiryVC(){
+        guard let inquiryVC = storyboard?.instantiateViewController(withIdentifier: "QuestionVC") else {return}
+        navigationController?.pushViewController(inquiryVC, animated: true)
+        // inquiryVC.navigationItem.title = "공지사항"
+    }
 
 }
 //

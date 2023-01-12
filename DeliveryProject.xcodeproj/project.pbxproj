@@ -13,9 +13,6 @@
 		3D20B98F2959ACF000849DA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D20B98D2959ACF000849DA6 /* Main.storyboard */; };
 		3D20B9912959ACF100849DA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D20B9902959ACF100849DA6 /* Assets.xcassets */; };
 		3D20B9942959ACF100849DA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D20B9922959ACF100849DA6 /* LaunchScreen.storyboard */; };
-		3DABD38C296ED5F900677B84 /* Chatting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DABD38B296ED5F900677B84 /* Chatting.storyboard */; };
-		3DABD38F296ED66300677B84 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DABD38E296ED66300677B84 /* Setting.storyboard */; };
-		3DABD392296ED69700677B84 /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DABD391296ED69700677B84 /* Notice.storyboard */; };
 		3DABD394296ED6CB00677B84 /* ChattingTableViewMyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DABD393296ED6CB00677B84 /* ChattingTableViewMyCell.xib */; };
 		3DABD396296ED6E900677B84 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DABD395296ED6E900677B84 /* NoticeTableViewCell.xib */; };
 		3DABD398296ED72400677B84 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DABD397296ED72400677B84 /* ChattingViewController.swift */; };
@@ -27,6 +24,7 @@
 		CB392678296C205A00DA319C /* MyOrderedListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB392677296C205A00DA319C /* MyOrderedListTableViewController.swift */; };
 		CB39267A296C209D00DA319C /* MyOrderedListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB392679296C209D00DA319C /* MyOrderedListTableViewCell.swift */; };
 		CB39267C296C52D200DA319C /* StarScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB39267B296C52D200DA319C /* StarScoreViewController.swift */; };
+		CB39267E296FD76600DA319C /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB39267D296FD76600DA319C /* ModifyViewController.swift */; };
 		CB60AEAA29615F9F00E1F18F /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB60AEA929615F9F00E1F18F /* OrderViewController.swift */; };
 		CB60AEAC296160C600E1F18F /* OrderedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB60AEAB296160C600E1F18F /* OrderedListViewController.swift */; };
 		CB60AEAF2961611300E1F18F /* OrderedListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB60AEAE2961611300E1F18F /* OrderedListTableViewCell.swift */; };
@@ -50,9 +48,6 @@
 		3D20B9902959ACF100849DA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D20B9932959ACF100849DA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D20B9952959ACF100849DA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3DABD38B296ED5F900677B84 /* Chatting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chatting.storyboard; sourceTree = "<group>"; };
-		3DABD38E296ED66300677B84 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
-		3DABD391296ED69700677B84 /* Notice.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notice.storyboard; sourceTree = "<group>"; };
 		3DABD393296ED6CB00677B84 /* ChattingTableViewMyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingTableViewMyCell.xib; sourceTree = "<group>"; };
 		3DABD395296ED6E900677B84 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
 		3DABD397296ED72400677B84 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +59,7 @@
 		CB392677296C205A00DA319C /* MyOrderedListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderedListTableViewController.swift; sourceTree = "<group>"; };
 		CB392679296C209D00DA319C /* MyOrderedListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderedListTableViewCell.swift; sourceTree = "<group>"; };
 		CB39267B296C52D200DA319C /* StarScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarScoreViewController.swift; sourceTree = "<group>"; };
+		CB39267D296FD76600DA319C /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
 		CB60AEA929615F9F00E1F18F /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		CB60AEAB296160C600E1F18F /* OrderedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedListViewController.swift; sourceTree = "<group>"; };
 		CB60AEAE2961611300E1F18F /* OrderedListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedListTableViewCell.swift; sourceTree = "<group>"; };
@@ -141,10 +137,7 @@
 		3DABD38D296ED62000677B84 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3DABD38B296ED5F900677B84 /* Chatting.storyboard */,
 				3D20B98D2959ACF000849DA6 /* Main.storyboard */,
-				3DABD38E296ED66300677B84 /* Setting.storyboard */,
-				3DABD391296ED69700677B84 /* Notice.storyboard */,
 				3DABD393296ED6CB00677B84 /* ChattingTableViewMyCell.xib */,
 				3DABD395296ED6E900677B84 /* NoticeTableViewCell.xib */,
 			);
@@ -180,6 +173,7 @@
 				3DABD397296ED72400677B84 /* ChattingViewController.swift */,
 				3DABD39B296ED88600677B84 /* SettingViewController.swift */,
 				3DABD39D296ED8EC00677B84 /* NoticeViewController.swift */,
+				CB39267D296FD76600DA319C /* ModifyViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -244,10 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DABD38C296ED5F900677B84 /* Chatting.storyboard in Resources */,
 				3D20B9942959ACF100849DA6 /* LaunchScreen.storyboard in Resources */,
-				3DABD392296ED69700677B84 /* Notice.storyboard in Resources */,
-				3DABD38F296ED66300677B84 /* Setting.storyboard in Resources */,
 				3DABD394296ED6CB00677B84 /* ChattingTableViewMyCell.xib in Resources */,
 				3DABD396296ED6E900677B84 /* NoticeTableViewCell.xib in Resources */,
 				3D20B9912959ACF100849DA6 /* Assets.xcassets in Resources */,
@@ -324,6 +315,7 @@
 				CB39267C296C52D200DA319C /* StarScoreViewController.swift in Sources */,
 				3DABD39C296ED88600677B84 /* SettingViewController.swift in Sources */,
 				CBB259D829606286004EAB37 /* DeliveryListTableViewCell.swift in Sources */,
+				CB39267E296FD76600DA319C /* ModifyViewController.swift in Sources */,
 				CB8B92EE296316BE0008B497 /* CreateOrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

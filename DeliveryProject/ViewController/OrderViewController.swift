@@ -17,10 +17,15 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var request: UILabel! // 요청사항
     @IBOutlet weak var deliveryTip: UILabel! // 배달팁
     
-    @IBOutlet weak var goToChat: UIButton!
+//    @IBOutlet weak var goToChat: UIButton!
     
     
-    @IBAction func goToChat(_ sender: UIButton) {
+
+    @IBAction func chattingBtn(_ sender: UIButton) {
+        
+        guard let chattingVC = storyboard?.instantiateViewController(withIdentifier: "ChattingVC") else {return}
+        navigationController?.pushViewController(chattingVC, animated: true)
+        print("asd")
     }
     
     

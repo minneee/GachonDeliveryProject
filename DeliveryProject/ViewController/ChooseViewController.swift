@@ -49,6 +49,7 @@ class ChooseViewController: UIViewController {
 //                let VC2 = storyBD.instantiateViewController(identifier: "SettingViewController")
 //                //이동 함수 호출
 //                changeRootViewController(VC2)
+
         
     }
     

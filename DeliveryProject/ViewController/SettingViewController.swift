@@ -58,7 +58,7 @@ class SettingViewController: UIViewController {
     lazy var profileImageView = { () -> UIImageView in
         let imageView = UIImageView()
         
-        imageView.image = UIImage(named: "profile")
+        imageView.image = UIImage(named: "profileImage")
         
         return imageView
     }()

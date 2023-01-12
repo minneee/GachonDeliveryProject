@@ -11,7 +11,24 @@ class ChooseViewController: UIViewController {
     @IBOutlet weak var receiveDelivery: UIButton!
     @IBOutlet weak var doDelivery: UIButton!
   
+
     let navImage = UIImage(named: "setting")
+
+    // 네비게이션 바 설정 버튼
+    @IBAction func goToSetting(_ sender: UIButton) {
+//        //스토리보드 지정
+//        let storyBD = UIStoryboard(name: "Setting", bundle: nil)
+//
+//        //스토리보드 중에 어떤 뷰컨으로 갈지 선텍
+//        let VC2 = storyBD.instantiateViewController(identifier: "SettingViewController")
+//
+//        //이동 함수 호출
+//        changeRootViewController(VC2)
+        guard let settingVC = storyboard?.instantiateViewController(withIdentifier: "SettingViewController") else {return}
+        navigationController?.pushViewController(settingVC, animated: true)
+        
+    }
+
     
     // 배달할래요 버튼 동작
     @IBAction func doDelivery(_ sender: UIButton) {
@@ -30,6 +47,7 @@ class ChooseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.barTintColor = .white
         
@@ -44,6 +62,7 @@ class ChooseViewController: UIViewController {
 //                let VC2 = storyBD.instantiateViewController(identifier: "MyDeliveryListVC")
 //                //이동 함수 호출
 //                changeRootViewController(VC2)
+
         
     }
     

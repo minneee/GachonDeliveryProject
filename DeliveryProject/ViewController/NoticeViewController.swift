@@ -15,12 +15,12 @@ var noticeList: [String] = ["1번 공지", "2번 공지사항 제목은 좀 길�
 class NoticeViewController: UIViewController {
     
     //네비게이션 바
-    lazy var navigationBar = UINavigationBar().then{
-        $0.barTintColor = .white
-        $0.tintColor = .black
-        let navItem = UINavigationItem(title: "공지사항")
-        $0.setItems([navItem], animated: true)
-    }
+//    lazy var navigationBar = UINavigationBar().then{
+//        $0.barTintColor = .white
+//        $0.tintColor = .black
+//        let navItem = UINavigationItem(title: "공지사항")
+//        $0.setItems([navItem], animated: true)
+//    }
     
     lazy var noticeTableView = UITableView().then {
         $0.delegate = self
@@ -44,19 +44,19 @@ class NoticeViewController: UIViewController {
     //레이아웃 설정
     private func setupLayout() {
         //view 추가
-        self.view.addSubview(navigationBar)
+     //   self.view.addSubview(navigationBar)
         self.view.addSubview(noticeTableView)
         
         
         //오토레이아웃
-        navigationBar.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
-        }
+//            navigationBar.snp.makeConstraints { make in
+//            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+//            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
+//            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
+//        }
         
         noticeTableView.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom).offset(10)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)

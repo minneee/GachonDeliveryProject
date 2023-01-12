@@ -9,29 +9,46 @@ import UIKit
 
 class OrderedListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-
+    // 테이블
     @IBOutlet weak var orderedListTable: UITableView!
+    
+    // 네이게이션 바 주문서 작성 버튼 아울렛
+    @IBOutlet var createOrder: UIBarButtonItem!
+    
+    // 네비게이션 바 주문서 작성 버튼
+
+    
+    let image = UIImage(named: "createOrder")
+    
     
     // 수정 버튼
     @IBAction func fixBtn(_ sender: UIButton) {
+        
+        guard let modifyVC = storyboard?.instantiateViewController(withIdentifier: "ModifyVC") else{return}
+        navigationController?.pushViewController(modifyVC, animated: true)
     }
     
-    // bar 버튼 주문서 작성 페이지 버튼
-    @IBAction func CreateOrderBtn(_ sender: UIBarButtonItem) {
+
+    // 주문서 작성 페이지 이동
+    @objc func goToCreate(){
         guard let createOrderVC = storyboard?.instantiateViewController(withIdentifier: "CreateOrderVC") else{return}
         navigationController?.pushViewController(createOrderVC, animated: true)
-        
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         orderedListTable.delegate = self
         orderedListTable.dataSource = self
-
-  
+        
+        // 주문서 작성 이미지 크기 조절
+        let scaledImage = image?.resizeImage(size: CGSize(width: 26, height:26))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: scaledImage, style: .plain, target: self, action: #selector(goToCreate))
+        
+        
     }
-
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,6 +63,16 @@ class OrderedListViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
 
-    
+}
 
+// 이미지 크기 조절
+extension UIImage {
+    func resizeImage(size: CGSize) -> UIImage {
+        let originalSize = self.size
+        let ratio: CGFloat = {
+            return (originalSize.width > originalSize.height) ? (1 / (size.width / originalSize.width)) : (1 / (size.height / originalSize.height))
+        }()
+        
+        return UIImage(cgImage: self.cgImage!, scale: self.scale * ratio, orientation: imageOrientation)
+    }
 }

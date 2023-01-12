@@ -16,23 +16,31 @@ class OrderedListViewController: UIViewController, UITableViewDelegate, UITableV
     @IBAction func fixBtn(_ sender: UIButton) {
     }
     
-    // bar 버튼 주문서 작성 페이지 버튼
-    @IBAction func CreateOrderBtn(_ sender: UIBarButtonItem) {
+    //네비게이션 바 이미지
+    let navImage = UIImage(named: "createOrder")
+    
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        print("hi")
+        orderedListTable.delegate = self
+        orderedListTable.dataSource = self
+
+        navigationItem.titleView?.tintColor = .black
+        //네비게이션 바 이미지 넣기(크기 조절)
+        let scaledImage = navImage?.resizeImage(size: CGSize(width:26, height:26))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: scaledImage, style: .plain, target: self, action: #selector(moveVC))
+  
+    }
+
+    @objc func moveVC () {
+        print("화면이동")
         guard let createOrderVC = storyboard?.instantiateViewController(withIdentifier: "CreateOrderVC") else{return}
         navigationController?.pushViewController(createOrderVC, animated: true)
         
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        orderedListTable.delegate = self
-        orderedListTable.dataSource = self
-
-  
-    }
-
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
@@ -49,3 +57,15 @@ class OrderedListViewController: UIViewController, UITableViewDelegate, UITableV
     
 
 }
+
+//네비게이션 바 이미지 크기 조절
+//extension UIImage {
+//    func resizeImage(size: CGSize) -> UIImage {
+//        let originalSize = self.size
+//        let ratio: CGFloat = {
+//            return (originalSize.width > originalSize.height) ? (1 / (size.width / originalSize.width)) : (1 / (size.height / originalSize.height))
+//        }()
+//
+//        return UIImage(cgImage: self.cgImage!, scale: self.scale * ratio, orientation: imageOrientation)
+//    }
+//}

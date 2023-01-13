@@ -29,6 +29,10 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tipButton: UIButton!
     @IBOutlet weak var tipImg: UIImageView!
     
+    
+    
+    
+    
     // 배달 리스트 테이블
     @IBOutlet weak var listTable: UITableView!
     
@@ -66,11 +70,23 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
         listTable.dataSource = self
         listTable.delegate = self
         
+        viewOption()
+        
   //      initUI()
 
     }
-
-
+    // 버튼 테두리 설정
+    func viewOption(){
+        // 배달 장소 드롭뷰
+        placeDropView.layer.borderWidth = 1
+        placeDropView.layer.cornerRadius = 5
+        placeDropView.layer.borderColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 0.17).cgColor
+        
+        // 배달팁 드롭뷰
+        tipDropView.layer.borderWidth = 1
+        tipDropView.layer.cornerRadius = 5
+        tipDropView.layer.borderColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 0.17).cgColor
+    }
     
     // DropDown UI 커스텀
 //    func initUI(){
@@ -106,6 +122,7 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
             self!.placeButton.tintColor = .black
             self!.placeImg.image = UIImage.init(systemName: "arrowtriangle.up.fill")
             self!.placeImg.image?.withTintColor(.black)
+//            self?.placeButton.tintColor = .black
         }
     }
     
@@ -127,7 +144,7 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
             self!.tipButton.setTitle(item, for: .normal)
             self!.tipButton.tintColor = .black
             self!.tipImg.image = UIImage.init(systemName: "arrowtriangle.up.fill")
-            self!.tipImg.image?.withTintColor(.black)
+            self!.tipImg.image?.withTintColor(UIColor.black)
         }
     }
     

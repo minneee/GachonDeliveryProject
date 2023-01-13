@@ -207,10 +207,58 @@ class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //뷰 추가, 오토레이아웃 설정
+        self.setupLayout()
+        
         self.view.backgroundColor = .white
         
+
+        // 공지사항 버튼
+        noticeButton.addTarget(self, action: #selector(goToNoticeVC),for: .touchUpInside)
+        
+        // 이용내역 버튼
+        usageListButton.addTarget(self, action: #selector(goToUsageListVC),for: .touchUpInside)
+        
+        // 문의하기 버튼
+        inquiryButton.addTarget(self, action: #selector(goToInquiryVC),for: .touchUpInside)
+        
+        // 프로필 편집
+        let tap = UITapGestureRecognizer(target: self, action: #selector(gotToChangeProfileVC))
+        profileEditLabel.isUserInteractionEnabled = true
+        profileEditLabel.addGestureRecognizer(tap)
+
+    }
+    
+    // 공지사항으로 화면 이동
+    @objc func goToNoticeVC(){
+        guard let noticeVC = storyboard?.instantiateViewController(withIdentifier: "NoticeViewController") else {return}
+        navigationController?.pushViewController(noticeVC, animated: true)
+        noticeVC.navigationItem.title = "공지사항"
+    }
+    
+    // 이용내역으로 화면 이동
+    @objc func goToUsageListVC(){
+        guard let UsageListVC = storyboard?.instantiateViewController(withIdentifier: "MyOrderedListVC") else {return}
+        navigationController?.pushViewController(UsageListVC, animated: true)
+        // UsageListVC.navigationItem.title = "이용내역"
+    }
+    
+    // 문의하기로 화면 이동
+    @objc func goToInquiryVC(){
+        guard let inquiryVC = storyboard?.instantiateViewController(withIdentifier: "QuestionVC") else {return}
+        navigationController?.pushViewController(inquiryVC, animated: true)
+        // inquiryVC.navigationItem.title = "공지사항"
+    }
+    
+    // 프로필 편집으로 화면 이동
+    @objc func gotToChangeProfileVC() {
+        guard let ChangeProfileVC = storyboard?.instantiateViewController(withIdentifier: "ChangeProfileVC") else {return}
+        navigationController?.pushViewController(ChangeProfileVC, animated: true)
+    }
+    
+    
+    func setupLayout() {
         //뷰 추가
-  //      self.view.addSubview(navigationBar)
         self.view.addSubview(blueBoxView)
         self.view.addSubview(profileEditLabel)
         self.view.addSubview(profileImageView)
@@ -232,12 +280,6 @@ class SettingViewController: UIViewController {
         self.view.addSubview(withdrawalButton)
         self.view.addSubview(line5)
         
-        //오토레이아웃
-      //  navigationBar.snp.makeConstraints { (make) in
-//            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-//            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
-//            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
-//        }
         
         blueBoxView.snp.makeConstraints{ (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
@@ -374,60 +416,9 @@ class SettingViewController: UIViewController {
             make.right.equalTo(blueBoxView.snp.right).offset(-10)
             make.height.equalTo(0.5)
         }
-        
-        // 공지사항 버튼
-        noticeButton.addTarget(self, action: #selector(goToNoticeVC),for: .touchUpInside)
-        
-        // 이용내역 버튼
-        usageListButton.addTarget(self, action: #selector(goToUsageListVC),for: .touchUpInside)
-        
-        // 문의하기 버튼
-        inquiryButton.addTarget(self, action: #selector(goToInquiryVC),for: .touchUpInside)
-        
-        // 프로필 편집
-        noticeButton.addTarget(self, action: #selector(goToNoticeVC),for: .touchUpInside)
-        
-        //let safeArea = self.view.safeAreaLayoutGuide
-        
-//        navigationBar.barTintColor = .white
-//        navigationBar.tintColor = .black
-        
-//        //오토레이아웃
-//        navigationBar.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
-//        navigationBar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor).isActive = true
-//        navigationBar.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
-
-        
-//        let navItem = UINavigationItem(title: "설정")
-//        let leftButton = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .plain, target: self, action: nil)
-//
-//
-//        navItem.leftBarButtonItem = leftButton
-//
-//        navigationBar.setItems([navItem], animated: true)
-        
     }
     
-    // 공지사항으로 화면 이동
-    @objc func goToNoticeVC(){
-        guard let noticeVC = storyboard?.instantiateViewController(withIdentifier: "NoticeViewController") else {return}
-        navigationController?.pushViewController(noticeVC, animated: true)
-        noticeVC.navigationItem.title = "공지사항"
-    }
-    
-    // 이용내역으로 화면 이동
-    @objc func goToUsageListVC(){
-        guard let UsageListVC = storyboard?.instantiateViewController(withIdentifier: "MyOrderedListVC") else {return}
-        navigationController?.pushViewController(UsageListVC, animated: true)
-        // UsageListVC.navigationItem.title = "이용내역"
-    }
-    
-    // 문의하기로 화면 이동
-    @objc func goToInquiryVC(){
-        guard let inquiryVC = storyboard?.instantiateViewController(withIdentifier: "QuestionVC") else {return}
-        navigationController?.pushViewController(inquiryVC, animated: true)
-        // inquiryVC.navigationItem.title = "공지사항"
-    }
+   
 
 }
 //

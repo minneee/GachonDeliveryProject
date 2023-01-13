@@ -1151,7 +1151,7 @@
         <!--프로필 변경-->
         <scene sceneID="BZp-yC-Hjo">
             <objects>
-                <viewController id="zfZ-CO-dfg" customClass="ChangeProfileViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangeProfileVC" id="zfZ-CO-dfg" customClass="ChangeProfileViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mDl-AO-qx6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1699,14 +1699,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem i" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="znF-DP-TiM">
-                                                <rect key="frame" x="75" y="7" width="277" height="40"/>
+                                                <rect key="frame" x="75" y="7" width="283" height="40"/>
                                                 <color key="backgroundColor" red="0.96078431610000004" green="0.96078431610000004" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cHG-OS-lu3">
-                                                <rect key="frame" x="345" y="5" width="54" height="44"/>
+                                                <rect key="frame" x="351" y="8" width="48" height="38"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" imagePadding="0.0">
@@ -2482,12 +2482,12 @@
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="createOrder" width="72" height="72"/>
         <image name="dodelivery.png" width="130" height="130"/>
-        <image name="menuBtn" width="21" height="21"/>
+        <image name="menuBtn" width="27" height="27"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="profileImage" width="366" height="366"/>
         <image name="recieveDelivery.png" width="130" height="130"/>
         <image name="search.png" width="41" height="41"/>
-        <image name="sendMessageBtn" width="30" height="30"/>
+        <image name="sendMessageBtn" width="24" height="24"/>
         <image name="setting.png" width="30" height="30"/>
         <image name="square" catalog="system" width="128" height="114"/>
         <systemColor name="labelColor">

@@ -30,6 +30,8 @@ class CreateOrderViewController: UIViewController {
         super.viewDidLoad()
         TextViewOption()
         
+        self.navigationController?.navigationBar.topItem?.title = ""
+        
         //키보드 올라가면 화면 위로 밀기 
         IQKeyboardManager.shared.enable = true
 

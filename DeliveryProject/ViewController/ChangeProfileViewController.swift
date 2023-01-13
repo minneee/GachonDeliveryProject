@@ -25,6 +25,7 @@ class ChangeProfileViewController: UIViewController {
         super.viewDidLoad()
         nicknameUnderLine()
         introduceUnderLine()
+        self.navigationController?.navigationBar.topItem?.title = ""
         
     }
     

@@ -14,19 +14,10 @@ class ChooseViewController: UIViewController {
 
     let navImage = UIImage(named: "setting")
 
-    // 네비게이션 바 설정 버튼
-    @IBAction func goToSetting(_ sender: UIButton) {
-//        //스토리보드 지정
-//        let storyBD = UIStoryboard(name: "Setting", bundle: nil)
-//
-//        //스토리보드 중에 어떤 뷰컨으로 갈지 선텍
-//        let VC2 = storyBD.instantiateViewController(identifier: "SettingViewController")
-//
-//        //이동 함수 호출
-//        changeRootViewController(VC2)
+
+    @objc func goToSetting() {
         guard let settingVC = storyboard?.instantiateViewController(withIdentifier: "SettingViewController") else {return}
         navigationController?.pushViewController(settingVC, animated: true)
-        
     }
 
     
@@ -53,15 +44,8 @@ class ChooseViewController: UIViewController {
         
         //네비게이션 바 이미지 넣기(크기 조절)
         let scaledImage = navImage?.resizeImage(size: CGSize(width: 26, height:26))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: scaledImage, style: .plain, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: scaledImage, style: .plain, target: self, action: #selector(goToSetting))
         
-        
-//        //스토리보드 지정
-//                let storyBD = UIStoryboard(name: "Main", bundle: nil)
-//                //스토리보드 중에 어떤 뷰컨으로 갈지 선텍
-//                let VC2 = storyBD.instantiateViewController(identifier: "MyDeliveryListVC")
-//                //이동 함수 호출
-//                changeRootViewController(VC2)
 
         
     }

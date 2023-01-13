@@ -1140,7 +1140,7 @@
         <!--프로필 변경-->
         <scene sceneID="BZp-yC-Hjo">
             <objects>
-                <viewController id="zfZ-CO-dfg" customClass="ChangeProfileViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangeProfileVC" id="zfZ-CO-dfg" customClass="ChangeProfileViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mDl-AO-qx6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

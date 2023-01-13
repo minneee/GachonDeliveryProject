@@ -41,6 +41,9 @@ class OrderedListViewController: UIViewController {
   
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = "주문서 목록"
+    }
     // 주문서 수정 버튼
     @IBAction func fixBtn(_ sender: UIButton) {
         guard let modifyVC = storyboard?.instantiateViewController(withIdentifier: "ModifyVC") else{return}

@@ -7,8 +7,9 @@
 
 import UIKit
 import DropDown
+import IQKeyboardManagerSwift
 
-class ModifyViewController: UIViewController, UITextViewDelegate {
+class ModifyViewController: UIViewController {
 
     @IBOutlet weak var startPlaceTextView: UITextView! // 출발 장소 텍스트 뷰
     @IBOutlet weak var endPlaceDropView: UIView! // 도착 장소 드롭 뷰
@@ -49,6 +50,13 @@ class ModifyViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         TextViewOption()
+        
+        //키보드 올라가면 화면 위로 밀기
+        IQKeyboardManager.shared.enable = true
+        //키보드 위에 Toolbar 없애기
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        //키보드 밖 화면 터치 시 키보드 내려감
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
 
     }
     
@@ -88,65 +96,6 @@ class ModifyViewController: UIViewController, UITextViewDelegate {
         menuTextView.contentInset.top = 8
         requestTextView.contentInset.top = 8
     }
-    
-    // 텍스트뷰를 종료했을 때 텍스트뷰의 텍스트가 비어있다면
-    func textViewDidEndEditing(_ textView: UITextView) {
-        
-        // 출발 장소
-        if startPlaceTextView.text.isEmpty{
-            startPlaceTextView.text = "출발 장소"
-            startPlaceTextView.textColor = .placeholderText
-        }
-        
-        // 메뉴
-        if menuTextView.text.isEmpty{
-            menuTextView.text = "메뉴"
-            menuTextView.textColor = .placeholderText
-        }
-
-        // 요청 사항
-        if requestTextView.text.isEmpty{
-            requestTextView.text = "요청사항"
-            requestTextView.textColor = .placeholderText
-        }
-    }
-    
-    // 텍스트 뷰에 수정하기 시작할 때 텍스트 컬러 변경
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        
-        // 출발 장소
-        if startPlaceTextView.isSelectable{
-            if startPlaceTextView.text == "출발 장소"{
-                startPlaceTextView.text = nil
-                startPlaceTextView.textColor = .black
-            }
-        }
-        
-        // 메뉴
-        else if menuTextView.isSelectable{
-            if menuTextView.text == "메뉴" {
-                menuTextView.text = nil
-                menuTextView.textColor = .black
-            }
-        }
-        
-        
-        // 요청 사항
-        else if requestTextView.isSelectable{
-            if requestTextView.text == "요청사항" {
-                requestTextView.text = nil
-                requestTextView.textColor = .black
-            }
-        }
-
-    }
-    
-    // 화면 터치하여 키보드 내리기
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.startPlaceTextView.endEditing(true)
-    }
-    
-    
     
     
 
@@ -189,6 +138,40 @@ class ModifyViewController: UIViewController, UITextViewDelegate {
         dropdown.selectionAction = { [weak self] (index, item) in
             self!.deliveryTipBtn.setTitle(item, for: .normal)
             self!.deliveryTipBtn.tintColor = .black
+        }
+    }
+}
+
+extension ModifyViewController: UITextViewDelegate {
+    
+    // 텍스트 뷰에 수정하기 시작할 때 텍스트 컬러 변경
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "출발 장소" || textView.text == "메뉴" || textView.text == "요청사항" {
+            textView.text = nil
+            textView.textColor = .black
+        }
+    }
+    
+    
+    // 텍스트뷰를 종료했을 때 텍스트뷰의 텍스트가 비어있다면
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
+        // 출발 장소
+        if startPlaceTextView.text.isEmpty{
+            startPlaceTextView.text = "출발 장소"
+            startPlaceTextView.textColor = .placeholderText
+        }
+        
+        // 메뉴
+        if menuTextView.text.isEmpty{
+            menuTextView.text = "메뉴"
+            menuTextView.textColor = .placeholderText
+        }
+
+        // 요청 사항
+        if requestTextView.text.isEmpty{
+            requestTextView.text = "요청사항"
+            requestTextView.textColor = .placeholderText
         }
     }
 }

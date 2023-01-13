@@ -29,6 +29,7 @@ class CreateOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         TextViewOption()
+        viewOption()
         
         self.navigationController?.navigationBar.topItem?.title = ""
         
@@ -41,6 +42,17 @@ class CreateOrderViewController: UIViewController {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
     }
     
+    func viewOption(){
+        // 배달 장소 드롭뷰
+        endPlaceDropView.layer.borderWidth = 1
+        endPlaceDropView.layer.cornerRadius = 5
+        endPlaceDropView.layer.borderColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 0.17).cgColor
+        
+        // 배달팁 드롭뷰
+        deliverTipDropView.layer.borderWidth = 1
+        deliverTipDropView.layer.cornerRadius = 5
+        deliverTipDropView.layer.borderColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 0.17).cgColor
+    }
     
     // startPlace, menu, request TextView 설정
     func TextViewOption(){

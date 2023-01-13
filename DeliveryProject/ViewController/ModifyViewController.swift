@@ -53,6 +53,7 @@ class ModifyViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         
         TextViewOption()
+        viewOption()
         
         //키보드 올라가면 화면 위로 밀기
         IQKeyboardManager.shared.enable = true
@@ -61,6 +62,18 @@ class ModifyViewController: UIViewController {
         //키보드 밖 화면 터치 시 키보드 내려감
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
 
+    }
+    
+    func viewOption(){
+        // 배달 장소 드롭뷰
+        endPlaceDropView.layer.borderWidth = 1
+        endPlaceDropView.layer.cornerRadius = 5
+        endPlaceDropView.layer.borderColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 0.17).cgColor
+        
+        // 배달팁 드롭뷰
+        deliveryTipDropView.layer.borderWidth = 1
+        deliveryTipDropView.layer.cornerRadius = 5
+        deliveryTipDropView.layer.borderColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 0.17).cgColor
     }
     
     // startPlace, menu, request TextView 설정

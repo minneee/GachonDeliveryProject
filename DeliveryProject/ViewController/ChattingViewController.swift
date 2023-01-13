@@ -29,6 +29,13 @@ class ChattingViewController: UIViewController {
     
     @IBOutlet weak var chattingMenuImageView: UIImageView!
     
+    @IBOutlet weak var deliveryButton: UIButton!
+    
+    @IBOutlet weak var chattingTextView: UITextView!
+    
+    @IBOutlet weak var sendMessageButton: UIButton!
+    
+    
     var speechBubbleList: [String] = ["hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로"]
 
     
@@ -37,6 +44,12 @@ class ChattingViewController: UIViewController {
 
         //채팅창 공지 뷰 모서리 둥글게하기
         announcementView.layer.cornerRadius = 8
+        
+        // 배달 완료 버튼 모서리 둥글게하기
+        deliveryButton.layer.cornerRadius = 8
+        
+        // 채팅 텍스트 뷰 모서리 둥글게하기
+        chattingTextView.layer.cornerRadius = 8
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowHandle), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHidenHandle), name: UIResponder.keyboardWillHideNotification, object: nil)

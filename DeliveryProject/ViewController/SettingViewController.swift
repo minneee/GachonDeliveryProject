@@ -215,6 +215,7 @@ class SettingViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
+        
 
         // 공지사항 버튼
         noticeButton.addTarget(self, action: #selector(goToNoticeVC),for: .touchUpInside)

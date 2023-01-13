@@ -26,6 +26,7 @@ class OrderedListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.topItem?.title = ""
 
         // 테이블 뷰 설정
         orderedListTable.delegate = self

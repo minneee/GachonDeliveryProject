@@ -13,6 +13,9 @@ class MyOrderedListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.topItem?.title = ""
+        
         tableView.delegate = self
         tableView.dataSource = self
     }

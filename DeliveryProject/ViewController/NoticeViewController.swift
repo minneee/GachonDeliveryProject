@@ -37,6 +37,8 @@ class NoticeViewController: UIViewController {
         super.viewDidLoad()
         self.setupLayout()
         
+        self.navigationController?.navigationBar.topItem?.title = ""
+        
         
     }
     

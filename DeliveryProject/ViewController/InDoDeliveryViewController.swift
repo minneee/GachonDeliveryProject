@@ -66,6 +66,8 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.topItem?.title = ""
 
         listTable.dataSource = self
         listTable.delegate = self
@@ -162,6 +164,12 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
         
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let orderVC = storyboard?.instantiateViewController(withIdentifier: "OrderViewVC") else {return}
+        self.navigationController?.pushViewController(orderVC, animated: true)
+
     }
     
 

@@ -100,10 +100,10 @@
                                 <rect key="frame" x="15" y="54" width="384" height="713"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LmG-gx-Dj7">
-                                        <rect key="frame" x="0.0" y="0.0" width="384" height="394.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="381"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iPH-Cw-8gO">
-                                                <rect key="frame" x="0.0" y="0.0" width="384" height="64.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="384" height="51"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출발 장소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOP-uv-65u">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="20.5"/>
@@ -113,7 +113,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7mC-Rz-FWY">
-                                                        <rect key="frame" x="0.0" y="30.5" width="384" height="34"/>
+                                                        <rect key="frame" x="0.0" y="30.5" width="384" height="20.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="치미치미" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ql-ll-vJ7">
                                                                 <rect key="frame" x="0.0" y="0.0" width="384" height="20.5"/>
@@ -122,19 +122,13 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수정구 복정로 20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpx-PU-7As">
-                                                                <rect key="frame" x="0.0" y="20.5" width="384" height="13.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                                <color key="textColor" systemColor="systemGray2Color"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Z51-2x-zIl">
-                                                <rect key="frame" x="0.0" y="79.5" width="384" height="51"/>
+                                                <rect key="frame" x="0.0" y="66" width="384" height="51"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도착 장소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcg-RT-Cis">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="20.5"/>
@@ -152,7 +146,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MbE-8h-sXt">
-                                                <rect key="frame" x="0.0" y="145.5" width="384" height="51"/>
+                                                <rect key="frame" x="0.0" y="132" width="384" height="51"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도착 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yas-xk-r3i">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="20.5"/>
@@ -170,7 +164,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="V8H-oo-RYk">
-                                                <rect key="frame" x="0.0" y="211.5" width="384" height="51"/>
+                                                <rect key="frame" x="0.0" y="198" width="384" height="51"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메뉴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vy1-iJ-tOh">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="20.5"/>
@@ -188,7 +182,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6u4-Pz-Dff">
-                                                <rect key="frame" x="0.0" y="277.5" width="384" height="51"/>
+                                                <rect key="frame" x="0.0" y="264" width="384" height="51"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="요청 사항" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hyY-A0-sgA">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="20.5"/>
@@ -206,7 +200,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dcc-1D-LGi">
-                                                <rect key="frame" x="0.0" y="343.5" width="384" height="51"/>
+                                                <rect key="frame" x="0.0" y="330" width="384" height="51"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배달팁" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8u4-za-xgR">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="20.5"/>
@@ -268,7 +262,6 @@
                         <outlet property="menu" destination="apG-fJ-mvu" id="gIN-RA-Hhh"/>
                         <outlet property="request" destination="Fyr-cQ-b0d" id="FKm-MN-zaw"/>
                         <outlet property="startPlace" destination="7ql-ll-vJ7" id="cQK-sM-pwF"/>
-                        <outlet property="startPlaceAddress" destination="Xpx-PU-7As" id="GTk-wQ-Ylu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LC1-kG-hMM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -647,17 +640,17 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" id="CnA-N8-S52" customClass="OrderedListTableViewCell" customModule="DeliveryProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="516.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="503"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CnA-N8-S52" id="9Zu-pk-AAy">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="516.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="503"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="olg-qu-eD8">
-                                                    <rect key="frame" x="20" y="20" width="374" height="435"/>
+                                                    <rect key="frame" x="20" y="20" width="374" height="421.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0Ig-9X-rgl">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="64.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="51"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출발 장소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpb-km-W2c">
                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -667,7 +660,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xA0-mH-3EJ">
-                                                                    <rect key="frame" x="0.0" y="30.5" width="374" height="34"/>
+                                                                    <rect key="frame" x="0.0" y="30.5" width="374" height="20.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="치미치미" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzV-3M-Nga">
                                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -676,19 +669,13 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수정구 복정로 20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-Y9-XUB">
-                                                                            <rect key="frame" x="0.0" y="20.5" width="374" height="13.5"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                                            <color key="textColor" systemColor="systemGray2Color"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
                                                                     </subviews>
                                                                 </stackView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ygj-mr-gG8">
-                                                            <rect key="frame" x="0.0" y="79.5" width="374" height="51"/>
+                                                            <rect key="frame" x="0.0" y="66" width="374" height="51"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도착 장소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXc-vh-q1L">
                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -706,7 +693,7 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tIc-cc-Tx3">
-                                                            <rect key="frame" x="0.0" y="145.5" width="374" height="51"/>
+                                                            <rect key="frame" x="0.0" y="132" width="374" height="51"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도착 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8HA-Zs-bNA">
                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -724,7 +711,7 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vlZ-45-lNO">
-                                                            <rect key="frame" x="0.0" y="211.5" width="374" height="51"/>
+                                                            <rect key="frame" x="0.0" y="198" width="374" height="51"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메뉴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7j3-8E-PVQ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -742,7 +729,7 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="c41-PM-Tha">
-                                                            <rect key="frame" x="0.0" y="277.5" width="374" height="91.5"/>
+                                                            <rect key="frame" x="0.0" y="264" width="374" height="91.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="요청 사항" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jp5-Ix-b1r">
                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -760,7 +747,7 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="e8K-kY-9vY">
-                                                            <rect key="frame" x="0.0" y="384" width="374" height="51"/>
+                                                            <rect key="frame" x="0.0" y="370.5" width="374" height="51"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배달팁" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lf8-sd-32Y">
                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -780,7 +767,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xds-9p-x19">
-                                                    <rect key="frame" x="20" y="475" width="374" height="31.5"/>
+                                                    <rect key="frame" x="20" y="461.5" width="374" height="31.5"/>
                                                     <color key="backgroundColor" red="0.78039217000000005" green="0.82352948189999997" blue="0.98431372640000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
@@ -808,7 +795,6 @@
                                             <outlet property="menu" destination="iXV-Yh-4XV" id="mqF-bn-Kc5"/>
                                             <outlet property="request" destination="n7M-T4-8Nq" id="15U-Wt-e9d"/>
                                             <outlet property="startPlace" destination="fzV-3M-Nga" id="fc4-9R-dcZ"/>
-                                            <outlet property="startPlaceAddress" destination="a8f-Y9-XUB" id="f9m-Yp-zL2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

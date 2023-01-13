@@ -49,6 +49,9 @@ class ModifyViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.topItem?.title = ""
+        
         TextViewOption()
         
         //키보드 올라가면 화면 위로 밀기

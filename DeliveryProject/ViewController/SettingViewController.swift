@@ -207,6 +207,9 @@ class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.topItem?.title = ""
+        
         //뷰 추가, 오토레이아웃 설정
         self.setupLayout()
         

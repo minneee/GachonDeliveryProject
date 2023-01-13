@@ -2,9 +2,15 @@
 import UIKit
 import Alamofire
 import IQKeyboardManagerSwift
+import DropDown
 
 
 class ChattingViewController: UIViewController {
+    
+    let dropdown = DropDown()
+    
+    // 메뉴 드롭다운 리스트 
+    let dropdownList = ["사용자 신고하기", "채팅방 나가기"]
     
     
     @IBOutlet weak var announcementView: UIView!
@@ -19,7 +25,9 @@ class ChattingViewController: UIViewController {
     
     @IBOutlet weak var bottomConstraints: NSLayoutConstraint!
     
+    @IBOutlet weak var backImageView: UIImageView!
     
+    @IBOutlet weak var chattingMenuImageView: UIImageView!
     
     var speechBubbleList: [String] = ["hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로"]
 
@@ -45,7 +53,7 @@ class ChattingViewController: UIViewController {
         
         
         //네비게이션 바 없애기
-        //navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
         
         //테이블 뷰 설정
         self.chattingTableView.delegate = self
@@ -61,6 +69,15 @@ class ChattingViewController: UIViewController {
         //테이블 뷰 셀 nib파일 가져오기
         self.chattingTableView.register(UINib(nibName: "ChattingTableViewMyCell", bundle: nil),  forCellReuseIdentifier: "ChattingTableViewMyCell")
         //self.chattingTableView.register(UINib(nibName: "ChattingTableViewYourCell", bundle: nil),  forCellReuseIdentifier: "ChattingTableViewYourCell")
+        
+        
+        // 뒤로가기 이미지 버튼을 클릭했을 때
+        self.backImageView.isUserInteractionEnabled = true
+        self.backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.viewTapped)))
+        
+        // 채팅 설정 이미지 버튼 클릭했을 때
+        self.chattingMenuImageView.isUserInteractionEnabled = true
+        self.chattingMenuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.chattingMenu)))
         
         
 //        //스크롤?
@@ -129,7 +146,47 @@ class ChattingViewController: UIViewController {
     }
     
     
+    // 뒤로가기 이미지 버튼을 클릭했을 때
+    @objc func viewTapped(_sender: UITapGestureRecognizer){
+        self.navigationController?.popViewController(animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+
+    }
     
+    // 채팅 설정 이미지뷰 함수
+    @objc func chattingMenu(_sender: UITapGestureRecognizer){
+        dropdown.dataSource = dropdownList
+        chattingSetDropdown()
+        
+        dropdown.show()
+        
+    }
+    
+    
+    // 채팅 설정  드롭다운
+    func chattingSetDropdown(){
+
+        //anchorView를 통해 UI와 연결
+        dropdown.anchorView = self.chattingMenuImageView
+        
+        //View를 가리지 않고 View 아래에 Item 팝업이 붙도록 설정
+       dropdown.bottomOffset = CGPoint(x: -100, y: chattingMenuImageView.bounds.height)
+//        dropdown.trailingAnchor.constraint(equalTo: chattingMenuImageView.bounds.width).isActive = true
+//        dropdown.topAnchor.constraint(equalTo: chattingMenuImageView.bounds.height).isActive = true
+
+    }
+    
+    
+    // https://developer-eungb.tistory.com/34 드롭다운
+//    func placeSelectionAction(){
+//        dropdown.selectionAction = { [weak self] (index, item) in
+//            self!.placeButton.setTitle(item, for: .normal)
+//            self!.placeButton.tintColor = .black
+//            self!.placeImg.image = UIImage.init(systemName: "arrowtriangle.up.fill")
+//            self!.placeImg.image?.withTintColor(.black)
+////            self?.placeButton.tintColor = .black
+//        }
+//    }
     
   
 }

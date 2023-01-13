@@ -48,6 +48,9 @@ class ModifyViewController: UIViewController, UITextViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.topItem?.title = ""
+        
         TextViewOption()
 
     }

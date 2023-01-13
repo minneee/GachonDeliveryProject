@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VUw-d0-dWz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LrR-lR-b2a">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -88,7 +88,7 @@
             </objects>
             <point key="canvasLocation" x="48" y="-2"/>
         </scene>
-        <!--Order View Controller-->
+        <!--주문서 보기-->
         <scene sceneID="XJY-Oc-pNZ">
             <objects>
                 <viewController storyboardIdentifier="OrderViewVC" id="bfa-fj-SKR" customClass="OrderViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFM-YP-E4i">
-                                <rect key="frame" x="15" y="88.5" width="384" height="678.5"/>
+                                <rect key="frame" x="15" y="58" width="384" height="709"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LmG-gx-Dj7">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="394.5"/>
@@ -236,12 +236,6 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="Mue-hJ-Vee"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="xAe-4P-6sI"/>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주문서 보기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGK-5a-Eg1">
-                                <rect key="frame" x="0.0" y="68" width="414" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stA-s1-bPB">
                                 <rect key="frame" x="15" y="782" width="384" height="49"/>
                                 <color key="backgroundColor" red="0.78039217000000005" green="0.82352948189999997" blue="0.98431372640000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -257,18 +251,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="stA-s1-bPB" firstAttribute="leading" secondItem="Pda-5c-Qhe" secondAttribute="leading" constant="15" id="0RB-ZX-B2z"/>
-                            <constraint firstItem="gFM-YP-E4i" firstAttribute="top" secondItem="RGK-5a-Eg1" secondAttribute="bottom" id="11g-sN-UZ0"/>
-                            <constraint firstItem="RGK-5a-Eg1" firstAttribute="top" secondItem="Pda-5c-Qhe" secondAttribute="top" constant="20" id="AHA-QB-CJr"/>
                             <constraint firstItem="stA-s1-bPB" firstAttribute="centerY" secondItem="AYP-G4-Fai" secondAttribute="centerY" multiplier="1.8" id="H5C-Qa-wlt"/>
                             <constraint firstItem="stA-s1-bPB" firstAttribute="height" secondItem="Pda-5c-Qhe" secondAttribute="height" multiplier="0.06" id="KD9-h3-2Ha"/>
-                            <constraint firstItem="Pda-5c-Qhe" firstAttribute="trailing" secondItem="RGK-5a-Eg1" secondAttribute="trailing" id="Ta5-Af-1SS"/>
+                            <constraint firstItem="gFM-YP-E4i" firstAttribute="top" secondItem="Pda-5c-Qhe" secondAttribute="top" constant="10" id="Q2N-zk-s73"/>
                             <constraint firstItem="stA-s1-bPB" firstAttribute="top" secondItem="gFM-YP-E4i" secondAttribute="bottom" constant="15" id="cbU-JE-YQe"/>
                             <constraint firstItem="Pda-5c-Qhe" firstAttribute="trailing" secondItem="gFM-YP-E4i" secondAttribute="trailing" constant="15" id="ffQ-mw-Cvu"/>
-                            <constraint firstItem="RGK-5a-Eg1" firstAttribute="leading" secondItem="Pda-5c-Qhe" secondAttribute="leading" id="hpV-Eq-qEM"/>
                             <constraint firstItem="Pda-5c-Qhe" firstAttribute="trailing" secondItem="stA-s1-bPB" secondAttribute="trailing" constant="15" id="iwK-b4-Jtk"/>
                             <constraint firstItem="gFM-YP-E4i" firstAttribute="leading" secondItem="Pda-5c-Qhe" secondAttribute="leading" constant="15" id="puV-XT-vuR"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="주문서 보기" id="reZ-s1-IgD"/>
                     <connections>
                         <outlet property="deliveryTip" destination="ExH-lF-kot" id="RWe-vO-CKV"/>
                         <outlet property="endPlace" destination="s2J-Gy-qIb" id="ymv-0r-Bnw"/>
@@ -607,7 +599,7 @@
                             <constraint firstItem="2fx-Pf-xFX" firstAttribute="width" secondItem="jjO-sO-N5d" secondAttribute="width" multiplier="0.1" id="zD5-Mu-8fU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="IIE-SL-FbF"/>
+                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="IIE-SL-FbF"/>
                     <connections>
                         <outlet property="endTimeText" destination="Vac-7y-IFS" id="6sJ-e6-Rfq"/>
                         <outlet property="listTable" destination="ONn-kY-O6G" id="A5l-yM-WdR"/>
@@ -1750,13 +1742,6 @@
                                             <constraint firstAttribute="width" secondItem="GDq-gw-YhA" secondAttribute="height" multiplier="1:1" id="zgg-E1-Mgz"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Ff1-Tv-bEn">
-                                        <rect key="frame" x="371" y="65" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="6a7-lU-lrf"/>
-                                            <constraint firstAttribute="width" secondItem="Ff1-Tv-bEn" secondAttribute="height" id="DtQ-Ce-M2W"/>
-                                        </constraints>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임은일곱개" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6UY-IY-12j">
                                         <rect key="frame" x="107" y="64.5" width="97" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -1802,6 +1787,13 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Gr1-59-e0M" secondAttribute="height" multiplier="1:1" id="H9A-Op-6e9"/>
                                             <constraint firstAttribute="width" constant="16" id="Yp2-wZ-3Wa"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Ff1-Tv-bEn">
+                                        <rect key="frame" x="371" y="65" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="6a7-lU-lrf"/>
+                                            <constraint firstAttribute="width" secondItem="Ff1-Tv-bEn" secondAttribute="height" id="DtQ-Ce-M2W"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -2153,9 +2145,11 @@
                     <navigationItem key="navigationItem" id="HHA-aJ-eth"/>
                     <connections>
                         <outlet property="announcementView" destination="7gn-BG-v1i" id="hIj-Qv-y7T"/>
+                        <outlet property="backImageView" destination="1go-Hn-nYj" id="hf9-zO-3SX"/>
                         <outlet property="bottomConstraints" destination="gHb-3I-3ME" id="NyR-vR-gLP"/>
                         <outlet property="bottomView" destination="F7j-qq-evK" id="6E6-Ig-VEn"/>
                         <outlet property="chattingBarView" destination="ZfM-oU-nxA" id="41r-9H-doS"/>
+                        <outlet property="chattingMenuImageView" destination="Ff1-Tv-bEn" id="a3g-5k-YiP"/>
                         <outlet property="chattingTableView" destination="arB-T4-Z9D" id="t5A-u4-X8X"/>
                         <outlet property="profileView" destination="O4A-Ei-RQj" id="sfJ-vJ-J5e"/>
                     </connections>

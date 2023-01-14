@@ -29,8 +29,6 @@ class ChattingViewController: UIViewController {
     
     @IBOutlet weak var chattingMenuImageView: UIImageView!
     
-    @IBOutlet weak var deliveryButton: UIButton!
-    
     @IBOutlet weak var chattingTextView: UITextView!
     
     @IBOutlet weak var sendMessageButton: UIButton!
@@ -45,12 +43,11 @@ class ChattingViewController: UIViewController {
         //채팅창 공지 뷰 모서리 둥글게하기
         announcementView.layer.cornerRadius = 8
         
-        // 배달 완료 버튼 모서리 둥글게하기
-        deliveryButton.layer.cornerRadius = 8
         
         // 채팅 텍스트 뷰 모서리 둥글게하기
         chattingTextView.layer.cornerRadius = 8
         
+        //키보드 올라오면 화면도 같이 올라가도록 만들기
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowHandle), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHidenHandle), name: UIResponder.keyboardWillHideNotification, object: nil)
 
@@ -62,11 +59,15 @@ class ChattingViewController: UIViewController {
         //키보드 밖 화면 터치 시 키보드 내려감
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
        
+        //테이블뷰 오토레이아웃을 위한 설정
         chattingTableView.translatesAutoresizingMaskIntoConstraints = false
         
         
         //네비게이션 바 없애기
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        //텍스트 뷰 delegate
+        self.chattingTextView.delegate = self
         
         //테이블 뷰 설정
         self.chattingTableView.delegate = self
@@ -228,4 +229,30 @@ extension UIDevice {
     let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
     return bottom > 0
   }
+}
+var count = 0
+
+extension ChattingViewController: UITextViewDelegate {
+    //textView 높이 조절
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: view.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        
+        textView.constraints.forEach { constraint in
+            //최소(40), 최대(100) 높이 지정
+            if estimatedSize.height > 40 && estimatedSize.height <= 100 {
+                if constraint.firstAttribute == .height {
+                    constraint.constant = estimatedSize.height
+                }
+            }
+            //다시 줄어들었을 때 높이 지정
+            else if estimatedSize.height <= 40 {
+                constraint.constant = 40
+            }
+        }
+
+        let indexPath = IndexPath(row: self.speechBubbleList.count - 1, section: 0)
+        self.chattingTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+    }
 }

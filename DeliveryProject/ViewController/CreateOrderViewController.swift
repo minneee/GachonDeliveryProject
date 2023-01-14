@@ -30,7 +30,7 @@ class CreateOrderViewController: UIViewController {
         super.viewDidLoad()
         TextViewOption()
         viewOption()
-        autoSizeTextView()
+        //autoSizeTextView()
         
         self.navigationController?.navigationBar.topItem?.title = ""
         
@@ -91,18 +91,18 @@ class CreateOrderViewController: UIViewController {
         menuTextView.contentInset.top = 8
         requestTextView.contentInset.top = 8
     }
-    
-    // 텍스트뷰 사이즈 자동 설정
-    func autoSizeTextView(){
-        var frame = self.requestTextView.frame
-        frame.size.height = self.requestTextView.contentSize.height
-        self.requestTextView.frame = frame
-        
+//
+//    // 텍스트뷰 사이즈 자동 설정
+//    func autoSizeTextView(){
+//        var frame = self.requestTextView.frame
+//        frame.size.height = self.requestTextView.contentSize.height
+//        self.requestTextView.frame = frame
+//
         
 //        arg.translatesAutoresizingMaskIntoConstraints = true
 //        arg.sizeToFit()
 //        arg.isScrollEnabled = false
-    }
+//    }
     
 
     
@@ -206,6 +206,22 @@ extension CreateOrderViewController: UITextViewDelegate {
         if requestTextView.text.isEmpty{
             requestTextView.text = "요청사항"
             requestTextView.textColor = .placeholderText
+        }
+    }
+    
+    //textView 높이 조절
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: view.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        
+        
+        textView.constraints.forEach { constraint in
+            //최소 높이 지정
+            if estimatedSize.height > 40 {
+                if constraint.firstAttribute == .height {
+                    constraint.constant = estimatedSize.height
+                }
+            }
         }
     }
     

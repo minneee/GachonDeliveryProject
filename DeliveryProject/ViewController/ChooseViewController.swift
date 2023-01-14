@@ -15,6 +15,12 @@ class ChooseViewController: UIViewController {
     let navImage = UIImage(named: "setting")
 
 
+    @IBAction func goToChattingList(_ sender: Any) {
+        guard let chattingListVC = storyboard?.instantiateViewController(withIdentifier: "ChattingListViewController") else {return}
+        navigationController?.pushViewController(chattingListVC, animated: true)
+    }
+    
+    
     @objc func goToSetting() {
         guard let settingVC = storyboard?.instantiateViewController(withIdentifier: "SettingViewController") else {return}
         navigationController?.pushViewController(settingVC, animated: true)

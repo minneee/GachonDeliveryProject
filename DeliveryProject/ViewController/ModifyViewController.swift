@@ -190,4 +190,21 @@ extension ModifyViewController: UITextViewDelegate {
             requestTextView.textColor = .placeholderText
         }
     }
+    
+    //textView 높이 조절
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: view.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        
+        
+        textView.constraints.forEach { constraint in
+            //최소 높이 지정
+            if estimatedSize.height > 40 {
+                if constraint.firstAttribute == .height {
+                    constraint.constant = estimatedSize.height
+                }
+            }
+            
+        }
+    }
 }

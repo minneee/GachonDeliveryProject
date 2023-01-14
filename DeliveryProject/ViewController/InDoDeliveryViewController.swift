@@ -162,11 +162,21 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
         cell.endPlace.text = endPlaceList[indexPath.row]
         cell.deliveryTip.text = deliveryTipList[indexPath.row]
         
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 194/255, green: 209/255, blue: 255/255, alpha: 0.5)
+        cell.selectedBackgroundView = view
+        
+        
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
+        
+        // 화면 이동
         guard let orderVC = storyboard?.instantiateViewController(withIdentifier: "OrderViewVC") else {return}
         self.navigationController?.pushViewController(orderVC, animated: true)
 

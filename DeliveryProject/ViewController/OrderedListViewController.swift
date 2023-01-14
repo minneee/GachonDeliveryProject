@@ -76,9 +76,12 @@ extension OrderedListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as! OrderedListTableViewCell
         
-        
+        // cell이 클릭되지 않게 하기
+        cell.selectionStyle = .none
         
         return cell
+        
+        
     }
 }
 //네비게이션 바 이미지 크기 조절

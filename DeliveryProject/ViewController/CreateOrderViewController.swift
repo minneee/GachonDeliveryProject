@@ -30,6 +30,7 @@ class CreateOrderViewController: UIViewController {
         super.viewDidLoad()
         TextViewOption()
         viewOption()
+        autoSizeTextView()
         
         self.navigationController?.navigationBar.topItem?.title = ""
         
@@ -89,6 +90,18 @@ class CreateOrderViewController: UIViewController {
         startPlaceTextView.contentInset.top = 8
         menuTextView.contentInset.top = 8
         requestTextView.contentInset.top = 8
+    }
+    
+    // 텍스트뷰 사이즈 자동 설정
+    func autoSizeTextView(){
+        var frame = self.requestTextView.frame
+        frame.size.height = self.requestTextView.contentSize.height
+        self.requestTextView.frame = frame
+        
+        
+//        arg.translatesAutoresizingMaskIntoConstraints = true
+//        arg.sizeToFit()
+//        arg.isScrollEnabled = false
     }
     
 

@@ -10,7 +10,7 @@ class ChattingViewController: UIViewController {
     let dropdown = DropDown()
     
     // 메뉴 드롭다운 리스트 
-    let dropdownList = ["사용자 신고하기", "채팅방 나가기"]
+    let dropdownList = ["사용자 신고하기", "채팅방 나가기", "배달 완료"]
     
     
     @IBOutlet weak var announcementView: UIView!
@@ -43,8 +43,9 @@ class ChattingViewController: UIViewController {
         //채팅창 공지 뷰 모서리 둥글게하기
         announcementView.layer.cornerRadius = 8
         
-        
-        // 채팅 텍스트 뷰 모서리 둥글게하기
+        // 텍스트 뷰 테두리 설정
+        chattingTextView.layer.borderWidth = 1
+        chattingTextView.layer.borderColor = UIColor.systemGray5.cgColor
         chattingTextView.layer.cornerRadius = 8
         
         //키보드 올라오면 화면도 같이 올라가도록 만들기
@@ -182,6 +183,7 @@ class ChattingViewController: UIViewController {
 
         //anchorView를 통해 UI와 연결
         dropdown.anchorView = self.chattingMenuImageView
+        dropdown.backgroundColor = .white
         
         //View를 가리지 않고 View 아래에 Item 팝업이 붙도록 설정
        dropdown.bottomOffset = CGPoint(x: -100, y: chattingMenuImageView.bounds.height)

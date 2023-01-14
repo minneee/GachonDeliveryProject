@@ -349,19 +349,27 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c2L-4k-2qu">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="sN8-WX-QYq">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="GoK-KX-ZCe">
-                                <rect key="frame" x="364" y="7" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <backgroundConfiguration key="background" image="setting.png"/>
-                                </buttonConfiguration>
+                        <rightBarButtonItems>
+                            <barButtonItem image="setting" style="plain" id="sN8-WX-QYq">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="GoK-KX-ZCe">
+                                    <rect key="frame" x="364" y="7" width="30" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain">
+                                        <backgroundConfiguration key="background" image="setting.png"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="goToSetting:" destination="84Q-cD-ADq" eventType="touchUpInside" id="HJd-bG-hZu"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="ellipsis.bubble" catalog="system" id="VVd-I1-i83">
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <connections>
-                                    <action selector="goToSetting:" destination="84Q-cD-ADq" eventType="touchUpInside" id="HJd-bG-hZu"/>
+                                    <action selector="goToChattingList:" destination="84Q-cD-ADq" id="9WJ-i0-gPn"/>
                                 </connections>
-                            </button>
-                        </barButtonItem>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="doDelivery" destination="szp-q7-HJg" id="nta-6R-cgO"/>
@@ -1652,7 +1660,7 @@
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="znF-DP-TiM">
                                                 <rect key="frame" x="20" y="7" width="345" height="40"/>
-                                                <color key="backgroundColor" red="0.96078431610000004" green="0.96078431610000004" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="JJD-uS-xPW"/>
                                                 </constraints>
@@ -2090,6 +2098,21 @@
             </objects>
             <point key="canvasLocation" x="4686" y="-91"/>
         </scene>
+        <!--Chatting List View Controller-->
+        <scene sceneID="O2U-GY-0oO">
+            <objects>
+                <viewController storyboardIdentifier="ChattingListViewController" id="G98-KI-F3l" customClass="ChattingListViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ePY-ji-0mR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="0uE-Xi-1EW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uvG-p3-OGc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5438" y="-92"/>
+        </scene>
         <!--주문서 수정하기-->
         <scene sceneID="neL-XL-fwN">
             <objects>
@@ -2384,12 +2407,14 @@
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="createOrder" width="72" height="72"/>
         <image name="dodelivery.png" width="130" height="130"/>
+        <image name="ellipsis.bubble" catalog="system" width="128" height="110"/>
         <image name="menuBtn" width="27" height="27"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="profileImage" width="366" height="366"/>
         <image name="recieveDelivery.png" width="130" height="130"/>
         <image name="search" width="123" height="123"/>
         <image name="sendMessageBtn" width="24" height="24"/>
+        <image name="setting" width="90" height="90"/>
         <image name="setting.png" width="30" height="30"/>
         <image name="square" catalog="system" width="128" height="114"/>
         <systemColor name="labelColor">

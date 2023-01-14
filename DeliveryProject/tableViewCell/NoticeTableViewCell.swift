@@ -15,7 +15,7 @@ class NoticeTableViewCell: UITableViewCell {
     lazy var noticeTitleLabel = UILabel().then {
         $0.text = "공지사항 제목"
         $0.textColor = .black
-        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.font = UIFont.systemFont(ofSize: 17)
     }
 
     lazy var noticeDateLabel = UILabel().then {
@@ -39,7 +39,7 @@ class NoticeTableViewCell: UITableViewCell {
         noticeDateLabel.snp.makeConstraints { make in
             make.top.equalTo(noticeTitleLabel.snp.bottom).offset(5)
             make.right.equalTo(self.contentView.safeAreaLayoutGuide.snp.right).offset(-15)
-            make.bottom.equalTo(self.contentView.safeAreaLayoutGuide.snp.bottom).offset(-5)
+            make.bottom.equalTo(self.contentView.safeAreaLayoutGuide.snp.bottom).offset(-10)
         }
         
         

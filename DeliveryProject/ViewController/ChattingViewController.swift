@@ -83,7 +83,7 @@ class ChattingViewController: UIViewController {
         
         //테이블 뷰 셀 nib파일 가져오기
         self.chattingTableView.register(UINib(nibName: "ChattingTableViewMyCell", bundle: nil),  forCellReuseIdentifier: "ChattingTableViewMyCell")
-        //self.chattingTableView.register(UINib(nibName: "ChattingTableViewYourCell", bundle: nil),  forCellReuseIdentifier: "ChattingTableViewYourCell")
+        self.chattingTableView.register(UINib(nibName: "ChattingTableViewYourCell", bundle: nil),  forCellReuseIdentifier: "ChattingTableViewYourCell")
         
         
         // 뒤로가기 이미지 버튼을 클릭했을 때
@@ -206,6 +206,109 @@ class ChattingViewController: UIViewController {
     
   
 }
+/*
+extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //return self.message.count + 2
+        return ChatViewController.message.count
+        //viewModel.chatInfo.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        
+        let chatMessage = ChatViewController.message[indexPath.row]
+        if chatMessage.isPhoto == false && chatMessage.isSchedule == false {
+            
+            if chatMessage.userName == "본의" {
+                if chatMessage.emoticon != nil {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "MyPhotoMessageTableViewCell", for: indexPath) as! MyPhotoMessageTableViewCell
+                    cell.selectionStyle = .none
+                    cell.mySendImage.image = chatMessage.emoticon!
+                    cell.timeLabel.text = chatMessage.sendTime
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "MyMessageTableViewCell", for: indexPath) as! MyMessageTableViewCell
+                    cell.myMessageLabel.text = chatMessage.message
+                    cell.timeLabel.text = chatMessage.sendTime
+                    cell.selectionStyle = .none
+                    return cell
+                }
+                
+                
+            } else {
+                
+                if chatMessage.emoticon != nil {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "FamilyPhotoMessageTableViewCell", for: indexPath) as! FamilyPhotoMessageTableViewCell
+                    cell.timeLabel.text = chatMessage.sendTime
+                    cell.selectionStyle = .none
+                    return cell
+                } else {
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "FamilyMessageTableViewCell", for: indexPath) as! FamilyMessageTableViewCell
+                    cell.nameLabel.text = chatMessage.userName
+                    cell.messageLabel.text = chatMessage.message
+                    cell.profileImage.image = UIImage(named: chatMessage.userProfile)
+                    cell.timeLabel.text = chatMessage.sendTime
+                    cell.selectionStyle = .none
+                    return cell
+                }
+            }
+        } else if chatMessage.isPhoto == true && chatMessage.isSchedule == false {
+            if chatMessage.userName == "본의" {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "MyPhotoMessageTableViewCell", for: indexPath) as! MyPhotoMessageTableViewCell
+                cell.selectionStyle = .none
+                cell.mySendImage.image = chatMessage.photo
+                cell.timeLabel.text = chatMessage.sendTime
+                return cell
+                
+                
+            } else {
+                
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "FamilyPhotoMessageTableViewCell", for: indexPath) as! FamilyPhotoMessageTableViewCell
+                cell.familySendImage.image = chatMessage.photo
+                cell.timeLabel.text = chatMessage.sendTime
+                cell.nameLabel.text = chatMessage.userName
+                cell.profileImage.image = UIImage(named: chatMessage.userProfile)
+                cell.selectionStyle = .none
+                return cell
+                
+            }
+        } else if chatMessage.isSchedule == true {
+            if chatMessage.userName == "본의" {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "MyScheduleTableViewCell", for: indexPath) as! MyScheduleTableViewCell
+                cell.selectionStyle = .none
+                cell.scheduleTitleLabel.text = chatMessage.scheduleTitle
+                cell.startDateLabel.text = chatMessage.scheduleDate
+                cell.sendTimeLabel.text = chatMessage.sendTime
+                
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "FamilyScheduleTableViewCell", for: indexPath) as! FamilyScheduleTableViewCell
+                cell.selectionStyle = .none
+                return cell
+            }
+        }
+        
+        
+        
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MyMessageTableViewCell", for: indexPath) as! MyMessageTableViewCell
+            cell.myMessageLabel.text = chatMessage.message
+            cell.timeLabel.text = chatMessage.sendTime
+            cell.selectionStyle = .none
+            return cell
+        }
+        
+        
+    }
+    
+    
+}
+
+*/
 
 
 //tableView
@@ -215,12 +318,24 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let userCell = tableView.dequeueReusableCell(withIdentifier: "ChattingTableViewMyCell", for: indexPath) as! ChattingTableViewMyCell
+        if indexPath.row % 2 == 0 {
+            let userCell = tableView.dequeueReusableCell(withIdentifier: "ChattingTableViewYourCell", for: indexPath) as! ChattingTableViewYourCell
+
+            userCell.speechYourDateLabel.text = "2022.12.25"
+            userCell.speechYourLabel.text = speechBubbleList[indexPath.row]
+
+            return userCell
+        }
+        else {
+            let userCell = tableView.dequeueReusableCell(withIdentifier: "ChattingTableViewMyCell", for: indexPath) as! ChattingTableViewMyCell
+
+            userCell.speechDateLabel.text = "2022.12.25"
+            userCell.speechLabel.text = speechBubbleList[indexPath.row]
+
+            return userCell
+        }
         
-        userCell.speechDateLabel.text = "2022.12.25"
-        userCell.speechLabel.text = speechBubbleList[indexPath.row]
         
-        return userCell
     }
     
    

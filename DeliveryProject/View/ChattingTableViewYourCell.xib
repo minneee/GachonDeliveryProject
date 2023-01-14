@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="41" id="tKb-oh-bRv" customClass="ChattingTableViewYourCell" customModule="DeliveryProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="41"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tKb-oh-bRv" id="nfe-Nd-QPE">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="41"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Mh-2A-hpQ">
+                        <rect key="frame" x="20" y="5" width="57" height="31"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6B-48-UVl">
+                                <rect key="frame" x="10" y="6" width="39" height="19"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Lorem ">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="cellTitle"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.83921568629999999" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="d6B-48-UVl" secondAttribute="bottom" constant="6" id="H5Q-S8-OQB"/>
+                            <constraint firstItem="d6B-48-UVl" firstAttribute="top" secondItem="7Mh-2A-hpQ" secondAttribute="top" constant="6" id="mF4-Z0-Lhn"/>
+                            <constraint firstItem="d6B-48-UVl" firstAttribute="leading" secondItem="7Mh-2A-hpQ" secondAttribute="leading" constant="10" id="vlo-aI-gI3"/>
+                            <constraint firstAttribute="trailing" secondItem="d6B-48-UVl" secondAttribute="trailing" constant="8" id="xOu-qn-k8Q"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="2022.12.31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKC-70-Ffz">
+                        <rect key="frame" x="80" y="24" width="53" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uKC-70-Ffz" firstAttribute="bottom" secondItem="7Mh-2A-hpQ" secondAttribute="bottom" id="CSA-YP-hr2"/>
+                    <constraint firstItem="uKC-70-Ffz" firstAttribute="leading" secondItem="7Mh-2A-hpQ" secondAttribute="trailing" constant="3" id="MOu-dT-Hkj"/>
+                    <constraint firstItem="7Mh-2A-hpQ" firstAttribute="leading" secondItem="nfe-Nd-QPE" secondAttribute="leading" constant="20" id="ZP0-WS-bdy"/>
+                    <constraint firstItem="7Mh-2A-hpQ" firstAttribute="top" secondItem="nfe-Nd-QPE" secondAttribute="top" constant="5" id="bdu-U1-1JJ"/>
+                    <constraint firstAttribute="bottom" secondItem="7Mh-2A-hpQ" secondAttribute="bottom" constant="5" id="hWw-da-kjB"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uKC-70-Ffz" secondAttribute="trailing" constant="100" id="vu1-wS-1vz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="speechBubbleYourView" destination="7Mh-2A-hpQ" id="qwX-Dn-Gst"/>
+                <outlet property="speechYourDateLabel" destination="uKC-70-Ffz" id="rH7-8g-vzz"/>
+                <outlet property="speechYourLabel" destination="d6B-48-UVl" id="u21-Hd-yGN"/>
+            </connections>
+            <point key="canvasLocation" x="192" y="39"/>
+        </tableViewCell>
+    </objects>
+</document>

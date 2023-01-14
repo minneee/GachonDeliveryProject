@@ -16,6 +16,8 @@
 		3D749F842972B21800F512D8 /* ChattingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D749F832972B21800F512D8 /* ChattingListViewController.swift */; };
 		3D749F872972B4B700F512D8 /* ChattingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D749F852972B4B700F512D8 /* ChattingListTableViewCell.swift */; };
 		3D749F882972B4B700F512D8 /* ChattingListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D749F862972B4B700F512D8 /* ChattingListTableViewCell.xib */; };
+		3D749F8B2972BA7500F512D8 /* ChattingTableViewYourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D749F892972BA7500F512D8 /* ChattingTableViewYourCell.swift */; };
+		3D749F8C2972BA7500F512D8 /* ChattingTableViewYourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D749F8A2972BA7500F512D8 /* ChattingTableViewYourCell.xib */; };
 		3DABD394296ED6CB00677B84 /* ChattingTableViewMyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DABD393296ED6CB00677B84 /* ChattingTableViewMyCell.xib */; };
 		3DABD396296ED6E900677B84 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DABD395296ED6E900677B84 /* NoticeTableViewCell.xib */; };
 		3DABD398296ED72400677B84 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DABD397296ED72400677B84 /* ChattingViewController.swift */; };
@@ -54,6 +56,8 @@
 		3D749F832972B21800F512D8 /* ChattingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListViewController.swift; sourceTree = "<group>"; };
 		3D749F852972B4B700F512D8 /* ChattingListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListTableViewCell.swift; sourceTree = "<group>"; };
 		3D749F862972B4B700F512D8 /* ChattingListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingListTableViewCell.xib; sourceTree = "<group>"; };
+		3D749F892972BA7500F512D8 /* ChattingTableViewYourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableViewYourCell.swift; sourceTree = "<group>"; };
+		3D749F8A2972BA7500F512D8 /* ChattingTableViewYourCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingTableViewYourCell.xib; sourceTree = "<group>"; };
 		3DABD393296ED6CB00677B84 /* ChattingTableViewMyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingTableViewMyCell.xib; sourceTree = "<group>"; };
 		3DABD395296ED6E900677B84 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
 		3DABD397296ED72400677B84 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 			children = (
 				3D20B98D2959ACF000849DA6 /* Main.storyboard */,
 				3DABD393296ED6CB00677B84 /* ChattingTableViewMyCell.xib */,
+				3D749F8A2972BA7500F512D8 /* ChattingTableViewYourCell.xib */,
 				3DABD395296ED6E900677B84 /* NoticeTableViewCell.xib */,
 				3D749F862972B4B700F512D8 /* ChattingListTableViewCell.xib */,
 			);
@@ -158,6 +163,7 @@
 				CB60AEAE2961611300E1F18F /* OrderedListTableViewCell.swift */,
 				CB392679296C209D00DA319C /* MyOrderedListTableViewCell.swift */,
 				3DABD399296ED85C00677B84 /* ChattingTableViewMyCell.swift */,
+				3D749F892972BA7500F512D8 /* ChattingTableViewYourCell.swift */,
 				3DABD39F296ED91500677B84 /* NoticeTableViewCell.swift */,
 				3D749F852972B4B700F512D8 /* ChattingListTableViewCell.swift */,
 			);
@@ -253,6 +259,7 @@
 				3D20B9912959ACF100849DA6 /* Assets.xcassets in Resources */,
 				3D20B98F2959ACF000849DA6 /* Main.storyboard in Resources */,
 				3D749F882972B4B700F512D8 /* ChattingListTableViewCell.xib in Resources */,
+				3D749F8C2972BA7500F512D8 /* ChattingTableViewYourCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +314,7 @@
 			files = (
 				3D20B98C2959ACF000849DA6 /* LoginViewController.swift in Sources */,
 				CB8B92FB296A770B0008B497 /* ReportViewController.swift in Sources */,
+				3D749F8B2972BA7500F512D8 /* ChattingTableViewYourCell.swift in Sources */,
 				3DABD3A0296ED91500677B84 /* NoticeTableViewCell.swift in Sources */,
 				CB6453A2295D710500EC7620 /* InDoDeliveryViewController.swift in Sources */,
 				3DABD39A296ED85C00677B84 /* ChattingTableViewMyCell.swift in Sources */,

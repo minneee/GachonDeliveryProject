@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Toast_Swift
 
-class ChangeProfileViewController: UIViewController {
+class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var profileImage: UIImageView! // 프로필 이미지 이미지뷰
@@ -27,6 +28,10 @@ class ChangeProfileViewController: UIViewController {
         introduceUnderLine()
         self.navigationController?.navigationBar.topItem?.title = ""
         
+        
+        self.nicknameText.delegate = self
+        self.introduceText.delegate = self
+        
     }
     
     
@@ -42,7 +47,7 @@ class ChangeProfileViewController: UIViewController {
         nicknameText.layer.addSublayer(border)
         nicknameText.layer.masksToBounds = true
         
-
+        
     }
     
     func introduceUnderLine(){
@@ -57,4 +62,55 @@ class ChangeProfileViewController: UIViewController {
         introduceText.layer.addSublayer(border)
         introduceText.layer.masksToBounds = true
     }
+    
+    // 텍스트 필드 글자 수 Toast 띄우기
+//    func textFieldDidChangeSelection(_ textField: UITextField) {
+//        print("textfield click \(textField.text!)")
+//
+//        if textField.text == nicknameText.text{
+//            if (nicknameText.text?.count ?? 1 >= 6) {
+//                // toast with a specific duration and position
+//                self.view.makeToast("❗️닉네임은 6자 이하로 입력해주세요❗️", duration: 3.0, position: .top)
+//            }
+//        } else if (textField.text == introduceText.text){
+//            if (introduceText.text?.count ?? 1 >= 15) {
+//                // toast with a specific duration and position
+//                self.view.makeToast("❗️한 줄 소개는 15자 이하로 입력해주세요❗️", duration: 3.0, position: .top)
+//            }
+//        }
+//    }
+    
+    // 텍스트 필드 글자 수 제한
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let nicknameTextCount = nicknameText.text?.appending(string).count ?? 0
+        let introduceTextCount = introduceText.text?.appending(string).count ?? 0
+        
+        // 닉네임 글자 수 제한
+        if textField.text == nicknameText.text{
+            
+            print("닉네임 글자 수 : \(nicknameTextCount)")
+            
+            if (nicknameTextCount >= 7){
+                self.view.makeToast("❗️닉네임은 6자 이하로 입력해주세요❗️", duration: 3.0, position: .top)
+                return false
+            } else{
+                return true
+            }
+        } else if (textField.text == introduceText.text){
+            
+            print("한 줄 소개 글자 수 : \(introduceTextCount)")
+            
+            // 한 줄 소개 글자 수 제한
+            if (introduceTextCount >= 16){
+                self.view.makeToast("❗️한 줄 소개는 15자 이하로 입력해주세요❗️", duration: 3.0, position: .top)
+                return false
+            } else{
+                return true
+            }
+        }
+        return true 
+        
+    }
+    
 }

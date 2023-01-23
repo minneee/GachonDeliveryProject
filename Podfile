@@ -11,5 +11,6 @@ pod 'DropDown'
 pod 'SnapKit'
 pod 'IQKeyboardManagerSwift'
 pod 'Then'
+pod 'Toast-Swift', '~> 5.0.1'
 
 end

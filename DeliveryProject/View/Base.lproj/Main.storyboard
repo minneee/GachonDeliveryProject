@@ -1197,7 +1197,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="프로필 변경" id="NZN-f9-P8C">
-                        <barButtonItem key="rightBarButtonItem" title="완료" id="BUi-ma-Aoe"/>
+                        <barButtonItem key="rightBarButtonItem" title="완료" id="BUi-ma-Aoe">
+                            <connections>
+                                <action selector="completeBtn:" destination="zfZ-CO-dfg" id="JRU-Gx-1TA"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="introduceText" destination="4tJ-iJ-3a8" id="wfx-J5-5TG"/>
@@ -1550,7 +1554,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="문의하기" id="ZCA-la-l2a">
-                        <barButtonItem key="rightBarButtonItem" title="확인" id="M9K-Sk-txm"/>
+                        <barButtonItem key="rightBarButtonItem" title="확인" id="M9K-Sk-txm">
+                            <connections>
+                                <action selector="completeBtn:" destination="oi9-q4-DD5" id="jSX-Pe-76l"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="questionTextView" destination="hM6-eX-HXl" id="bGo-3P-JNd"/>

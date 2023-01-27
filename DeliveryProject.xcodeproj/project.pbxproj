@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D15FE412983BBCA00DB252B /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D15FE402983BBCA00DB252B /* LoginRequest.swift */; };
+		3D15FE432983BBD800DB252B /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D15FE422983BBD800DB252B /* LoginResponse.swift */; };
+		3D15FE452983CF4F00DB252B /* ProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D15FE442983CF4F00DB252B /* ProfileRequest.swift */; };
+		3D15FE472983CF6400DB252B /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D15FE462983CF6400DB252B /* ProfileResponse.swift */; };
 		3D20B9882959ACF000849DA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D20B9872959ACF000849DA6 /* AppDelegate.swift */; };
 		3D20B98A2959ACF000849DA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D20B9892959ACF000849DA6 /* SceneDelegate.swift */; };
 		3D20B98C2959ACF000849DA6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D20B98B2959ACF000849DA6 /* LoginViewController.swift */; };
@@ -45,6 +49,10 @@
 /* Begin PBXFileReference section */
 		145A8C270010A3EC04A6EE97 /* Pods_DeliveryProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeliveryProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1A097EB481F3E61CB10C11 /* Pods-DeliveryProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeliveryProject.debug.xcconfig"; path = "Target Support Files/Pods-DeliveryProject/Pods-DeliveryProject.debug.xcconfig"; sourceTree = "<group>"; };
+		3D15FE402983BBCA00DB252B /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		3D15FE422983BBD800DB252B /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		3D15FE442983CF4F00DB252B /* ProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequest.swift; sourceTree = "<group>"; };
+		3D15FE462983CF6400DB252B /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
 		3D20B9842959ACF000849DA6 /* DeliveryProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeliveryProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D20B9872959ACF000849DA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D20B9892959ACF000849DA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +119,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3D15FE3F2983BB7400DB252B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3D15FE402983BBCA00DB252B /* LoginRequest.swift */,
+				3D15FE422983BBD800DB252B /* LoginResponse.swift */,
+				3D15FE442983CF4F00DB252B /* ProfileRequest.swift */,
+				3D15FE462983CF6400DB252B /* ProfileResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3D20B97B2959ACF000849DA6 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +151,7 @@
 		3D20B9862959ACF000849DA6 /* DeliveryProject */ = {
 			isa = PBXGroup;
 			children = (
+				3D15FE3F2983BB7400DB252B /* Model */,
 				3DABD38D296ED62000677B84 /* View */,
 				CB60AEAD296160E400E1F18F /* tableViewCell */,
 				CB6453A3295D711200EC7620 /* ViewController */,
@@ -313,6 +333,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D20B98C2959ACF000849DA6 /* LoginViewController.swift in Sources */,
+				3D15FE452983CF4F00DB252B /* ProfileRequest.swift in Sources */,
+				3D15FE412983BBCA00DB252B /* LoginRequest.swift in Sources */,
 				CB8B92FB296A770B0008B497 /* ReportViewController.swift in Sources */,
 				3D749F8B2972BA7500F512D8 /* ChattingTableViewYourCell.swift in Sources */,
 				3DABD3A0296ED91500677B84 /* NoticeTableViewCell.swift in Sources */,
@@ -322,6 +344,7 @@
 				CB8B92F529693FB50008B497 /* ChangeProfileViewController.swift in Sources */,
 				CB39267A296C209D00DA319C /* MyOrderedListTableViewCell.swift in Sources */,
 				3DABD398296ED72400677B84 /* ChattingViewController.swift in Sources */,
+				3D15FE432983BBD800DB252B /* LoginResponse.swift in Sources */,
 				3D749F842972B21800F512D8 /* ChattingListViewController.swift in Sources */,
 				CB392678296C205A00DA319C /* MyOrderedListTableViewController.swift in Sources */,
 				3D749F872972B4B700F512D8 /* ChattingListTableViewCell.swift in Sources */,
@@ -337,6 +360,7 @@
 				CBB259D829606286004EAB37 /* DeliveryListTableViewCell.swift in Sources */,
 				CB39267E296FD76600DA319C /* ModifyViewController.swift in Sources */,
 				CB8B92EE296316BE0008B497 /* CreateOrderViewController.swift in Sources */,
+				3D15FE472983CF6400DB252B /* ProfileResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

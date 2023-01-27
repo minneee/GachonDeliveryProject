@@ -204,7 +204,19 @@ class SettingViewController: UIViewController {
         $0.backgroundColor = UIColor(red: 229/255, green: 230/255, blue: 255/255, alpha: 1)
     }
     
+    
 
+    override func viewWillAppear(_ animated: Bool) {
+
+        //프로필 설정
+        let id = UserDefaults.standard.string(forKey: "id") ?? ""
+        let param = ProfileRequest(userId: id)
+        postProfile(param)
+    
+        self.view.layoutIfNeeded()
+        
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -215,10 +227,7 @@ class SettingViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
-        //프로필 설정
-        let id = UserDefaults.standard.string(forKey: "id") ?? ""
-        let param = ProfileRequest(userId: id)
-        postProfile(param)
+
         
 
         // 공지사항 버튼

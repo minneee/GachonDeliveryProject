@@ -6,10 +6,17 @@
 //
 
 import UIKit
+import Alamofire
 
 class QuestionViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var questionTextView: UITextView!
+    
+    // 네비게이션 바 확인 버튼
+    @IBAction func completeBtn(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -17,6 +24,44 @@ class QuestionViewController: UIViewController, UITextViewDelegate {
         
         TextViewOption()
         
+        let id = UserDefaults.standard.string(forKey: "id") ?? ""
+        let suggestioncontent = questionTextView.text ?? ""
+        let param = SuggestionRequest(userId: id, suggestioncontent: suggestioncontent)
+        postSuggestion(param)
+        
+    }
+    
+    func postSuggestion(_ parameters: SuggestionRequest){
+        AF.request("http://3.37.209.65:3000/suggestion", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: LoginResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        print("문의 성공")
+                    }
+                    
+                    else{
+                        print("문의 실패\(response.message)")
+                        //alert message
+                        let SuggestFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let SuggestFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        SuggestFailAlert.addAction(SuggestFailAction)
+                        self.present(SuggestFailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    serverFailAlert.addAction(serverFailAction)
+                    self.present(serverFailAlert, animated: true, completion: nil)
+                }
+            }
     }
     
     

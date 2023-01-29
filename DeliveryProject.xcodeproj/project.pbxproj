@@ -46,6 +46,8 @@
 		CBAA43162983E4AD009C6DA7 /* ChangeProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAA43152983E4AD009C6DA7 /* ChangeProfileResponse.swift */; };
 		CBAA43182983F26F009C6DA7 /* SuggestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAA43172983F26F009C6DA7 /* SuggestionRequest.swift */; };
 		CBAA431A2983F27A009C6DA7 /* SuggestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAA43192983F27A009C6DA7 /* SuggestionResponse.swift */; };
+		CBAA431C29869974009C6DA7 /* CreateOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAA431B29869974009C6DA7 /* CreateOrderRequest.swift */; };
+		CBAA431E29869981009C6DA7 /* CreateOrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAA431D29869981009C6DA7 /* CreateOrderResponse.swift */; };
 		CBB259D829606286004EAB37 /* DeliveryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB259D729606286004EAB37 /* DeliveryListTableViewCell.swift */; };
 		CBF3F18A295C801D00612C6D /* ChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF3F189295C801D00612C6D /* ChooseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -94,6 +96,8 @@
 		CBAA43152983E4AD009C6DA7 /* ChangeProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileResponse.swift; sourceTree = "<group>"; };
 		CBAA43172983F26F009C6DA7 /* SuggestionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionRequest.swift; sourceTree = "<group>"; };
 		CBAA43192983F27A009C6DA7 /* SuggestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionResponse.swift; sourceTree = "<group>"; };
+		CBAA431B29869974009C6DA7 /* CreateOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderRequest.swift; sourceTree = "<group>"; };
+		CBAA431D29869981009C6DA7 /* CreateOrderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderResponse.swift; sourceTree = "<group>"; };
 		CBB259D729606286004EAB37 /* DeliveryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListTableViewCell.swift; sourceTree = "<group>"; };
 		CBF3F189295C801D00612C6D /* ChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +142,8 @@
 				CBAA43152983E4AD009C6DA7 /* ChangeProfileResponse.swift */,
 				CBAA43172983F26F009C6DA7 /* SuggestionRequest.swift */,
 				CBAA43192983F27A009C6DA7 /* SuggestionResponse.swift */,
+				CBAA431B29869974009C6DA7 /* CreateOrderRequest.swift */,
+				CBAA431D29869981009C6DA7 /* CreateOrderResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -370,8 +376,10 @@
 				CB60AEAA29615F9F00E1F18F /* OrderViewController.swift in Sources */,
 				3D20B9882959ACF000849DA6 /* AppDelegate.swift in Sources */,
 				3DABD39E296ED8EC00677B84 /* NoticeViewController.swift in Sources */,
+				CBAA431E29869981009C6DA7 /* CreateOrderResponse.swift in Sources */,
 				3D20B98A2959ACF000849DA6 /* SceneDelegate.swift in Sources */,
 				CB39267C296C52D200DA319C /* StarScoreViewController.swift in Sources */,
+				CBAA431C29869974009C6DA7 /* CreateOrderRequest.swift in Sources */,
 				3DABD39C296ED88600677B84 /* SettingViewController.swift in Sources */,
 				CBB259D829606286004EAB37 /* DeliveryListTableViewCell.swift in Sources */,
 				CB39267E296FD76600DA319C /* ModifyViewController.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xnK-Db-sgH">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -958,6 +958,9 @@
                                                                             <constraint firstAttribute="width" constant="100" id="KPa-X5-lHq"/>
                                                                         </constraints>
                                                                         <locale key="locale" localeIdentifier="ko"/>
+                                                                        <connections>
+                                                                            <action selector="startTime:" destination="xnK-Db-sgH" eventType="valueChanged" id="kYw-bs-ylm"/>
+                                                                        </connections>
                                                                     </datePicker>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NdU-Js-n7H">
                                                                         <rect key="frame" x="105.00000000000001" y="0.0" width="51.666666666666671" height="50"/>
@@ -968,6 +971,9 @@
                                                                     <datePicker contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="K79-bn-H0G" userLabel="EDate Picker">
                                                                         <rect key="frame" x="161.66666666666666" y="0.0" width="99.999999999999972" height="50"/>
                                                                         <locale key="locale" localeIdentifier="ko"/>
+                                                                        <connections>
+                                                                            <action selector="endTime:" destination="xnK-Db-sgH" eventType="valueChanged" id="5EP-Xr-QL9"/>
+                                                                        </connections>
                                                                     </datePicker>
                                                                 </subviews>
                                                                 <constraints>
@@ -1126,14 +1132,16 @@
                         <outlet property="deliveryTipBtn" destination="WiM-Ud-dM3" id="mAR-TH-FyI"/>
                         <outlet property="endPlaceBtn" destination="Whe-oi-fbd" id="KP0-ju-6jr"/>
                         <outlet property="endPlaceDropView" destination="ZsW-Al-VSQ" id="RTt-NQ-e2R"/>
+                        <outlet property="endTIme" destination="K79-bn-H0G" id="ucU-M6-hgc"/>
                         <outlet property="menuTextView" destination="srn-uU-1vZ" id="nVv-4m-ipy"/>
                         <outlet property="requestTextView" destination="RCT-MH-Kzb" id="Rv9-jW-Yna"/>
                         <outlet property="startPlaceTextView" destination="h5d-47-Pgs" id="dNd-9x-lRi"/>
+                        <outlet property="startTime" destination="UWn-aI-nGw" id="Mj4-Sd-pYD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="np1-Cx-Ibi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2931" y="689"/>
+            <point key="canvasLocation" x="2930.434782608696" y="688.85869565217399"/>
         </scene>
         <!--프로필 변경-->
         <scene sceneID="BZp-yC-Hjo">

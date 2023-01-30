@@ -8,6 +8,7 @@
 import Foundation
 
 struct CreateOrderResponse : Decodable{
+    var articleId : Int?
     var success : Bool
     var message : String
     var property : Int

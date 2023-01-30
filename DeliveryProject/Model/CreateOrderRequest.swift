@@ -8,10 +8,11 @@
 import Foundation
 
 struct CreateOrderRequest : Encodable{
-    var startPoint : String
+    var startingPoint : String
     var arrivingPoint : String
-    var deliTime : Int
+    var deliTime : String
     var menu : String
+    var userWant : String
     var deliTip : String
     var userId : String
 }

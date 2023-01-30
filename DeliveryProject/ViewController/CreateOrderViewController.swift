@@ -10,6 +10,8 @@ import DropDown
 import IQKeyboardManagerSwift
 import Alamofire
 
+
+
 class CreateOrderViewController: UIViewController {
 
     
@@ -25,20 +27,22 @@ class CreateOrderViewController: UIViewController {
     @IBOutlet weak var startTime: UIDatePicker!
     @IBOutlet weak var endTIme: UIDatePicker!
     
+
+    
     var startTimeString : String = ""
     var endTimeString : String = ""
     
     // 도착시간의 최단 시간
     @IBAction func startTime(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HHmmss"
+        formatter.dateFormat = "HHmm"
         startTimeString = formatter.string(from: startTime.date)
     }
     
     // 도착시간의 최장 시간
     @IBAction func endTime(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HHmmss"
+        formatter.dateFormat = "HHmm"
         endTimeString = formatter.string(from: endTIme.date)
     }
     
@@ -57,6 +61,8 @@ class CreateOrderViewController: UIViewController {
         // datePicker 분 단위를 5로 설정
         startTime.minuteInterval = 5
         endTIme.minuteInterval = 5
+        
+
         
         self.navigationController?.navigationBar.topItem?.title = ""
         
@@ -137,9 +143,23 @@ class CreateOrderViewController: UIViewController {
     @IBAction func completion(_ sender: UIButton) {
         
         let id = UserDefaults.standard.string(forKey: "id") ?? ""
-        let deliTime = Int(startTimeString + endTimeString) ?? 0
-        let param = CreateOrderRequest(startPoint: startPlaceTextView.text, arrivingPoint: endPlaceBtn.currentTitle ?? "", deliTime: deliTime, menu: menuTextView.text, deliTip: deliveryTipBtn.currentTitle ?? "", userId: id)
+        
+        if (startTimeString == ""), (endTimeString == ""){
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HHmm"
+            startTimeString = formatter.string(from: startTime.date)
+            endTimeString = formatter.string(from: endTIme.date)
+        } else{
+            
+        }
+        
+        let deliTime = startTimeString + endTimeString
+        let param = CreateOrderRequest(startingPoint: startPlaceTextView.text, arrivingPoint: endPlaceBtn.currentTitle ?? "", deliTime: deliTime, menu: menuTextView.text, userWant: requestTextView.text, deliTip: deliveryTipBtn.currentTitle ?? "" ,userId: id)
+        
+        
         postCreateOrder(param)
+        print(startPlaceTextView.text!, endPlaceBtn.currentTitle ?? "")
+        print(deliTime)
         
         
     }
@@ -147,16 +167,17 @@ class CreateOrderViewController: UIViewController {
     func postCreateOrder(_ parameters: CreateOrderRequest) {
         AF.request("http://3.37.209.65:3000/add", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
-            .responseDecodable(of: ProfileResponse.self) { [self] response in
+            .responseDecodable(of: CreateOrderResponse.self) { [self] response in
                 switch response.result {
                 case .success(let response):
                     if(response.success == true){
                         print("주문서 작성 성공")
+                        print(response.articleId ?? "")
                         
                     }
                     
                     else{
-                        print("주문서 작성 실패\(response.message)")
+                        print("주문서 작성 실패 \(response.message)")
                         //alert message
                         let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
                         

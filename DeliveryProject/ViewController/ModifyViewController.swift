@@ -8,6 +8,7 @@
 import UIKit
 import DropDown
 import IQKeyboardManagerSwift
+import Alamofire
 
 class ModifyViewController: UIViewController {
 
@@ -19,11 +20,28 @@ class ModifyViewController: UIViewController {
     @IBOutlet weak var deliveryTipDropView: UIView! // 배달팁 드롭 뷰
     @IBOutlet weak var deliveryTipBtn: UIButton! // 배달팁 버튼
     
+    @IBOutlet weak var startEndTime: UIDatePicker!
+    @IBOutlet weak var endEndTime: UIDatePicker!
+    
+    var startEndTimeString = ""
+    var endEndTimeString = ""
+    
     let dropdown = DropDown()
     
     let endPlaceList = ["AI공학관", "가천관", "중앙도서관"]
     let deliveryTipList = ["무료", "500원", "1000원", "1500원"]
     
+    @IBAction func startEndTime(_ sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HHmm"
+        startEndTimeString = formatter.string(from: startEndTime.date)
+    }
+    
+    @IBAction func endEndTime(_ sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HHmm"
+        endEndTimeString = formatter.string(from: endEndTime.date)
+    }
     
     // 도착 장소 드롭다운
     @IBAction func endPlaceBtn(_ sender: UIButton) {
@@ -46,7 +64,49 @@ class ModifyViewController: UIViewController {
     
     // 완료버튼
     @IBAction func completeBtn(_ sender: UIButton) {
+        
+        let id = UserDefaults.standard.string(forKey: "id") ?? ""
+        let param = ModifyRequest(startingPoint: startPlaceTextView.text, arrivingPoint: endPlaceBtn.currentTitle ?? "", startDeliTime: Int(startEndTimeString) ?? 0, endDeliTime: Int(endEndTimeString) ?? 0, menu: menuTextView.text, userWant: requestTextView.text, deliTip: deliveryTipBtn.currentTitle ?? "", userId: id, articleId: 1)
+        
+        putModify(param)
     }
+    
+    func putModify(_ parameters: ModifyRequest) {
+        AF.request("http://3.37.209.65:3000/modify", method: .put , parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: ModifyResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        print("주문서 작성 성공")
+                        
+                    }
+                    
+                    else{
+                        print("주문서 작성 실패 \(response.message)")
+                        //alert message
+                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        FailAlert.addAction(FailAction)
+                        self.present(FailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    serverFailAlert.addAction(serverFailAction)
+                    self.present(serverFailAlert, animated: true, completion: nil)
+                }
+                
+            }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -9,5 +9,5 @@ import Foundation
 
 struct SuggestionRequest: Encodable{
     var userId : String
-    var suggestioncontent : String
+    var suggestionContent : String
 }

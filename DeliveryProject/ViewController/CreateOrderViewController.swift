@@ -144,23 +144,9 @@ class CreateOrderViewController: UIViewController {
         
         let id = UserDefaults.standard.string(forKey: "id") ?? ""
         
-        if (startTimeString == ""), (endTimeString == ""){
-            let formatter = DateFormatter()
-            formatter.dateFormat = "HHmm"
-            startTimeString = formatter.string(from: startTime.date)
-            endTimeString = formatter.string(from: endTIme.date)
-        } else{
-            
-        }
-        
-        let deliTime = startTimeString + endTimeString
-        let param = CreateOrderRequest(startingPoint: startPlaceTextView.text, arrivingPoint: endPlaceBtn.currentTitle ?? "", deliTime: deliTime, menu: menuTextView.text, userWant: requestTextView.text, deliTip: deliveryTipBtn.currentTitle ?? "" ,userId: id)
-        
-        
+        let param = CreateOrderRequest(startingPoint: startPlaceTextView.text, arrivingPoint: endPlaceBtn.currentTitle ?? "", startDeliTime: Int(startTimeString) ?? 0, endDeliTime: Int(endTimeString) ?? 0, menu: menuTextView.text, userWant: requestTextView.text, deliTip: deliveryTipBtn.currentTitle ?? "", userId: id)
+    
         postCreateOrder(param)
-        print(startPlaceTextView.text!, endPlaceBtn.currentTitle ?? "")
-        print(deliTime)
-        
         
     }
     
@@ -172,7 +158,9 @@ class CreateOrderViewController: UIViewController {
                 case .success(let response):
                     if(response.success == true){
                         print("주문서 작성 성공")
-                        print(response.articleId ?? "")
+                        
+                        // 계속 data를 0으로만 뜸
+                        print(response.data ?? 0, response.message, response.success)
                         
                     }
                     

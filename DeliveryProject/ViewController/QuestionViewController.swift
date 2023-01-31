@@ -15,6 +15,11 @@ class QuestionViewController: UIViewController, UITextViewDelegate {
     // 네비게이션 바 확인 버튼
     @IBAction func completeBtn(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
+        
+        let id = UserDefaults.standard.string(forKey: "id") ?? ""
+        let suggestionContent = questionTextView.text ?? ""
+        let param = SuggestionRequest(userId: id, suggestionContent: suggestionContent)
+        postSuggestion(param)
     }
     
     override func viewDidLoad() {
@@ -23,11 +28,6 @@ class QuestionViewController: UIViewController, UITextViewDelegate {
         self.navigationController?.navigationBar.topItem?.title = ""
         
         TextViewOption()
-        
-        let id = UserDefaults.standard.string(forKey: "id") ?? ""
-        let suggestioncontent = questionTextView.text ?? ""
-        let param = SuggestionRequest(userId: id, suggestioncontent: suggestioncontent)
-        postSuggestion(param)
         
     }
     

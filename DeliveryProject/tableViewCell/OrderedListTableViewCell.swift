@@ -11,7 +11,7 @@ class OrderedListTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var startPlace: UILabel! // 출발 장소
-    @IBOutlet weak var startPlaceAddress: UILabel! // 출발 장소 주소
+    @IBOutlet weak var endPlace: UILabel! // 도착 장소
     @IBOutlet weak var endTime: UILabel! // 도착 시간
     @IBOutlet weak var menu: UILabel! // 메뉴
     @IBOutlet weak var request: UILabel! // 요청사항

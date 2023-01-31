@@ -816,6 +816,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="deliveryTip" destination="Swm-MQ-vJX" id="mPY-QM-756"/>
+                                            <outlet property="endPlace" destination="AHq-rU-cTU" id="vIP-Bz-Gje"/>
                                             <outlet property="endTime" destination="7mL-1F-4Q7" id="POS-k5-SvQ"/>
                                             <outlet property="menu" destination="iXV-Yh-4XV" id="mqF-bn-Kc5"/>
                                             <outlet property="request" destination="n7M-T4-8Nq" id="15U-Wt-e9d"/>
@@ -1389,11 +1390,11 @@
                                     <outlet property="date" destination="f0G-ZG-Nqn" id="XTE-Ia-74s"/>
                                     <outlet property="deliveryTip" destination="dmd-pl-ktx" id="gdc-9V-rv9"/>
                                     <outlet property="doDeliveryNickName" destination="J9P-al-Heb" id="dji-S5-CpX"/>
-                                    <outlet property="endPlace" destination="Ls9-FR-Xw7" id="vPP-7s-7l5"/>
+                                    <outlet property="endPlace" destination="Ls9-FR-Xw7" id="GRU-8X-LJW"/>
                                     <outlet property="menu" destination="iR2-BU-MpH" id="h30-jO-NcR"/>
                                     <outlet property="receiveDeliveryNickName" destination="d0Y-aq-8cJ" id="Xpf-Q5-Jlu"/>
                                     <outlet property="request" destination="XeU-5W-ZkV" id="bAY-kA-h6X"/>
-                                    <outlet property="startPlace" destination="Ls9-FR-Xw7" id="SbF-KD-1eu"/>
+                                    <outlet property="startPlace" destination="m3Y-77-xYG" id="LvP-ei-KSe"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2249,6 +2250,9 @@
                                                                             <constraint firstAttribute="width" constant="100" id="dQ2-AM-5TP"/>
                                                                         </constraints>
                                                                         <locale key="locale" localeIdentifier="ko"/>
+                                                                        <connections>
+                                                                            <action selector="startEndTime:" destination="XB1-1K-LBi" eventType="valueChanged" id="DRW-Tq-qWD"/>
+                                                                        </connections>
                                                                     </datePicker>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Co-4S-cbi">
                                                                         <rect key="frame" x="105.00000000000001" y="0.0" width="51.666666666666671" height="50"/>
@@ -2259,6 +2263,9 @@
                                                                     <datePicker contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Q4P-7H-bYS" userLabel="EDate Picker">
                                                                         <rect key="frame" x="161.66666666666666" y="0.0" width="99.999999999999972" height="50"/>
                                                                         <locale key="locale" localeIdentifier="ko"/>
+                                                                        <connections>
+                                                                            <action selector="endEndTime:" destination="XB1-1K-LBi" eventType="valueChanged" id="0WQ-4L-Pdv"/>
+                                                                        </connections>
                                                                     </datePicker>
                                                                 </subviews>
                                                                 <constraints>
@@ -2410,10 +2417,12 @@
                     <connections>
                         <outlet property="deliveryTipBtn" destination="F8m-JB-OJn" id="RTi-Wl-OuB"/>
                         <outlet property="deliveryTipDropView" destination="fIm-Kj-p6l" id="26Y-wo-xWI"/>
+                        <outlet property="endEndTime" destination="Q4P-7H-bYS" id="nn3-gY-oVO"/>
                         <outlet property="endPlaceBtn" destination="3Fu-AW-2ni" id="SU0-9J-4Cn"/>
                         <outlet property="endPlaceDropView" destination="QzU-Jw-IcN" id="c9E-RI-ZG6"/>
                         <outlet property="menuTextView" destination="ocL-ES-bY5" id="cSK-GJ-izu"/>
                         <outlet property="requestTextView" destination="lWC-5k-Z6s" id="JaY-72-ng2"/>
+                        <outlet property="startEndTime" destination="Kc1-ox-SYk" id="TPU-TF-S1R"/>
                         <outlet property="startPlaceTextView" destination="BQ5-ze-HQ5" id="pvc-fJ-gb3"/>
                     </connections>
                 </viewController>

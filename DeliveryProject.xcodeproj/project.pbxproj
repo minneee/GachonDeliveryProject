@@ -38,6 +38,12 @@
 		CB60AEAC296160C600E1F18F /* OrderedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB60AEAB296160C600E1F18F /* OrderedListViewController.swift */; };
 		CB60AEAF2961611300E1F18F /* OrderedListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB60AEAE2961611300E1F18F /* OrderedListTableViewCell.swift */; };
 		CB6453A2295D710500EC7620 /* InDoDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6453A1295D710500EC7620 /* InDoDeliveryViewController.swift */; };
+		CB655ACB298910B1005A3837 /* ModifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655ACA298910B1005A3837 /* ModifyRequest.swift */; };
+		CB655ACD298910C2005A3837 /* ModifyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655ACC298910C2005A3837 /* ModifyResponse.swift */; };
+		CB655ACF29893D11005A3837 /* HistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655ACE29893D11005A3837 /* HistoryRequest.swift */; };
+		CB655AD129893D1D005A3837 /* HistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655AD029893D1D005A3837 /* HistoryResponse.swift */; };
+		CB655AD529896C3B005A3837 /* MyOrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655AD429896C3B005A3837 /* MyOrderResponse.swift */; };
+		CB655AD72989727E005A3837 /* MyOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655AD62989727E005A3837 /* MyOrderRequest.swift */; };
 		CB8B92EE296316BE0008B497 /* CreateOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92ED296316BE0008B497 /* CreateOrderViewController.swift */; };
 		CB8B92F529693FB50008B497 /* ChangeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92F429693FB50008B497 /* ChangeProfileViewController.swift */; };
 		CB8B92F9296A72380008B497 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92F8296A72380008B497 /* QuestionViewController.swift */; };
@@ -88,6 +94,12 @@
 		CB60AEAB296160C600E1F18F /* OrderedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedListViewController.swift; sourceTree = "<group>"; };
 		CB60AEAE2961611300E1F18F /* OrderedListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedListTableViewCell.swift; sourceTree = "<group>"; };
 		CB6453A1295D710500EC7620 /* InDoDeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InDoDeliveryViewController.swift; sourceTree = "<group>"; };
+		CB655ACA298910B1005A3837 /* ModifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyRequest.swift; sourceTree = "<group>"; };
+		CB655ACC298910C2005A3837 /* ModifyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyResponse.swift; sourceTree = "<group>"; };
+		CB655ACE29893D11005A3837 /* HistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRequest.swift; sourceTree = "<group>"; };
+		CB655AD029893D1D005A3837 /* HistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryResponse.swift; sourceTree = "<group>"; };
+		CB655AD429896C3B005A3837 /* MyOrderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderResponse.swift; sourceTree = "<group>"; };
+		CB655AD62989727E005A3837 /* MyOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderRequest.swift; sourceTree = "<group>"; };
 		CB8B92ED296316BE0008B497 /* CreateOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderViewController.swift; sourceTree = "<group>"; };
 		CB8B92F429693FB50008B497 /* ChangeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileViewController.swift; sourceTree = "<group>"; };
 		CB8B92F8296A72380008B497 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +156,12 @@
 				CBAA43192983F27A009C6DA7 /* SuggestionResponse.swift */,
 				CBAA431B29869974009C6DA7 /* CreateOrderRequest.swift */,
 				CBAA431D29869981009C6DA7 /* CreateOrderResponse.swift */,
+				CB655ACA298910B1005A3837 /* ModifyRequest.swift */,
+				CB655ACC298910C2005A3837 /* ModifyResponse.swift */,
+				CB655ACE29893D11005A3837 /* HistoryRequest.swift */,
+				CB655AD029893D1D005A3837 /* HistoryResponse.swift */,
+				CB655AD62989727E005A3837 /* MyOrderRequest.swift */,
+				CB655AD429896C3B005A3837 /* MyOrderResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -354,14 +372,17 @@
 				3D15FE452983CF4F00DB252B /* ProfileRequest.swift in Sources */,
 				3D15FE412983BBCA00DB252B /* LoginRequest.swift in Sources */,
 				CBAA43182983F26F009C6DA7 /* SuggestionRequest.swift in Sources */,
+				CB655AD129893D1D005A3837 /* HistoryResponse.swift in Sources */,
 				CBAA43142983E46B009C6DA7 /* ChangeProfileRequest.swift in Sources */,
 				CB8B92FB296A770B0008B497 /* ReportViewController.swift in Sources */,
 				CBAA431A2983F27A009C6DA7 /* SuggestionResponse.swift in Sources */,
 				3D749F8B2972BA7500F512D8 /* ChattingTableViewYourCell.swift in Sources */,
+				CB655ACD298910C2005A3837 /* ModifyResponse.swift in Sources */,
 				3DABD3A0296ED91500677B84 /* NoticeTableViewCell.swift in Sources */,
 				CB6453A2295D710500EC7620 /* InDoDeliveryViewController.swift in Sources */,
 				3DABD39A296ED85C00677B84 /* ChattingTableViewMyCell.swift in Sources */,
 				CB8B92F9296A72380008B497 /* QuestionViewController.swift in Sources */,
+				CB655AD72989727E005A3837 /* MyOrderRequest.swift in Sources */,
 				CB8B92F529693FB50008B497 /* ChangeProfileViewController.swift in Sources */,
 				CB39267A296C209D00DA319C /* MyOrderedListTableViewCell.swift in Sources */,
 				3DABD398296ED72400677B84 /* ChattingViewController.swift in Sources */,
@@ -380,7 +401,10 @@
 				3D20B98A2959ACF000849DA6 /* SceneDelegate.swift in Sources */,
 				CB39267C296C52D200DA319C /* StarScoreViewController.swift in Sources */,
 				CBAA431C29869974009C6DA7 /* CreateOrderRequest.swift in Sources */,
+				CB655AD529896C3B005A3837 /* MyOrderResponse.swift in Sources */,
 				3DABD39C296ED88600677B84 /* SettingViewController.swift in Sources */,
+				CB655ACF29893D11005A3837 /* HistoryRequest.swift in Sources */,
+				CB655ACB298910B1005A3837 /* ModifyRequest.swift in Sources */,
 				CBB259D829606286004EAB37 /* DeliveryListTableViewCell.swift in Sources */,
 				CB39267E296FD76600DA319C /* ModifyViewController.swift in Sources */,
 				CB8B92EE296316BE0008B497 /* CreateOrderViewController.swift in Sources */,

@@ -819,6 +819,7 @@
                                             <outlet property="endPlace" destination="AHq-rU-cTU" id="vIP-Bz-Gje"/>
                                             <outlet property="endTime" destination="7mL-1F-4Q7" id="POS-k5-SvQ"/>
                                             <outlet property="menu" destination="iXV-Yh-4XV" id="mqF-bn-Kc5"/>
+                                            <outlet property="modifyBtn" destination="xds-9p-x19" id="WUj-x4-CZ7"/>
                                             <outlet property="request" destination="n7M-T4-8Nq" id="15U-Wt-e9d"/>
                                             <outlet property="startPlace" destination="fzV-3M-Nga" id="fc4-9R-dcZ"/>
                                         </connections>

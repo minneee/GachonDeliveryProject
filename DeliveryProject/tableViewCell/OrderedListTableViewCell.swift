@@ -18,6 +18,7 @@ class OrderedListTableViewCell: UITableViewCell {
     @IBOutlet weak var deliveryTip: UILabel! // 배달팁
     
     
+    @IBOutlet weak var modifyBtn: UIButton!
     
     
     

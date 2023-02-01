@@ -23,6 +23,9 @@ class ModifyViewController: UIViewController {
     @IBOutlet weak var startEndTime: UIDatePicker!
     @IBOutlet weak var endEndTime: UIDatePicker!
     
+    var DList : [Data] = []
+    var rowNum : Int = -1
+    
     var startEndTimeString = ""
     var endEndTimeString = ""
     
@@ -66,9 +69,10 @@ class ModifyViewController: UIViewController {
     @IBAction func completeBtn(_ sender: UIButton) {
         
         let id = UserDefaults.standard.string(forKey: "id") ?? ""
-        let param = ModifyRequest(startingPoint: startPlaceTextView.text, arrivingPoint: endPlaceBtn.currentTitle ?? "", startDeliTime: Int(startEndTimeString) ?? 0, endDeliTime: Int(endEndTimeString) ?? 0, menu: menuTextView.text, userWant: requestTextView.text, deliTip: deliveryTipBtn.currentTitle ?? "", userId: id, articleId: 1)
+        let param = ModifyRequest(startingPoint: startPlaceTextView.text, arrivingPoint: endPlaceBtn.currentTitle ?? "", startDeliTime: Int(startEndTimeString) ?? 0, endDeliTime: Int(endEndTimeString) ?? 0, menu: menuTextView.text, userWant: requestTextView.text, deliTip: deliveryTipBtn.currentTitle ?? "", userId: id, articleId: DList[rowNum].articleId)
         
         putModify(param)
+        
     }
     
     func putModify(_ parameters: ModifyRequest) {
@@ -78,12 +82,14 @@ class ModifyViewController: UIViewController {
                 switch response.result {
                 case .success(let response):
                     if(response.success == true){
-                        print("주문서 작성 성공")
+                        print("주문서 수정 성공")
+                        
+                        navigationController?.popViewController(animated: true)
                         
                     }
                     
                     else{
-                        print("주문서 작성 실패 \(response.message)")
+                        print("주문서 수정 실패 \(response.message)")
                         //alert message
                         let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
                         
@@ -114,6 +120,26 @@ class ModifyViewController: UIViewController {
         
         TextViewOption()
         viewOption()
+
+        print("수정화면 DList: ", DList)
+        print("수정화면 RowNum: ", rowNum)
+        
+        
+        startPlaceTextView.text = DList[rowNum].startingPoint
+        endPlaceBtn.setTitle(DList[rowNum].arrivingPoint, for: .normal)
+        endPlaceBtn.tintColor = .black
+        
+        menuTextView.text = DList[rowNum].menu
+        requestTextView.text = DList[rowNum].userWant
+        deliveryTipBtn.setTitle(DList[rowNum].deliTip, for: .normal)
+        deliveryTipBtn.tintColor = .black
+ 
+        // 데이트 피커 설정만 하면 완성
+//        let dateStr = String(startEndTime)
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "AA HH시 mm분"
+//        let convertDate = dateFormatter.date(from: dateStr)!
+//        startEndTime.date = DList[rowNum].startDeliTime
         
         //키보드 올라가면 화면 위로 밀기
         IQKeyboardManager.shared.enable = true
@@ -150,9 +176,9 @@ class ModifyViewController: UIViewController {
         requestTextView.text = "요청사항"
         
         // placeholder textColor 설정
-        startPlaceTextView.textColor = .placeholderText
-        menuTextView.textColor = .placeholderText
-        requestTextView.textColor = .placeholderText
+        startPlaceTextView.textColor = .black
+        menuTextView.textColor = .black
+        requestTextView.textColor = .black
         
         // 텍스트 뷰 테두리 설정
         startPlaceTextView.layer.borderWidth = 1

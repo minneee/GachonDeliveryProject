@@ -20,6 +20,7 @@ class OrderedListViewController: UIViewController {
 
     //네비게이션 바 이미지
     let navImage = UIImage(named: "createOrder")
+    
 
     
     override func viewDidLoad() {
@@ -37,23 +38,31 @@ class OrderedListViewController: UIViewController {
         let scaledImage = navImage?.resizeImage(size: CGSize(width:26, height:26))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: scaledImage, style: .plain, target: self, action: #selector(goToCreateOrderVC))
         
-        
-        
-        
-        let id = UserDefaults.standard.string(forKey: "id") ?? ""
-        let param = MyOrderRequest(userId: id)
-        postMyOrder(param)
   
     }
 
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = "주문서 목록"
+        
+        let id = UserDefaults.standard.string(forKey: "id") ?? ""
+        let param = MyOrderRequest(userId: id)
+        postMyOrder(param)
+        
+        self.view.layoutIfNeeded()
+        
     }
     // 주문서 수정 버튼
     @IBAction func fixBtn(_ sender: UIButton) {
-        guard let modifyVC = storyboard?.instantiateViewController(withIdentifier: "ModifyVC") else{return}
-        navigationController?.pushViewController(modifyVC, animated: true)
         
+        guard let modifyVC = storyboard?.instantiateViewController(withIdentifier: "ModifyVC") as? ModifyViewController else{return}
+        
+        modifyVC.rowNum = sender.tag
+        modifyVC.DList = DList
+        print("rowNum :", modifyVC.rowNum)
+        
+        
+        navigationController?.pushViewController(modifyVC, animated: true)
+
        
     }
     
@@ -76,6 +85,12 @@ class OrderedListViewController: UIViewController {
                         
                         print("주문 내역 불러오기 성공")
                         DList = response.data
+                        print(DList, DList.count)
+                        orderedListTable.reloadData()
+                        
+                        
+                        
+                        
                         
                     }
                     
@@ -109,10 +124,11 @@ class OrderedListViewController: UIViewController {
 }
 
 
+
 extension OrderedListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        print(DList.count)
+        print("셀 개수: " , DList.count)
         return DList.count
     }
     
@@ -127,18 +143,29 @@ extension OrderedListViewController: UITableViewDelegate, UITableViewDataSource 
         cell.menu.text = DList[indexPath.row].menu
         cell.request.text = DList[indexPath.row].userWant
         cell.deliveryTip.text = DList[indexPath.row].deliTip
-
+        
         var startDeliTime = String(DList[indexPath.row].startDeliTime)
-        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
+//        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
         
         var endDeliTime = String(DList[indexPath.row].endDeliTime)
         endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))
         
         cell.endTime.text = startDeliTime + " ~ " + endDeliTime
+        
+        cell.modifyBtn.tag = indexPath.row
+        
+        
+        
         return cell
         
-        
     }
+    
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        rowNum = indexPath.row
+    //        print(rowNum)
+    //        modifyVC.rowNum = rowNum
+//}
+    
 }
 //네비게이션 바 이미지 크기 조절
 //extension UIImage {

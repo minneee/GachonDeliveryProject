@@ -148,6 +148,10 @@ class CreateOrderViewController: UIViewController {
     
         postCreateOrder(param)
         
+        print(startTimeString, endTimeString)
+        
+
+        
     }
     
     func postCreateOrder(_ parameters: CreateOrderRequest) {
@@ -158,9 +162,10 @@ class CreateOrderViewController: UIViewController {
                 case .success(let response):
                     if(response.success == true){
                         print("주문서 작성 성공")
-                        
+                        navigationController?.popViewController(animated: true)
                         // 계속 data를 0으로만 뜸
                         print(response.data ?? 0, response.message, response.success)
+                        
                         
                     }
                     

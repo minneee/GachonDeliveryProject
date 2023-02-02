@@ -17,6 +17,10 @@
 		3D20B98F2959ACF000849DA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D20B98D2959ACF000849DA6 /* Main.storyboard */; };
 		3D20B9912959ACF100849DA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D20B9902959ACF100849DA6 /* Assets.xcassets */; };
 		3D20B9942959ACF100849DA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D20B9922959ACF100849DA6 /* LaunchScreen.storyboard */; };
+		3D2C8031298B7F220070698D /* OrderListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2C8030298B7F220070698D /* OrderListResponse.swift */; };
+		3D2C8033298B99140070698D /* NewMemberProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2C8032298B99140070698D /* NewMemberProfileViewController.swift */; };
+		3D2C8035298BDC3E0070698D /* WithdrawalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2C8034298BDC3E0070698D /* WithdrawalRequest.swift */; };
+		3D2C8037298BDC4C0070698D /* WithdrawalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2C8036298BDC4C0070698D /* WithdrawalResponse.swift */; };
 		3D749F842972B21800F512D8 /* ChattingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D749F832972B21800F512D8 /* ChattingListViewController.swift */; };
 		3D749F872972B4B700F512D8 /* ChattingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D749F852972B4B700F512D8 /* ChattingListTableViewCell.swift */; };
 		3D749F882972B4B700F512D8 /* ChattingListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D749F862972B4B700F512D8 /* ChattingListTableViewCell.xib */; };
@@ -73,6 +77,10 @@
 		3D20B9902959ACF100849DA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D20B9932959ACF100849DA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D20B9952959ACF100849DA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D2C8030298B7F220070698D /* OrderListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListResponse.swift; sourceTree = "<group>"; };
+		3D2C8032298B99140070698D /* NewMemberProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMemberProfileViewController.swift; sourceTree = "<group>"; };
+		3D2C8034298BDC3E0070698D /* WithdrawalRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalRequest.swift; sourceTree = "<group>"; };
+		3D2C8036298BDC4C0070698D /* WithdrawalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalResponse.swift; sourceTree = "<group>"; };
 		3D749F832972B21800F512D8 /* ChattingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListViewController.swift; sourceTree = "<group>"; };
 		3D749F852972B4B700F512D8 /* ChattingListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListTableViewCell.swift; sourceTree = "<group>"; };
 		3D749F862972B4B700F512D8 /* ChattingListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingListTableViewCell.xib; sourceTree = "<group>"; };
@@ -162,6 +170,9 @@
 				CB655AD029893D1D005A3837 /* HistoryResponse.swift */,
 				CB655AD62989727E005A3837 /* MyOrderRequest.swift */,
 				CB655AD429896C3B005A3837 /* MyOrderResponse.swift */,
+				3D2C8030298B7F220070698D /* OrderListResponse.swift */,
+				3D2C8034298BDC3E0070698D /* WithdrawalRequest.swift */,
+				3D2C8036298BDC4C0070698D /* WithdrawalResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -245,6 +256,7 @@
 				3DABD39D296ED8EC00677B84 /* NoticeViewController.swift */,
 				CB39267D296FD76600DA319C /* ModifyViewController.swift */,
 				3D749F832972B21800F512D8 /* ChattingListViewController.swift */,
+				3D2C8032298B99140070698D /* NewMemberProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -381,12 +393,15 @@
 				3DABD3A0296ED91500677B84 /* NoticeTableViewCell.swift in Sources */,
 				CB6453A2295D710500EC7620 /* InDoDeliveryViewController.swift in Sources */,
 				3DABD39A296ED85C00677B84 /* ChattingTableViewMyCell.swift in Sources */,
+				3D2C8037298BDC4C0070698D /* WithdrawalResponse.swift in Sources */,
 				CB8B92F9296A72380008B497 /* QuestionViewController.swift in Sources */,
 				CB655AD72989727E005A3837 /* MyOrderRequest.swift in Sources */,
 				CB8B92F529693FB50008B497 /* ChangeProfileViewController.swift in Sources */,
 				CB39267A296C209D00DA319C /* MyOrderedListTableViewCell.swift in Sources */,
 				3DABD398296ED72400677B84 /* ChattingViewController.swift in Sources */,
+				3D2C8033298B99140070698D /* NewMemberProfileViewController.swift in Sources */,
 				3D15FE432983BBD800DB252B /* LoginResponse.swift in Sources */,
+				3D2C8031298B7F220070698D /* OrderListResponse.swift in Sources */,
 				3D749F842972B21800F512D8 /* ChattingListViewController.swift in Sources */,
 				CB392678296C205A00DA319C /* MyOrderedListTableViewController.swift in Sources */,
 				3D749F872972B4B700F512D8 /* ChattingListTableViewCell.swift in Sources */,
@@ -396,6 +411,7 @@
 				CBAA43162983E4AD009C6DA7 /* ChangeProfileResponse.swift in Sources */,
 				CB60AEAA29615F9F00E1F18F /* OrderViewController.swift in Sources */,
 				3D20B9882959ACF000849DA6 /* AppDelegate.swift in Sources */,
+				3D2C8035298BDC3E0070698D /* WithdrawalRequest.swift in Sources */,
 				3DABD39E296ED8EC00677B84 /* NoticeViewController.swift in Sources */,
 				CBAA431E29869981009C6DA7 /* CreateOrderResponse.swift in Sources */,
 				3D20B98A2959ACF000849DA6 /* SceneDelegate.swift in Sources */,

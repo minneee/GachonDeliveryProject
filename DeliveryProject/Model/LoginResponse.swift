@@ -8,6 +8,7 @@
 import Foundation
 
 struct LoginResponse: Decodable {
+    var memberTrueFalse: Bool?
     var success: Bool
     var message: String
     var property: Int

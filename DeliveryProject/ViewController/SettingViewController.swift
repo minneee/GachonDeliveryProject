@@ -239,10 +239,15 @@ class SettingViewController: UIViewController {
         // 문의하기 버튼
         inquiryButton.addTarget(self, action: #selector(goToInquiryVC),for: .touchUpInside)
         
+        logoutButton.addTarget(self, action: #selector(logoutAlert), for: .touchUpInside)
+        
         // 프로필 편집
         let tap = UITapGestureRecognizer(target: self, action: #selector(gotToChangeProfileVC))
         profileEditLabel.isUserInteractionEnabled = true
         profileEditLabel.addGestureRecognizer(tap)
+        
+        //회원 탈퇴 버튼
+        withdrawalButton.addTarget(self, action: #selector(withdrawalAlert), for: .touchUpInside)
 
     }
     
@@ -267,13 +272,100 @@ class SettingViewController: UIViewController {
         // inquiryVC.navigationItem.title = "공지사항"
     }
     
+    // 로그아웃 Alert
+    @objc func logoutAlert() {
+        let logoutAlert = UIAlertController(title: "로그아웃", message: "로그아웃하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+        
+        let logoutFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
+        let logoutTrueAction = UIAlertAction(title: "로그아웃", style: UIAlertAction.Style.destructive) { ACTION in
+            //자동로그인 해제
+            UserDefaults.standard.set(false, forKey: "auto")
+            UserDefaults.standard.removeObject(forKey: "id")
+            
+            guard let nextVC = self.storyboard?.instantiateViewController(identifier: "LoginVC") else {return}
+            nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            self.present(nextVC, animated: true)
+        }
+        
+        logoutAlert.addAction(logoutFalseAction)
+        logoutAlert.addAction(logoutTrueAction)
+        
+        self.present(logoutAlert, animated: true, completion: nil)
+    }
+    
     // 프로필 편집으로 화면 이동
     @objc func gotToChangeProfileVC() {
         guard let ChangeProfileVC = storyboard?.instantiateViewController(withIdentifier: "ChangeProfileVC") else {return}
         navigationController?.pushViewController(ChangeProfileVC, animated: true)
     }
     
+    //회원 탈퇴 Alert
+    @objc func withdrawalAlert() {
+        let pwCheckAlert = UIAlertController(title: "회원 탈퇴", message: "현재 비밀번호를 입력하세요", preferredStyle: UIAlertController.Style.alert)
+        
+        let pwCheckFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
+        let pwCheckTrueAction = UIAlertAction(title: "비밀번호 확인", style: UIAlertAction.Style.destructive) { ACTION in
+            
+            let id = UserDefaults.standard.string(forKey: "id") ?? ""
+            let password = pwCheckAlert.textFields?[0].text ?? ""
+            
+            //현재 비밀번호 확인 api 연결
+            let param = WithdrawalRequest(userId: id, userPw: password)
+            self.postWithdrawal(param)
+        }
+        
+        pwCheckAlert.addAction(pwCheckFalseAction)
+        pwCheckAlert.addAction(pwCheckTrueAction)
+        pwCheckAlert.addTextField{ pwCheckTextField in
+            pwCheckTextField.isSecureTextEntry = true
+        }
+        self.present(pwCheckAlert, animated: true, completion: nil)
+    }
     
+    //회원 탈퇴
+    func postWithdrawal(_ parameters: WithdrawalRequest) {
+        AF.request("http://3.37.209.65:3000/secede", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: WithdrawalResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        print("회원 탈퇴 성공")
+                        
+                        //자동로그인 해제
+                        UserDefaults.standard.set(false, forKey: "auto")
+                        UserDefaults.standard.removeObject(forKey: "id")
+                        
+                        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "LoginVC") else {return}
+                        nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                        self.present(nextVC, animated: true)
+                    }
+                    
+                    else{
+                        print("회원 탈퇴 실패\(response.message)")
+                        //alert message
+                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        FailAlert.addAction(FailAction)
+                        self.present(FailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    serverFailAlert.addAction(serverFailAction)
+                    self.present(serverFailAlert, animated: true, completion: nil)
+                }
+                
+            }
+    }
+    
+    //프로필 보기
     func postProfile(_ parameters: ProfileRequest) {
         AF.request("http://3.37.209.65:3000/mypage", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()

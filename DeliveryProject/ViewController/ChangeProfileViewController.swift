@@ -54,7 +54,7 @@ class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    // 이 화면이 켜질 때 기존의 닉네임과 한 줄 소개 받아옴
+    // 이 화면이 켜질 때 기존의 닉네임과 한 줄 소개 받아옴 - 화면 넘어갈 때 전달해줘도 될거같은디
     func postProfile(_ parameters: ProfileRequest) {
         AF.request("http://3.37.209.65:3000/mypage", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
@@ -97,7 +97,7 @@ class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
     func postChangeProfile(_ parameters: ChangeProfileRequest){
         AF.request("http://3.37.209.65:3000/editmypage", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
-            .responseDecodable(of: LoginResponse.self) { [self] response in
+            .responseDecodable(of: ChangeProfileResponse.self) { [self] response in
                 switch response.result {
                 case .success(let response):
                     if(response.success == true){

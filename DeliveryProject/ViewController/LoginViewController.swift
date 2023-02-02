@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import IQKeyboardManagerSwift
 
 class ViewController: UIViewController {
     
@@ -25,14 +26,39 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        LoginButton.layer.cornerRadius = 3
         
+        //키보드 올라가면 화면 위로 밀기 (이건 전체가 올라가서 지금 사용 x)
+        IQKeyboardManager.shared.enable = true
         
+        //키보드 위에 Toolbar 없애기
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        //키보드 밖 화면 터치 시 키보드 내려감
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+ 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("bb")
+        print(UserDefaults.standard.string(forKey: "id"))
+        print(UserDefaults.standard.bool(forKey: "auto"))
+        if(UserDefaults.standard.bool(forKey: "auto") == true){
+            print("자동로그인")
+            
+            guard let VC = storyboard?.instantiateViewController(identifier: "NavController") else { return }
+            changeRootViewController(VC)
+            
+        }
+    }
+
+    
+    
     @IBAction func autoLoginButton(_ sender: UIButton) {
         sender.isSelected.toggle()
         
         sender.isSelected ? (autoLogin = true) : (autoLogin = false)
+        
     }
     
     @IBAction func loginButtonAction(_ sender: Any) {
@@ -45,7 +71,7 @@ class ViewController: UIViewController {
     
     
     func postLogin(_ parameters: LoginRequest) {
-        AF.request("http://3.37.209.65:3000/login", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://3.37.209.65:3000/Glogin", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: LoginResponse.self) { [self] response in
                 switch response.result {
@@ -56,15 +82,28 @@ class ViewController: UIViewController {
                         //기기에 아이디 저장
                         UserDefaults.standard.set(idTextField.text, forKey: "id")
                         
+                        print("\(autoLogin) + 자동")
                         //자동 로그인
                         if autoLogin == true {
+                            print("자동로그인 켜짐")
                             UserDefaults.standard.set(true, forKey: "auto")
                         }
                         
-                        //화면 이동
-                        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "NavController") else {return}
-                        nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-                        self.present(nextVC, animated: true)
+                        if response.memberTrueFalse == true {
+                            //이미 가입한 회원
+                            print("가입")
+                            guard let nextVC = self.storyboard?.instantiateViewController(identifier: "NavController") else {return}
+                            nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                            self.present(nextVC, animated: true)
+                        }
+                        else {
+                            //가입하지 않은 회원
+                            print("미가입")
+                            guard let nextVC = self.storyboard?.instantiateViewController(identifier: "MemberNavController") else {return}
+                            nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                            self.present(nextVC, animated: true)
+                            
+                        }
                         
                     }
                     
@@ -90,6 +129,16 @@ class ViewController: UIViewController {
                 }
                 
             }
+    }
+    
+    func changeRootViewController(_ viewControllerToPresent: UIViewController) {
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = viewControllerToPresent
+            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+        } else {
+            viewControllerToPresent.modalPresentationStyle = .overFullScreen
+            self.present(viewControllerToPresent, animated: true, completion: nil)
+        }
     }
 }
 

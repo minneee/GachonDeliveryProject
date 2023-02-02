@@ -7,13 +7,15 @@
 
 import UIKit
 import DropDown
+import Alamofire
 
-class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class InDoDeliveryViewController: UIViewController {
 
-    let startPlaceList = ["아메아메", "아토", "이삭토스트","아메아메", "아토", "이삭토스트","아메아메", "아토", "이삭토스트","아메아메", "아토", "이삭토스트","아메아메", "아토", "이삭토스트","아메아메", "아토", "이삭토스트"]
-    let startTimeList = ["1시", "2시", "3시", "1시", "2시", "3시","1시", "2시", "3시","1시", "2시", "3시","1시", "2시", "3시","1시", "2시", "3시"]
-    let deliveryTipList = ["무료", "500원", "1000원","무료", "500원", "1000원","무료", "500원", "1000원","무료", "500원", "1000원","무료", "500원", "1000원","무료", "500원", "1000원"]
-    let endPlaceList = ["AI공학관", "가천관", "중앙도서관","AI공학관", "가천관", "중앙도서관","AI공학관", "가천관", "중앙도서관","AI공학관", "가천관", "중앙도서관","AI공학관", "가천관", "중앙도서관","AI공학관", "가천관", "중앙도서관"]
+    var startPlaceList: [String] = []
+    var startTimeList: [String] = []
+    var endTimeList: [String] = []
+    var deliveryTipList: [String] = []
+    var endPlaceList: [String] = []
     
     @IBOutlet weak var startPlaceText: UITextField! // 출발 장소
     @IBOutlet weak var endTimeText: UITextField! // 도착 시간
@@ -30,9 +32,6 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tipImg: UIImageView!
     
     
-    
-    
-    
     // 배달 리스트 테이블
     @IBOutlet weak var listTable: UITableView!
     
@@ -44,6 +43,23 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
     let itemList = ["AI공학관", "가천관", "중앙도서관"]
     let deliveryTip = ["무료", "500원", "1000원", "1500원"]
     
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.topItem?.title = ""
+
+        listTable.dataSource = self
+        listTable.delegate = self
+        
+        viewOption()
+        
+        getOrderList()
+  //      initUI()
+
+    }
     
     @IBAction func placeButton(_ sender: UIButton) {
         
@@ -63,20 +79,55 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
         tipSelectionAction()
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.topItem?.title = ""
+    func getOrderList () {
+        AF.request("http://3.37.209.65:3000/board", method: .get, headers: nil)
+            .validate()
+            .responseDecodable(of: OrderListResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        print("주문목록 조회 성공")
+                        
+                        let dataList = response.data
+                        if dataList.count > 0 {
+                            for i in 0...(dataList.count - 1) {
+                                startPlaceList.append(dataList[i].startingPoint)
+                                endPlaceList.append(dataList[i].arrivingPoint)
+                                startTimeList.append(String(dataList[i].startDeliTime))
+                                endTimeList.append(String(dataList[i].endDeliTime))
+                                deliveryTipList.append(dataList[i].deliTip)
+                                
+                            }
+                        }
+                        
 
-        listTable.dataSource = self
-        listTable.delegate = self
-        
-        viewOption()
-        
-  //      initUI()
-
+                        listTable.reloadData()
+                    }
+                    
+                    else{
+                        print("주문목록 조회 실패\(response.message)")
+                        //alert message
+                        let loginFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        loginFailAlert.addAction(loginFailAction)
+                        self.present(loginFailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let loginFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    loginFailAlert.addAction(loginFailAction)
+                    self.present(loginFailAlert, animated: true, completion: nil)
+                }
+                
+            }
     }
+    
     // 버튼 테두리 설정
     func viewOption(){
         // 배달 장소 드롭뷰
@@ -150,6 +201,13 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    
+    
+
+}
+
+extension InDoDeliveryViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return startPlaceList.count
     }
@@ -157,9 +215,15 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! DeliveryListTableViewCell
         
+        var startDeliTime = startTimeList[indexPath.row]
+        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
+        
+        var endDeliTime = endTimeList[indexPath.row]
+        endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))
+        
         cell.startPlace.text = startPlaceList[indexPath.row]
-        cell.startTime.text = startTimeList[indexPath.row]
         cell.endPlace.text = endPlaceList[indexPath.row]
+        cell.startTime.text = startDeliTime + " ~ " + endDeliTime
         cell.deliveryTip.text = deliveryTipList[indexPath.row]
         
         let view = UIView()
@@ -181,6 +245,4 @@ class InDoDeliveryViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationController?.pushViewController(orderVC, animated: true)
 
     }
-    
-
 }

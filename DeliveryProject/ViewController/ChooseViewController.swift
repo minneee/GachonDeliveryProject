@@ -52,7 +52,8 @@ class ChooseViewController: UIViewController {
         let scaledImage = navImage?.resizeImage(size: CGSize(width: 26, height:26))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: scaledImage, style: .plain, target: self, action: #selector(goToSetting))
         
-
+        print(UserDefaults.standard.string(forKey: "id") ?? "")
+        print(UserDefaults.standard.bool(forKey: "auto") ?? "")
         
     }
     

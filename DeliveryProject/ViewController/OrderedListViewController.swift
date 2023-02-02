@@ -145,7 +145,7 @@ extension OrderedListViewController: UITableViewDelegate, UITableViewDataSource 
         cell.deliveryTip.text = DList[indexPath.row].deliTip
         
         var startDeliTime = String(DList[indexPath.row].startDeliTime)
-//        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
+        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
         
         var endDeliTime = String(DList[indexPath.row].endDeliTime)
         endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))

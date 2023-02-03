@@ -46,7 +46,7 @@ class MyOrderedListTableViewController: UITableViewController {
         
         let create_dt = DList[indexPath.row].create_dt
         let startIndex = create_dt.index(create_dt.startIndex, offsetBy: 0)
-        let endIndex = create_dt.index(create_dt.startIndex, offsetBy: 9)
+        let endIndex = create_dt.index(create_dt.startIndex, offsetBy: 10)
         let date = create_dt[startIndex ..< endIndex]
 
         cell.startPlace.text = DList[indexPath.row].startingPoint

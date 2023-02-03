@@ -17,6 +17,7 @@ class InDoDeliveryViewController: UIViewController {
     var deliveryTipList: [String] = []
     var endPlaceList: [String] = []
     
+    var dataList : [Data] = []
     @IBOutlet weak var startPlaceText: UITextField! // 출발 장소
     @IBOutlet weak var endTimeText: UITextField! // 도착 시간
     
@@ -88,7 +89,8 @@ class InDoDeliveryViewController: UIViewController {
                     if(response.success == true){
                         print("주문목록 조회 성공")
                         
-                        let dataList = response.data
+                        
+                         dataList = response.data
                         if dataList.count > 0 {
                             for i in 0...(dataList.count - 1) {
                                 startPlaceList.append(dataList[i].startingPoint)
@@ -99,6 +101,8 @@ class InDoDeliveryViewController: UIViewController {
                                 
                             }
                         }
+                        
+                        
                         
 
                         listTable.reloadData()
@@ -237,11 +241,13 @@ extension InDoDeliveryViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
-        
-        
         // 화면 이동
-        guard let orderVC = storyboard?.instantiateViewController(withIdentifier: "OrderViewVC") else {return}
+        guard let orderVC = storyboard?.instantiateViewController(withIdentifier: "OrderViewVC") as? OrderViewController else {return}
+        
+        orderVC.rowNum = indexPath.row
+        orderVC.DList = dataList
+        print("rowNum :", orderVC.rowNum)
+        
         self.navigationController?.pushViewController(orderVC, animated: true)
 
     }

@@ -48,6 +48,8 @@
 		CB655AD129893D1D005A3837 /* HistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655AD029893D1D005A3837 /* HistoryResponse.swift */; };
 		CB655AD529896C3B005A3837 /* MyOrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655AD429896C3B005A3837 /* MyOrderResponse.swift */; };
 		CB655AD72989727E005A3837 /* MyOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655AD62989727E005A3837 /* MyOrderRequest.swift */; };
+		CB655AD9298CF961005A3837 /* DeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655AD8298CF961005A3837 /* DeleteRequest.swift */; };
+		CB655ADB298CF96C005A3837 /* DeleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655ADA298CF96C005A3837 /* DeleteResponse.swift */; };
 		CB8B92EE296316BE0008B497 /* CreateOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92ED296316BE0008B497 /* CreateOrderViewController.swift */; };
 		CB8B92F529693FB50008B497 /* ChangeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92F429693FB50008B497 /* ChangeProfileViewController.swift */; };
 		CB8B92F9296A72380008B497 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92F8296A72380008B497 /* QuestionViewController.swift */; };
@@ -108,6 +110,8 @@
 		CB655AD029893D1D005A3837 /* HistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryResponse.swift; sourceTree = "<group>"; };
 		CB655AD429896C3B005A3837 /* MyOrderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderResponse.swift; sourceTree = "<group>"; };
 		CB655AD62989727E005A3837 /* MyOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderRequest.swift; sourceTree = "<group>"; };
+		CB655AD8298CF961005A3837 /* DeleteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRequest.swift; sourceTree = "<group>"; };
+		CB655ADA298CF96C005A3837 /* DeleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteResponse.swift; sourceTree = "<group>"; };
 		CB8B92ED296316BE0008B497 /* CreateOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderViewController.swift; sourceTree = "<group>"; };
 		CB8B92F429693FB50008B497 /* ChangeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileViewController.swift; sourceTree = "<group>"; };
 		CB8B92F8296A72380008B497 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 				3D2C8030298B7F220070698D /* OrderListResponse.swift */,
 				3D2C8034298BDC3E0070698D /* WithdrawalRequest.swift */,
 				3D2C8036298BDC4C0070698D /* WithdrawalResponse.swift */,
+				CB655AD8298CF961005A3837 /* DeleteRequest.swift */,
+				CB655ADA298CF96C005A3837 /* DeleteResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,6 +388,7 @@
 			files = (
 				3D20B98C2959ACF000849DA6 /* LoginViewController.swift in Sources */,
 				3D15FE452983CF4F00DB252B /* ProfileRequest.swift in Sources */,
+				CB655AD9298CF961005A3837 /* DeleteRequest.swift in Sources */,
 				3D15FE412983BBCA00DB252B /* LoginRequest.swift in Sources */,
 				CBAA43182983F26F009C6DA7 /* SuggestionRequest.swift in Sources */,
 				CB655AD129893D1D005A3837 /* HistoryResponse.swift in Sources */,
@@ -407,6 +414,7 @@
 				3D749F872972B4B700F512D8 /* ChattingListTableViewCell.swift in Sources */,
 				CB60AEAC296160C600E1F18F /* OrderedListViewController.swift in Sources */,
 				CBF3F18A295C801D00612C6D /* ChooseViewController.swift in Sources */,
+				CB655ADB298CF96C005A3837 /* DeleteResponse.swift in Sources */,
 				CB60AEAF2961611300E1F18F /* OrderedListTableViewCell.swift in Sources */,
 				CBAA43162983E4AD009C6DA7 /* ChangeProfileResponse.swift in Sources */,
 				CB60AEAA29615F9F00E1F18F /* OrderViewController.swift in Sources */,

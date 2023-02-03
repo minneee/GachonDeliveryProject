@@ -324,7 +324,7 @@ class SettingViewController: UIViewController {
     
     //회원 탈퇴
     func postWithdrawal(_ parameters: WithdrawalRequest) {
-        AF.request("http://3.37.209.65:3000/secede", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://3.37.209.65:3000/Gsecede", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: WithdrawalResponse.self) { [self] response in
                 switch response.result {

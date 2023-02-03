@@ -20,6 +20,7 @@ class OrderedListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var modifyBtn: UIButton!
     
+    @IBOutlet weak var deleteBtn: UIButton!
     
     
     

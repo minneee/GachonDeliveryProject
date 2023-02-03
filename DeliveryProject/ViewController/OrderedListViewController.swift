@@ -11,6 +11,7 @@ import Alamofire
 class OrderedListViewController: UIViewController {
     
     var DList : [Data] = []
+    var rowNum = -1
     
     // 테이블
     @IBOutlet weak var orderedListTable: UITableView!
@@ -22,6 +23,67 @@ class OrderedListViewController: UIViewController {
     let navImage = UIImage(named: "createOrder")
     
 
+    @IBAction func deleteBtn(_ sender: UIButton) {
+        let deleteAlert = UIAlertController(title: "주문서 삭제", message: "주문서를 삭제하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+        
+        let falseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
+        let TrueAction = UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive) { ACTION in
+            
+            let id = UserDefaults.standard.string(forKey: "id") ?? ""
+            let articleId = self.DList[sender.tag].articleId
+            
+            let param = DeleteRequest(userId: id, articleId: articleId)
+            self.deleteDelete(param)
+
+            
+        }
+        
+        deleteAlert.addAction(falseAction)
+        deleteAlert.addAction(TrueAction)
+
+        self.present(deleteAlert, animated: true, completion: nil)
+        
+    }
+    
+    func deleteDelete(_ parameters: DeleteRequest) {
+        AF.request("http://3.37.209.65:3000/delete", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: DeleteResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        
+                        print("주문서 삭제 성공")
+                        self.viewWillAppear(true)
+                        
+                        print(DList, DList.count)
+
+                    }
+                    
+                    else{
+                        print("주문서 삭제 실패 \(response.message)")
+                        //alert message
+                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        FailAlert.addAction(FailAction)
+                        self.present(FailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    serverFailAlert.addAction(serverFailAction)
+                    self.present(serverFailAlert, animated: true, completion: nil)
+                }
+                
+            }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,11 +148,8 @@ class OrderedListViewController: UIViewController {
                         print("주문 내역 불러오기 성공")
                         DList = response.data
                         print(DList, DList.count)
+                        
                         orderedListTable.reloadData()
-                        
-                        
-                        
-                        
                         
                     }
                     
@@ -124,7 +183,6 @@ class OrderedListViewController: UIViewController {
 }
 
 
-
 extension OrderedListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -153,18 +211,16 @@ extension OrderedListViewController: UITableViewDelegate, UITableViewDataSource 
         cell.endTime.text = startDeliTime + " ~ " + endDeliTime
         
         cell.modifyBtn.tag = indexPath.row
+        cell.deleteBtn.tag = indexPath.row
+        
+        
         
         
         
         return cell
         
     }
-    
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        rowNum = indexPath.row
-    //        print(rowNum)
-    //        modifyVC.rowNum = rowNum
-//}
+
     
 }
 //네비게이션 바 이미지 크기 조절

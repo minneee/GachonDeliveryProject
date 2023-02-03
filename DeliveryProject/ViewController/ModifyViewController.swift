@@ -10,6 +10,7 @@ import DropDown
 import IQKeyboardManagerSwift
 import Alamofire
 
+
 class ModifyViewController: UIViewController {
 
     @IBOutlet weak var startPlaceTextView: UITextView! // 출발 장소 텍스트 뷰
@@ -134,12 +135,19 @@ class ModifyViewController: UIViewController {
         deliveryTipBtn.setTitle(DList[rowNum].deliTip, for: .normal)
         deliveryTipBtn.tintColor = .black
  
-        // 데이트 피커 설정만 하면 완성
-//        let dateStr = String(startEndTime)
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "AA HH시 mm분"
-//        let convertDate = dateFormatter.date(from: dateStr)!
-//        startEndTime.date = DList[rowNum].startDeliTime
+        // 작성된 시간으로 데이트 피커 설정 완료
+        let calendar = Calendar.current
+        var startComponents = DateComponents()
+        var endComponents = DateComponents()
+        
+        startComponents.hour = DList[rowNum].startDeliTime / 100
+        startComponents.minute = DList[rowNum].startDeliTime % 100
+        startEndTime.setDate(calendar.date(from: startComponents)!, animated: false)
+        
+        endComponents.hour = DList[rowNum].endDeliTime / 100
+        endComponents.minute = DList[rowNum].endDeliTime % 100
+        endEndTime.setDate(calendar.date(from: endComponents)!, animated: false)
+        
         
         //키보드 올라가면 화면 위로 밀기
         IQKeyboardManager.shared.enable = true

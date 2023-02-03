@@ -678,25 +678,38 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0Ig-9X-rgl">
                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="50.666666666666664"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출발 장소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpb-km-W2c">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Bk-wR-X08">
                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="20.333333333333332"/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                                    <color key="textColor" red="0.78823530669999997" green="0.83529412749999998" blue="0.98431372640000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xA0-mH-3EJ">
-                                                                    <rect key="frame" x="0.0" y="30.333333333333336" width="374" height="20.333333333333336"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="치미치미" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzV-3M-Nga">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="20.333333333333332"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출발 장소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpb-km-W2c">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="354" height="20.333333333333332"/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                            <nil key="textColor"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                            <color key="textColor" red="0.78823530669999997" green="0.83529412749999998" blue="0.98431372640000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3OI-Oi-aEc">
+                                                                            <rect key="frame" x="354" y="-0.66666666666666785" width="20" height="20.666666666666668"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="20" id="Ppk-5H-GSt"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                                                            <color key="tintColor" systemColor="systemGray2Color"/>
+                                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                            <state key="normal" backgroundImage="trash" catalog="system"/>
+                                                                            <connections>
+                                                                                <action selector="deleteBtn:" destination="BTN-sZ-Uz9" eventType="touchUpInside" id="xaG-Af-fPM"/>
+                                                                            </connections>
+                                                                        </button>
                                                                     </subviews>
                                                                 </stackView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="치미치미" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzV-3M-Nga">
+                                                                    <rect key="frame" x="0.0" y="30.333333333333336" width="374" height="20.333333333333336"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </stackView>
@@ -816,6 +829,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="deleteBtn" destination="3OI-Oi-aEc" id="ffA-QW-ECL"/>
                                             <outlet property="deliveryTip" destination="Swm-MQ-vJX" id="mPY-QM-756"/>
                                             <outlet property="endPlace" destination="AHq-rU-cTU" id="vIP-Bz-Gje"/>
                                             <outlet property="endTime" destination="7mL-1F-4Q7" id="POS-k5-SvQ"/>
@@ -2550,6 +2564,7 @@
         <image name="setting" width="90" height="90"/>
         <image name="setting.png" width="30" height="30"/>
         <image name="square" catalog="system" width="128" height="114"/>
+        <image name="trash" catalog="system" width="117" height="128"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

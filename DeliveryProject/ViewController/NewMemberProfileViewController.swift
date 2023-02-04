@@ -23,6 +23,8 @@ class NewMemberProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        nicknameUnderLine()
+        introduceUnderLine()
      
     }
     
@@ -75,5 +77,33 @@ class NewMemberProfileViewController: UIViewController {
                     self.present(serverFailAlert, animated: true, completion: nil)
                 }
             }
+    }
+    
+    func nicknameUnderLine(){
+        let border = CALayer()
+        let width = CGFloat(2.0) // 선 굵기
+        border.borderColor = UIColor.systemGray4.cgColor
+        
+        // 닉네임 텍스트 필드 언더라인
+        border.frame = CGRect(x: 0, y: nicknameTextField.frame.size.height-width, width: nicknameTextField.frame.size.width, height: nicknameTextField.frame.size.height)
+        
+        border.borderWidth = width
+        nicknameTextField.layer.addSublayer(border)
+        nicknameTextField.layer.masksToBounds = true
+        
+        
+    }
+    
+    func introduceUnderLine(){
+        let border = CALayer()
+        let width = CGFloat(2.0) // 선 굵기
+        border.borderColor = UIColor.systemGray4.cgColor
+        
+        // 한 줄 소개 텍스트 필드 언더라인
+        border.frame = CGRect(x: 0, y: introduceOneLineTextField.frame.size.height-width, width: introduceOneLineTextField.frame.size.width, height: introduceOneLineTextField.frame.size.height)
+        
+        border.borderWidth = width
+        introduceOneLineTextField.layer.addSublayer(border)
+        introduceOneLineTextField.layer.masksToBounds = true
     }
 }

@@ -41,8 +41,8 @@ class InDoDeliveryViewController: UIViewController {
     let dropdown = DropDown()
     
     // DropDown 아이템 리스트
-    let itemList = ["AI공학관", "가천관", "중앙도서관"]
-    let deliveryTip = ["무료", "500원", "1000원", "1500원"]
+    let itemList = ["전체", "AI공학관", "가천관", "중앙도서관"]
+    let deliveryTip = ["전체", "무료", "500원", "1000원", "1500원"]
     
     
     
@@ -175,6 +175,9 @@ class InDoDeliveryViewController: UIViewController {
     // https://developer-eungb.tistory.com/34 드롭다운 
     func placeSelectionAction(){
         dropdown.selectionAction = { [weak self] (index, item) in
+            
+            
+            
             self!.placeButton.setTitle(item, for: .normal)
             self!.placeButton.tintColor = .black
             self!.placeImg.image = UIImage.init(systemName: "arrowtriangle.up.fill")

@@ -9,7 +9,7 @@ import UIKit
 import DropDown
 import Alamofire
 
-class InDoDeliveryViewController: UIViewController {
+class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
 
     var startPlaceList: [String] = []
     var startTimeList: [String] = []
@@ -21,6 +21,10 @@ class InDoDeliveryViewController: UIViewController {
     @IBOutlet weak var startPlaceText: UITextField! // 출발 장소
     @IBOutlet weak var endTimeText: UITextField! // 도착 시간
     
+    // 도착 시간 View
+    @IBOutlet weak var endTimeView: UIView!
+    @IBOutlet weak var endTimeMinute: UITextField!
+    @IBOutlet weak var endTimeHour: UITextField!
     
     // 도착 장소 outlet
     @IBOutlet weak var placeButton: UIButton!
@@ -42,9 +46,35 @@ class InDoDeliveryViewController: UIViewController {
     
     // DropDown 아이템 리스트
     let itemList = ["전체", "AI공학관", "가천관", "중앙도서관"]
-    let deliveryTip = ["전체", "무료", "500원", "1000원", "1500원"]
+    let deliveryTip = ["배달팁 높은 순", "배달팁 낮은 순"]
     
-    
+    // 검색 버튼
+    @IBAction func SearchButton(_ sender: UIButton) {
+        if (placeButton.currentTitle ==  "전체") || (placeButton.currentTitle == "도착 장소"){
+            placeButton.setTitle(nil, for: .normal)
+            print(" 도착 장소:",  placeButton.currentTitle ?? "")
+            placeButton.setTitle("도착 장소", for: .normal)
+            placeButton.tintColor = .systemGray4
+        }
+        
+        if (tipButton.currentTitle == "전체") || (tipButton.currentTitle == "배달팁"){
+            tipButton.setTitle(nil, for: .normal)
+            print("팁: ", tipButton.currentTitle ?? "")
+            tipButton.setTitle("배달팁 ", for: .normal)
+            tipButton.tintColor = .systemGray4
+        }
+        
+        if (startPlaceText.text == "출발 장소"){
+            startPlaceText.text = nil
+            print("출발 장소: ", startPlaceText.text ?? "")
+            startPlaceText.text = "출발 장소"
+        }
+
+        print("if 밖 출발 장소: ", startPlaceText.text ?? "")
+        
+       
+
+    }
     
     
     override func viewDidLoad() {
@@ -54,6 +84,9 @@ class InDoDeliveryViewController: UIViewController {
 
         listTable.dataSource = self
         listTable.delegate = self
+        
+        endTimeHour.delegate = self
+        endTimeMinute.delegate = self
         
         viewOption()
         
@@ -88,8 +121,7 @@ class InDoDeliveryViewController: UIViewController {
                 case .success(let response):
                     if(response.success == true){
                         print("주문목록 조회 성공")
-                        
-                        
+                                                
                          dataList = response.data
                         if dataList.count > 0 {
                             for i in 0...(dataList.count - 1) {
@@ -101,10 +133,6 @@ class InDoDeliveryViewController: UIViewController {
                                 
                             }
                         }
-                        
-                        
-                        
-
                         listTable.reloadData()
                     }
                     
@@ -143,6 +171,11 @@ class InDoDeliveryViewController: UIViewController {
         tipDropView.layer.borderWidth = 1
         tipDropView.layer.cornerRadius = 5
         tipDropView.layer.borderColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 0.17).cgColor
+        
+        // 도착시간 드롭뷰
+        endTimeView.layer.borderWidth = 1
+        endTimeView.layer.cornerRadius = 5
+        endTimeView.layer.borderColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 0.17).cgColor
     }
     
     // DropDown UI 커스텀
@@ -175,8 +208,6 @@ class InDoDeliveryViewController: UIViewController {
     // https://developer-eungb.tistory.com/34 드롭다운 
     func placeSelectionAction(){
         dropdown.selectionAction = { [weak self] (index, item) in
-            
-            
             
             self!.placeButton.setTitle(item, for: .normal)
             self!.placeButton.tintColor = .black
@@ -254,4 +285,59 @@ extension InDoDeliveryViewController: UITableViewDelegate, UITableViewDataSource
         self.navigationController?.pushViewController(orderVC, animated: true)
 
     }
+    
+    
+    // 텍스트 필드 글자 수 제한
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let endTimeHourCount = (endTimeHour.text?.appending(string).count ?? 0) - 1
+        let endTimeMinuteCount = (endTimeMinute.text?.appending(string).count ?? 0) - 1
+        
+        // 도착 시간 Hour
+        if textField.text == endTimeHour.text{
+            
+            if (endTimeHourCount > 1){
+                return false
+            } else{
+                return true
+            }
+            
+        } else if (textField.text == endTimeMinute.text){
+    
+            // 도착 시간 Minute
+            if (endTimeMinuteCount > 1){
+                return false
+            } else{
+                return true
+            }
+        }
+        return true
+        
+    }
+    
+//    NotificationCenter.default.addObserver(self,
+//                                           selector: #selector(textFieldDidChange(_:)),
+//                                           name: UITextField.textDidChangeNotification,
+//                                           object: nil)
+//    
+//
+//    @objc
+//    private func textFieldDidChange(_ notification : Notification){
+//        if let textField = notification.object as? UITableView{
+//            switch textField{
+//            case endTimeHour:
+//                if endTimeHour.text?.count ?? 0 > 2{
+//                    endTimeHour.deleteBackward()
+//                }
+//            case endTimeMinute:
+//                if endTimeMinute.text?.count ?? 0 > 2{
+//                    endTimeMinute.deleteBackward()
+//                }
+//            default:
+//                return
+//            }
+//        }
+//    }
+    
 }
+

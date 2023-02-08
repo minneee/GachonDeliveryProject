@@ -13,7 +13,8 @@ struct ProfileResponse: Decodable {
     var property: Int
     var nickname: String?
     var introduce: String?
-    var rate1: Int?
-    var rate2: Int?
+    var orderRate: Int?
+    var deliveryRate: Int?
+    var photoPath: String?
     
 }

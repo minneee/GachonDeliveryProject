@@ -375,11 +375,13 @@ class SettingViewController: UIViewController {
                     if(response.success == true){
                         print("프로필 조회 성공")
                         
+                        
+                        
                         userNameLabel.text = response.nickname
                         oneLineIntroduction.text = response.introduce
-                        print(response.rate1 ?? 0)
+                        print(response.orderRate ?? 0)
                         
-                        switch response.rate1 {
+                        switch response.orderRate {
                         case 0: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint0")
                         case 1: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint1")
                         case 2: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint2")
@@ -389,7 +391,7 @@ class SettingViewController: UIViewController {
                         default: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint0")
                         }
                         
-                        switch response.rate2 {
+                        switch response.deliveryRate {
                         case 0: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint0")
                         case 1: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint1")
                         case 2: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint2")
@@ -599,6 +601,7 @@ class SettingViewController: UIViewController {
    
 
 }
+
 //
 ////미리보기
 //#if DEBUG

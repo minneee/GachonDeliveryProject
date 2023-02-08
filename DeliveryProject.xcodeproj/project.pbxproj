@@ -61,6 +61,8 @@
 		CBAA431C29869974009C6DA7 /* CreateOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAA431B29869974009C6DA7 /* CreateOrderRequest.swift */; };
 		CBAA431E29869981009C6DA7 /* CreateOrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAA431D29869981009C6DA7 /* CreateOrderResponse.swift */; };
 		CBB259D829606286004EAB37 /* DeliveryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB259D729606286004EAB37 /* DeliveryListTableViewCell.swift */; };
+		CBE7957F2993D00600856E1F /* BoardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE7957E2993D00600856E1F /* BoardRequest.swift */; };
+		CBE795812993D00E00856E1F /* BoardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE795802993D00E00856E1F /* BoardResponse.swift */; };
 		CBF3F18A295C801D00612C6D /* ChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF3F189295C801D00612C6D /* ChooseViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +125,8 @@
 		CBAA431B29869974009C6DA7 /* CreateOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderRequest.swift; sourceTree = "<group>"; };
 		CBAA431D29869981009C6DA7 /* CreateOrderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderResponse.swift; sourceTree = "<group>"; };
 		CBB259D729606286004EAB37 /* DeliveryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListTableViewCell.swift; sourceTree = "<group>"; };
+		CBE7957E2993D00600856E1F /* BoardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardRequest.swift; sourceTree = "<group>"; };
+		CBE795802993D00E00856E1F /* BoardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardResponse.swift; sourceTree = "<group>"; };
 		CBF3F189295C801D00612C6D /* ChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,6 +183,8 @@
 				3D2C8036298BDC4C0070698D /* WithdrawalResponse.swift */,
 				CB655AD8298CF961005A3837 /* DeleteRequest.swift */,
 				CB655ADA298CF96C005A3837 /* DeleteResponse.swift */,
+				CBE7957E2993D00600856E1F /* BoardRequest.swift */,
+				CBE795802993D00E00856E1F /* BoardResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 				CBAA431E29869981009C6DA7 /* CreateOrderResponse.swift in Sources */,
 				3D20B98A2959ACF000849DA6 /* SceneDelegate.swift in Sources */,
 				CB39267C296C52D200DA319C /* StarScoreViewController.swift in Sources */,
+				CBE795812993D00E00856E1F /* BoardResponse.swift in Sources */,
 				CBAA431C29869974009C6DA7 /* CreateOrderRequest.swift in Sources */,
 				CB655AD529896C3B005A3837 /* MyOrderResponse.swift in Sources */,
 				3DABD39C296ED88600677B84 /* SettingViewController.swift in Sources */,
@@ -432,6 +439,7 @@
 				CBB259D829606286004EAB37 /* DeliveryListTableViewCell.swift in Sources */,
 				CB39267E296FD76600DA319C /* ModifyViewController.swift in Sources */,
 				CB8B92EE296316BE0008B497 /* CreateOrderViewController.swift in Sources */,
+				CBE7957F2993D00600856E1F /* BoardRequest.swift in Sources */,
 				3D15FE472983CF6400DB252B /* ProfileResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

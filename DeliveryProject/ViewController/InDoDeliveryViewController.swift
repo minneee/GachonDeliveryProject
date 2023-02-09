@@ -62,7 +62,15 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
         
         var startingPoint : String? = startPlaceText.text
         var arrivingPoint : String? = placeButton.currentTitle
-        var endDeliTime : String? = (endTimeHour.text ?? "") + (endTimeMinute.text ?? "")
+        var endDeliTimeInt : Int?
+        
+        if endTimeHour.text == nil, endTimeMinute.text == nil{
+            endDeliTimeInt = nil
+        }
+        else{
+            var endDeliTimeString : String? = (endTimeHour.text ?? "") + (endTimeMinute.text ?? "")
+            endDeliTimeInt = Int(endDeliTimeString ?? "")
+        }
         
         
         if (placeButton.currentTitle ==  "전체") || (placeButton.currentTitle == "도착 장소"){
@@ -78,7 +86,7 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
             print("팁: ", tipButton.currentTitle ?? "")
             tipButton.setTitle("배달팁 ", for: .normal)
             tipButton.tintColor = .systemGray4
-            endDeliTime = nil
+            endDeliTimeInt = nil
         }
         
         if (startPlaceText.text == ""){
@@ -92,10 +100,10 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
         print("deliTip : ", deliTip)
         print("startingPoint : ", startingPoint)
         print("arrivingPoint : ", arrivingPoint)
-        print("endDeliTime : ", endDeliTime )
+        print("endDeliTime : ", endDeliTimeInt)
         
         
-        let param = BoardRequesst(deliTip: deliTip, startingPoint: startingPoint, arrivingPoint: arrivingPoint, endDeliTime: Int(endDeliTime ?? ""))
+        let param = BoardRequesst(deliTip: deliTip, startingPoint: startingPoint, arrivingPoint: arrivingPoint, endDeliTime: endDeliTimeInt)
         
         postOrderList(param)
         

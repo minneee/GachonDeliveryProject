@@ -8,8 +8,8 @@
 import Foundation
 
 struct BoardRequesst : Encodable{
-    var deliTip : String
-    var startingPoint : String
-    var arrivingPoint : String
-    var endDeliTime : Int
+    var deliTip : String?
+    var startingPoint : String?
+    var arrivingPoint : String?
+    var endDeliTime : Int?
 }

@@ -46,15 +46,31 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
     
     // DropDown 아이템 리스트
     let itemList = ["전체", "AI공학관", "가천관", "중앙도서관"]
-    let deliveryTip = ["배달팁 높은 순", "배달팁 낮은 순"]
+    let deliveryTip = ["전체", "배달팁 높은 순", "배달팁 낮은 순"]
     
     // 검색 버튼
     @IBAction func SearchButton(_ sender: UIButton) {
+        
+        
+        var deliTip : String?
+        if tipButton.currentTitle == "배달팁 높은 순" {
+            deliTip = "desc"
+        }else if tipButton.currentTitle == "배달팁 낮은 순"{
+            deliTip = "asc"
+        }
+        
+        
+        var startingPoint : String? = startPlaceText.text
+        var arrivingPoint : String? = placeButton.currentTitle
+        var endDeliTime : String? = (endTimeHour.text ?? "") + (endTimeMinute.text ?? "")
+        
+        
         if (placeButton.currentTitle ==  "전체") || (placeButton.currentTitle == "도착 장소"){
             placeButton.setTitle(nil, for: .normal)
             print(" 도착 장소:",  placeButton.currentTitle ?? "")
             placeButton.setTitle("도착 장소", for: .normal)
             placeButton.tintColor = .systemGray4
+            arrivingPoint = nil
         }
         
         if (tipButton.currentTitle == "전체") || (tipButton.currentTitle == "배달팁"){
@@ -62,16 +78,28 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
             print("팁: ", tipButton.currentTitle ?? "")
             tipButton.setTitle("배달팁 ", for: .normal)
             tipButton.tintColor = .systemGray4
+            endDeliTime = nil
         }
         
-        if (startPlaceText.text == "출발 장소"){
-            startPlaceText.text = nil
-            print("출발 장소: ", startPlaceText.text ?? "")
-            startPlaceText.text = "출발 장소"
+        if (startPlaceText.text == ""){
+            startingPoint = nil
         }
 
-        print("if 밖 출발 장소: ", startPlaceText.text ?? "")
+
         
+ 
+        
+        print("deliTip : ", deliTip)
+        print("startingPoint : ", startingPoint)
+        print("arrivingPoint : ", arrivingPoint)
+        print("endDeliTime : ", endDeliTime )
+        
+        
+        let param = BoardRequesst(deliTip: deliTip, startingPoint: startingPoint, arrivingPoint: arrivingPoint, endDeliTime: Int(endDeliTime ?? ""))
+        
+        postOrderList(param)
+        
+        // viewWillAppear(true)
        
 
     }
@@ -113,52 +141,7 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
         tipSelectionAction()
     }
     
-    func getOrderList () {
-        AF.request("http://3.37.209.65:3000/board", method: .get, headers: nil)
-            .validate()
-            .responseDecodable(of: OrderListResponse.self) { [self] response in
-                switch response.result {
-                case .success(let response):
-                    if(response.success == true){
-                        print("주문목록 조회 성공")
-                                                
-                         dataList = response.data
-                        if dataList.count > 0 {
-                            for i in 0...(dataList.count - 1) {
-                                startPlaceList.append(dataList[i].startingPoint)
-                                endPlaceList.append(dataList[i].arrivingPoint)
-                                startTimeList.append(String(dataList[i].startDeliTime))
-                                endTimeList.append(String(dataList[i].endDeliTime))
-                                deliveryTipList.append(dataList[i].deliTip)
-                                
-                            }
-                        }
-                        listTable.reloadData()
-                    }
-                    
-                    else{
-                        print("주문목록 조회 실패\(response.message)")
-                        //alert message
-                        let loginFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
-                        
-                        let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
-                        loginFailAlert.addAction(loginFailAction)
-                        self.present(loginFailAlert, animated: true, completion: nil)
-                    }
-                    
-                    
-                case .failure(let error):
-                    print(error)
-                    print("서버 통신 실패")
-                    let loginFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
-                    
-                    let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
-                    loginFailAlert.addAction(loginFailAction)
-                    self.present(loginFailAlert, animated: true, completion: nil)
-                }
-                
-            }
-    }
+    
     
     // 버튼 테두리 설정
     func viewOption(){
@@ -315,29 +298,106 @@ extension InDoDeliveryViewController: UITableViewDelegate, UITableViewDataSource
         
     }
     
-//    NotificationCenter.default.addObserver(self,
-//                                           selector: #selector(textFieldDidChange(_:)),
-//                                           name: UITextField.textDidChangeNotification,
-//                                           object: nil)
-//    
-//
-//    @objc
-//    private func textFieldDidChange(_ notification : Notification){
-//        if let textField = notification.object as? UITableView{
-//            switch textField{
-//            case endTimeHour:
-//                if endTimeHour.text?.count ?? 0 > 2{
-//                    endTimeHour.deleteBackward()
-//                }
-//            case endTimeMinute:
-//                if endTimeMinute.text?.count ?? 0 > 2{
-//                    endTimeMinute.deleteBackward()
-//                }
-//            default:
-//                return
-//            }
-//        }
-//    }
+    // 전체 주문서 목록
+    func getOrderList () {
+        AF.request("http://3.37.209.65:3000/board", method: .get, headers: nil)
+            .validate()
+            .responseDecodable(of: OrderListResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        print("주문목록 조회 성공")
+                                                
+                         dataList = response.data
+                        if dataList.count > 0 {
+                            for i in 0...(dataList.count - 1) {
+                                startPlaceList.append(dataList[i].startingPoint)
+                                endPlaceList.append(dataList[i].arrivingPoint)
+                                startTimeList.append(String(dataList[i].startDeliTime))
+                                endTimeList.append(String(dataList[i].endDeliTime))
+                                deliveryTipList.append(dataList[i].deliTip)
+                                
+                            }
+                        }
+                        listTable.reloadData()
+                        
+                    }
+                    
+                    else{
+                        print("주문목록 조회 실패\(response.message)")
+                        //alert message
+                        let loginFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        loginFailAlert.addAction(loginFailAction)
+                        self.present(loginFailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let loginFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    loginFailAlert.addAction(loginFailAction)
+                    self.present(loginFailAlert, animated: true, completion: nil)
+                }
+                
+            }
+    }
+    
+    // 검색 주문서 목록
+    func postOrderList (_ parameters: BoardRequesst) {
+        AF.request("http://3.37.209.65:3000/board", method: .post, headers: nil)
+            .validate()
+            .responseDecodable(of: BoardResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        print("검색 조회 성공")
+                        
+                                                
+                         dataList = response.data
+                        if dataList.count > 0 {
+                            for i in 0...(dataList.count - 1) {
+                                startPlaceList.append(dataList[i].startingPoint)
+                                endPlaceList.append(dataList[i].arrivingPoint)
+                                startTimeList.append(String(dataList[i].startDeliTime))
+                                endTimeList.append(String(dataList[i].endDeliTime))
+                                deliveryTipList.append(dataList[i].deliTip)
+                                
+                            }
+                        }
+                        listTable.reloadData()
+                        
+                        print(dataList)
+                        viewWillAppear(true)
+                    }
+                    
+                    else{
+                        print("검색 조회 실패\(response.message)")
+                        //alert message
+                        let loginFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        loginFailAlert.addAction(loginFailAction)
+                        self.present(loginFailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let loginFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    loginFailAlert.addAction(loginFailAction)
+                    self.present(loginFailAlert, animated: true, completion: nil)
+                }
+                
+            }
+    }
     
 }
 

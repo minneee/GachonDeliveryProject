@@ -7,7 +7,7 @@
 
 import Foundation
 struct BoardResponse : Decodable{
-    var data : [Data]
+    var data : [Data]?
     var success : Bool
     var message : String
     var property : Int

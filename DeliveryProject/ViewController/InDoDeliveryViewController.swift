@@ -97,17 +97,19 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
         
  
         
+        
+//        let param = BoardRequest(deliTip: "desc", startingPoint:"집", arrivingPoint:"가천관", endDeliTime: 2205)
+       
+        
+        let param = BoardRequest(deliTip: deliTip, startingPoint: startingPoint, arrivingPoint: arrivingPoint, endDeliTime: endDeliTimeInt)
+        
         print("deliTip : ", deliTip)
         print("startingPoint : ", startingPoint)
         print("arrivingPoint : ", arrivingPoint)
         print("endDeliTime : ", endDeliTimeInt)
-        
-        
-        let param = BoardRequesst(deliTip: deliTip, startingPoint: startingPoint, arrivingPoint: arrivingPoint, endDeliTime: endDeliTimeInt)
-        
         postOrderList(param)
         
-        // viewWillAppear(true)
+//         viewWillAppear(true)
        
 
     }
@@ -196,7 +198,7 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
     }
     
     
-    // https://developer-eungb.tistory.com/34 드롭다운 
+    // https://developer-eungb.tistory.com/34 드롭다운
     func placeSelectionAction(){
         dropdown.selectionAction = { [weak self] (index, item) in
             
@@ -228,53 +230,6 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
             self!.tipImg.image = UIImage.init(systemName: "arrowtriangle.up.fill")
             self!.tipImg.image?.withTintColor(UIColor.black)
         }
-    }
-    
-    
-    
-
-}
-
-extension InDoDeliveryViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return startPlaceList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! DeliveryListTableViewCell
-        
-        var startDeliTime = startTimeList[indexPath.row]
-        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
-        
-        var endDeliTime = endTimeList[indexPath.row]
-        endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))
-        
-        cell.startPlace.text = startPlaceList[indexPath.row]
-        cell.endPlace.text = endPlaceList[indexPath.row]
-        cell.startTime.text = startDeliTime + " ~ " + endDeliTime
-        cell.deliveryTip.text = deliveryTipList[indexPath.row]
-        
-        let view = UIView()
-        view.backgroundColor = UIColor(red: 194/255, green: 209/255, blue: 255/255, alpha: 0.5)
-        cell.selectedBackgroundView = view
-        
-        
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // 화면 이동
-        guard let orderVC = storyboard?.instantiateViewController(withIdentifier: "OrderViewVC") as? OrderViewController else {return}
-        
-        orderVC.rowNum = indexPath.row
-        orderVC.DList = dataList
-        print("rowNum :", orderVC.rowNum)
-        
-        self.navigationController?.pushViewController(orderVC, animated: true)
-
     }
     
     
@@ -327,6 +282,7 @@ extension InDoDeliveryViewController: UITableViewDelegate, UITableViewDataSource
                                 
                             }
                         }
+                        
                         listTable.reloadData()
                         
                     }
@@ -356,17 +312,23 @@ extension InDoDeliveryViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     // 검색 주문서 목록
-    func postOrderList (_ parameters: BoardRequesst) {
-        AF.request("http://3.37.209.65:3000/board", method: .post, headers: nil)
+    func postOrderList (_ parameters: BoardRequest) {
+        AF.request("http://3.37.209.65:3000/board", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: BoardResponse.self) { [self] response in
                 switch response.result {
                 case .success(let response):
                     if(response.success == true){
                         print("검색 조회 성공")
+                        print("💂🏻‍♀️\(response)")
                         
-                                                
-                         dataList = response.data
+                        startPlaceList.removeAll()
+                        endPlaceList.removeAll()
+                        startTimeList.removeAll()
+                        endTimeList.removeAll()
+                        deliveryTipList.removeAll()
+                        
+                        dataList = response.data ?? []
                         if dataList.count > 0 {
                             for i in 0...(dataList.count - 1) {
                                 startPlaceList.append(dataList[i].startingPoint)
@@ -377,6 +339,7 @@ extension InDoDeliveryViewController: UITableViewDelegate, UITableViewDataSource
                                 
                             }
                         }
+                        
                         listTable.reloadData()
                         
                         print(dataList)
@@ -406,6 +369,52 @@ extension InDoDeliveryViewController: UITableViewDelegate, UITableViewDataSource
                 
             }
     }
+    
+
+}
+
+extension InDoDeliveryViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return startPlaceList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! DeliveryListTableViewCell
+        
+        var startDeliTime = startTimeList[indexPath.row]
+        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
+        
+        var endDeliTime = endTimeList[indexPath.row]
+        endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))
+        
+        cell.startPlace.text = startPlaceList[indexPath.row]
+        cell.endPlace.text = endPlaceList[indexPath.row]
+        cell.startTime.text = startDeliTime + " ~ " + endDeliTime
+        cell.deliveryTip.text = deliveryTipList[indexPath.row]
+        
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 194/255, green: 209/255, blue: 255/255, alpha: 0.5)
+        cell.selectedBackgroundView = view
+        
+        
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // 화면 이동
+        guard let orderVC = storyboard?.instantiateViewController(withIdentifier: "OrderViewVC") as? OrderViewController else {return}
+        
+        orderVC.rowNum = indexPath.row
+        orderVC.DList = dataList
+        print("rowNum :", orderVC.rowNum)
+        
+        self.navigationController?.pushViewController(orderVC, animated: true)
+
+    }
+    
     
 }
 

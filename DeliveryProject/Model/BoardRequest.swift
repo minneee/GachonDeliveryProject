@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BoardRequesst : Encodable{
+struct BoardRequest : Encodable{
     var deliTip : String?
     var startingPoint : String?
     var arrivingPoint : String?

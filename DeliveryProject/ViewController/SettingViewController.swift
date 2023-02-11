@@ -375,7 +375,7 @@ class SettingViewController: UIViewController {
                     if(response.success == true){
                         print("프로필 조회 성공")
                         
-                        
+                        print(response.photoPath)
                         
                         userNameLabel.text = response.nickname
                         oneLineIntroduction.text = response.introduce
@@ -427,6 +427,42 @@ class SettingViewController: UIViewController {
             }
     }
     
+    
+    func postGetProfileImage(_ parameters: ProfileRequest) {
+        AF.request("http://3.37.209.65:3000/give-img-url", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: ProfileResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        print("프로필 사진 조회 성공")
+                        
+                        
+                    }
+                    
+                    else{
+                        print("프로필 사진 조회 실패\(response.message)")
+                        //alert message
+                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        FailAlert.addAction(FailAction)
+                        self.present(FailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    serverFailAlert.addAction(serverFailAction)
+                    self.present(serverFailAlert, animated: true, completion: nil)
+                }
+                
+            }
+    }
     
     
     

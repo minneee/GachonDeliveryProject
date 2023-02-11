@@ -26,6 +26,8 @@
 		3D749F882972B4B700F512D8 /* ChattingListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D749F862972B4B700F512D8 /* ChattingListTableViewCell.xib */; };
 		3D749F8B2972BA7500F512D8 /* ChattingTableViewYourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D749F892972BA7500F512D8 /* ChattingTableViewYourCell.swift */; };
 		3D749F8C2972BA7500F512D8 /* ChattingTableViewYourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D749F8A2972BA7500F512D8 /* ChattingTableViewYourCell.xib */; };
+		3D81D5472993B5A000F8ED52 /* ProfileImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81D5462993B5A000F8ED52 /* ProfileImageRequest.swift */; };
+		3D81D5492993B5AF00F8ED52 /* ProfileImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81D5482993B5AF00F8ED52 /* ProfileImageResponse.swift */; };
 		3DABD394296ED6CB00677B84 /* ChattingTableViewMyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DABD393296ED6CB00677B84 /* ChattingTableViewMyCell.xib */; };
 		3DABD396296ED6E900677B84 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DABD395296ED6E900677B84 /* NoticeTableViewCell.xib */; };
 		3DABD398296ED72400677B84 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DABD397296ED72400677B84 /* ChattingViewController.swift */; };
@@ -90,6 +92,8 @@
 		3D749F862972B4B700F512D8 /* ChattingListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingListTableViewCell.xib; sourceTree = "<group>"; };
 		3D749F892972BA7500F512D8 /* ChattingTableViewYourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableViewYourCell.swift; sourceTree = "<group>"; };
 		3D749F8A2972BA7500F512D8 /* ChattingTableViewYourCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingTableViewYourCell.xib; sourceTree = "<group>"; };
+		3D81D5462993B5A000F8ED52 /* ProfileImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageRequest.swift; sourceTree = "<group>"; };
+		3D81D5482993B5AF00F8ED52 /* ProfileImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageResponse.swift; sourceTree = "<group>"; };
 		3DABD393296ED6CB00677B84 /* ChattingTableViewMyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingTableViewMyCell.xib; sourceTree = "<group>"; };
 		3DABD395296ED6E900677B84 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
 		3DABD397296ED72400677B84 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 				3D2C8036298BDC4C0070698D /* WithdrawalResponse.swift */,
 				CB655AD8298CF961005A3837 /* DeleteRequest.swift */,
 				CB655ADA298CF96C005A3837 /* DeleteResponse.swift */,
+				3D81D5462993B5A000F8ED52 /* ProfileImageRequest.swift */,
+				3D81D5482993B5AF00F8ED52 /* ProfileImageResponse.swift */,
 				CBE7957E2993D00600856E1F /* BoardRequest.swift */,
 				CBE795802993D00E00856E1F /* BoardResponse.swift */,
 			);
@@ -409,6 +415,7 @@
 				3D2C8037298BDC4C0070698D /* WithdrawalResponse.swift in Sources */,
 				CB8B92F9296A72380008B497 /* QuestionViewController.swift in Sources */,
 				CB655AD72989727E005A3837 /* MyOrderRequest.swift in Sources */,
+				3D81D5472993B5A000F8ED52 /* ProfileImageRequest.swift in Sources */,
 				CB8B92F529693FB50008B497 /* ChangeProfileViewController.swift in Sources */,
 				CB39267A296C209D00DA319C /* MyOrderedListTableViewCell.swift in Sources */,
 				3DABD398296ED72400677B84 /* ChattingViewController.swift in Sources */,
@@ -441,6 +448,7 @@
 				CB8B92EE296316BE0008B497 /* CreateOrderViewController.swift in Sources */,
 				CBE7957F2993D00600856E1F /* BoardRequest.swift in Sources */,
 				3D15FE472983CF6400DB252B /* ProfileResponse.swift in Sources */,
+				3D81D5492993B5AF00F8ED52 /* ProfileImageResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

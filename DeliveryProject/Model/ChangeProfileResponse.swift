@@ -6,9 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
 struct ChangeProfileResponse : Decodable{
-    
     var success: Bool
     var message: String
     var property: Int

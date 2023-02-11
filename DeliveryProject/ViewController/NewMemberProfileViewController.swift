@@ -37,8 +37,9 @@ class NewMemberProfileViewController: UIViewController {
         let id = UserDefaults.standard.string(forKey: "id") ?? ""
         let nickname = nicknameTextField.text ?? ""
         let introduce = introduceOneLineTextField.text ?? ""
-        let param = ChangeProfileRequest(userId: id, nickname: nickname, introduce: introduce)
-        postChangeProfile(param)
+        let photoName = ""
+//        let param = ChangeProfileRequest(photoName: photoName, userId: id, nickname: nickname, introduce: introduce)
+//        postChangeProfile(param)
     }
     
     

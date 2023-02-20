@@ -10,7 +10,6 @@ import Alamofire
 import UIKit
 
 struct ChangeProfileRequest: Encodable {
-//    var photoName: Data
     var userId: String
     var nickname : String
     var introduce : String

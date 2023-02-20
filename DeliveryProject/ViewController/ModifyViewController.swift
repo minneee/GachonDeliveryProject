@@ -37,13 +37,13 @@ class ModifyViewController: UIViewController {
     
     @IBAction func startEndTime(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HHmm"
+        formatter.dateFormat = "HH:mm"
         startEndTimeString = formatter.string(from: startEndTime.date)
     }
     
     @IBAction func endEndTime(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HHmm"
+        formatter.dateFormat = "HH:mm"
         endEndTimeString = formatter.string(from: endEndTime.date)
     }
     
@@ -70,7 +70,7 @@ class ModifyViewController: UIViewController {
     @IBAction func completeBtn(_ sender: UIButton) {
         
         let id = UserDefaults.standard.string(forKey: "id") ?? ""
-        let param = ModifyRequest(startingPoint: startPlaceTextView.text, arrivingPoint: endPlaceBtn.currentTitle ?? "", startDeliTime: Int(startEndTimeString) ?? 0, endDeliTime: Int(endEndTimeString) ?? 0, menu: menuTextView.text, userWant: requestTextView.text, deliTip: deliveryTipBtn.currentTitle ?? "", userId: id, articleId: DList[rowNum].articleId)
+        let param = ModifyRequest(startingPoint: startPlaceTextView.text, arrivingPoint: endPlaceBtn.currentTitle ?? "", startDeliTime: startEndTimeString, endDeliTime: endEndTimeString, menu: menuTextView.text, userWant: requestTextView.text, deliTip: deliveryTipBtn.currentTitle ?? "", userId: id, articleId: DList[rowNum].articleId)
         
         putModify(param)
         
@@ -135,18 +135,31 @@ class ModifyViewController: UIViewController {
         deliveryTipBtn.setTitle(DList[rowNum].deliTip, for: .normal)
         deliveryTipBtn.tintColor = .black
  
-        // 작성된 시간으로 데이트 피커 설정 완료
-        let calendar = Calendar.current
-        var startComponents = DateComponents()
-        var endComponents = DateComponents()
+//        // 작성된 시간으로 데이트 피커 설정 완료
+//        let calendar = Calendar.current
+//        var startComponents = DateComponents()
+//        var endComponents = DateComponents()
+//
+//        startComponents.hour = DList[rowNum].startDeliTime / 100
+//        startComponents.minute = DList[rowNum].startDeliTime % 100
+//        startEndTime.setDate(calendar.date(from: startComponents)!, animated: false)
+//
+//        endComponents.hour = DList[rowNum].endDeliTime / 100
+//        endComponents.minute = DList[rowNum].endDeliTime % 100
+//        endEndTime.setDate(calendar.date(from: endComponents)!, animated: false)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
         
-        startComponents.hour = DList[rowNum].startDeliTime / 100
-        startComponents.minute = DList[rowNum].startDeliTime % 100
-        startEndTime.setDate(calendar.date(from: startComponents)!, animated: false)
         
-        endComponents.hour = DList[rowNum].endDeliTime / 100
-        endComponents.minute = DList[rowNum].endDeliTime % 100
-        endEndTime.setDate(calendar.date(from: endComponents)!, animated: false)
+        print("여기")
+        print("rownum: \(self.rowNum)")
+        print("data: \(DList)")
+        let startTime = formatter.date(from: DList[rowNum].startDeliTime)
+        print(startTime)
+        startEndTime.setDate(startTime!, animated: false)
+        
+        let endTime = formatter.date(from: DList[rowNum].endDeliTime)
+        endEndTime.setDate(endTime!, animated: false)
         
         
         //키보드 올라가면 화면 위로 밀기

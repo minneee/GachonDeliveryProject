@@ -17,8 +17,13 @@ class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nicknameText: UITextField! // 닉네임 텍스트 필드
     @IBOutlet weak var introduceText: UITextField! // 한 줄 소개 텍스트 필드
     
+    var getImage = UIImage(named: "profileImage")
+    var getNickname = ""
+    var getIntroduce = ""
+    
     var newImage: UIImage? = nil
     let picker: UIImagePickerController! = UIImagePickerController()
+    private var selectedImage: UIImage?
     //var jpgString = ""
     
     // 이미지 변경 버튼
@@ -44,8 +49,9 @@ class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
         let id = UserDefaults.standard.string(forKey: "id") ?? ""
         let nickname = nicknameText.text ?? ""
         let introduce = introduceText.text ?? ""
-//        let photoName = profileImage.image?.jpegData(compressionQuality: 0.5)!
         let param = ChangeProfileRequest(userId: id, nickname: nickname, introduce: introduce)
+        print(param)
+        
         postChangeProfile(param)
         
         
@@ -63,15 +69,19 @@ class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
         self.nicknameText.delegate = self
         self.introduceText.delegate = self
         
-        let id = UserDefaults.standard.string(forKey: "id") ?? ""
-        let param = ProfileRequest(userId: id)
-        postProfile(param)
+        profileImage.image = getImage
+        nicknameText.text = getNickname
+        introduceText.text = getIntroduce
+        
+//        let id = UserDefaults.standard.string(forKey: "id") ?? ""
+//        let param = ProfileRequest(userId: id)
+//        postProfile(param)
         
         
         
     }
     
-    // 닉네임, 한 줄 소개 변경
+    // 프로필 변경
     func postChangeProfile(_ parameters: ChangeProfileRequest){
         
         let headers: HTTPHeaders = ["Content-type" : "multipart/form-data"]
@@ -79,19 +89,15 @@ class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
         AF.upload(multipartFormData: { MultipartFormData in
             
             //이미지 설정
-            if let image = self.profileImage.image?.jpegData(compressionQuality: 0.5) {
-                print("Multipart before")
-                MultipartFormData.append(image, withName: "photoName")
-                print("Multipart after")
+            if let image = self.selectedImage?.jpegData(compressionQuality: 0.5) {
+                MultipartFormData.append(image, withName: "photoName", fileName: "test.jpeg", mimeType: "image/jpeg")
             }
             
-//            for (key, value) in  parameters {
-//                MultipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
-//            }
+            
             MultipartFormData.append(parameters.userId.data(using: .utf8)!, withName: "userId")
             MultipartFormData.append(parameters.nickname.data(using: .utf8)!, withName: "nickname")
             MultipartFormData.append(parameters.introduce.data(using: .utf8)!, withName: "introduce")
-            print("Multipart2")
+
             
         }, to: "http://3.37.209.65:3000/editmypage", method: .post, headers: headers).responseDecodable(of: ChangeProfileResponse.self) { [self] response in
             switch response.result {
@@ -293,10 +299,235 @@ extension ChangeProfileViewController: UIImagePickerControllerDelegate, UINaviga
         }
 
         self.profileImage.image = newImage
-        picker.dismiss(animated: true, completion: nil)
+        self.selectedImage = newImage
+        picker.dismiss(animated: true)
+//        picker.dismiss(animated: true) {
+//            let vc = EditProfileImageViewController()
+//            vc.inputImage = self.newImage
+//            vc.modalPresentationStyle = .overFullScreen
+//            self.present(vc, animated: true)
+//        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+}
+
+
+
+
+
+
+import UIKit
+import SnapKit
+import Then
+//import RxSwift
+
+class EditProfileImageViewController: UIViewController {
+  
+//  @Inject private var userVM: UserViewModel
+//  @Inject private var userManager: UserManager
+//  private let disposeBag = DisposeBag()
+//
+  private var imageViewScale: CGFloat = 1.0
+  private let maxScale: CGFloat = 3.0
+  private let minScale: CGFloat = 1.0
+  
+  private var isPinch: Bool = false
+  private var imageZoomScale: CGFloat = 1.0
+  private var imageSize: CGSize!
+    
+    var inputImage: UIImage?
+  
+  private let snapshotAreaView = UIView().then {
+    //$0.backgroundColor = .DecoColor.appWhite
+      $0.backgroundColor = .white
+  }
+  
+  private let profileImageView = UIImageView().then {
+    $0.contentMode = .scaleAspectFit
+    $0.layer.masksToBounds = true
+  }
+  
+  private let cancelButton = UIButton(type: .system).then {
+    $0.setTitle("취소", for: .normal)
+    //$0.titleLabel?.font = .Custom.S_14_m.getFont()
+    $0.tintColor = .white
+  }
+  
+  private let confirmButton = UIButton(type: .system).then {
+    $0.setTitle("확인", for: .normal)
+    //$0.titleLabel?.font = .Custom.S_14_m.getFont()
+    //$0.tintColor = .DecoColor.appWhite
+      $0.tintColor = .white
+  }
+  
+  private lazy var buttonStackView = UIStackView(arrangedSubviews: [cancelButton, confirmButton]).then {
+    $0.axis = .horizontal
+    $0.distribution = .equalSpacing
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.view.backgroundColor = .white
+    self.setupLayout()
+    self.setupGesture()
+    
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+      self.profileImageView.image = self.inputImage!
+//    userVM.tempUserProfileImage
+//      .compactMap{$0}
+//      .observe(on: MainScheduler.instance)
+//      .bind { [weak self] image in
+//        guard let self = self else { return }
+//        self.profileImageView.image = image
+//      }.disposed(by: disposeBag)
+//
+//    userVM.tempUserBackgroundImage
+//      .compactMap{$0}
+//      .observe(on: MainScheduler.instance)
+//      .bind { [weak self] inputImage in
+//        guard let self = self else { return }
+//        if let image = inputImage.0 { self.profileImageView.image = image }
+//      }.disposed(by: disposeBag)
+  }
+  
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    self.setupProfileGuideLineLayer()
+    view.bringSubviewToFront(buttonStackView)
+    imageSize = profileImageView.frame.size
+  }
+  
+  
+  private func setupLayout() {
+    self.view.addSubview(snapshotAreaView)
+    self.snapshotAreaView.addSubview(profileImageView)
+    self.view.addSubview(buttonStackView)
+    
+    snapshotAreaView.snp.makeConstraints { make in
+      //make.horizontalEdges.equalToSuperview()
+        make.leading.trailing.equalToSuperview()
+      make.height.equalTo(snapshotAreaView.snp.width)
+      make.centerY.equalTo(profileImageView.snp.centerY)
+    }
+    
+    profileImageView.snp.makeConstraints { make in
+      make.top.equalTo(view.safeAreaLayoutGuide)
+      make.bottom.equalTo(view.safeAreaLayoutGuide)
+      //make.horizontalEdges.equalToSuperview()
+        make.leading.trailing.equalToSuperview()
+    }
+    
+    buttonStackView.snp.makeConstraints { make in
+      //make.horizontalEdges.equalToSuperview().inset(16)
+        make.leading.trailing.equalToSuperview()
+      make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-12)
+    }
+  }
+  
+  private func setupProfileGuideLineLayer() {
+    let size = self.view.frame.width
+    let rect = CGRect(x: 0, y: snapshotAreaView.frame.minY, width: size, height: size)
+    let maskLayer = CAShapeLayer()
+    maskLayer.frame = self.view.bounds
+    maskLayer.fillColor = UIColor.black.withAlphaComponent(0.2).cgColor
+      let path = UIBezierPath(roundedRect: rect, cornerRadius: size/2.0)
+
+    path.append(UIBezierPath(rect: view.bounds))
+    maskLayer.path = path.cgPath
+    maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
+    view.layer.addSublayer(maskLayer)
+  }
+  
+  
+  private func setupGesture() {
+    
+//    profileImageView.rx.pinchGesture()
+//      .when(.began, .changed, .ended)
+//      .share(replay: 1)
+//      .subscribe(onNext: { [weak self] recognize in
+//        guard let self = self else { return }
+//        switch recognize.state {
+//        case .began: print("🔊[DEBUG]: Pinch Gesture start")
+//        case .changed, .ended:
+//          let pinchScale: CGFloat = recognize.scale
+//          if self.imageViewScale * pinchScale < self.maxScale && self.imageViewScale * pinchScale > self.minScale {
+//            self.imageViewScale *= pinchScale
+//            self.profileImageView.transform = (self.profileImageView.transform.scaledBy(x: pinchScale, y: pinchScale))
+//          }
+//          recognize.scale = 1.0
+//        default: break
+//        }
+//      }).disposed(by: disposeBag)
+    
+//    var imageCenterOffset: CGPoint = CGPoint(x: 0, y: 0)
+//    profileImageView.rx.panGesture()
+//      .when(.began, .changed, .ended)
+//      .share(replay: 1)
+//      .subscribe(onNext: { [weak self] recognize in
+//        guard let self = self else { return }
+//        switch recognize.state {
+//        case .began:
+//          imageCenterOffset = CGPoint(
+//            x: self.profileImageView.center.x,
+//            y: self.profileImageView.center.y
+//          )
+//        case .changed:
+//          let translation = recognize.translation(in: self.profileImageView)
+//          print("🔊[DEBUG]: \(translation)")
+//          self.profileImageView.center = CGPoint(
+//            x: imageCenterOffset.x + translation.x,
+//            y: imageCenterOffset.y + translation.y
+//          )
+//        case .ended:
+//          imageCenterOffset = CGPoint(x: 0, y: 0)
+//        default: break
+//        }
+//
+//      }).disposed(by: disposeBag)
+//
+//    cancelButton.rx.tap
+//      .throttle(.milliseconds(300), latest: false, scheduler: MainScheduler.instance)
+//      .bind { [weak self] in
+//        guard let self = self else { return }
+//        self.dismiss(animated: true)
+//        switch self.userVM.pickerType {
+//        case .PROFILE:
+//          self.userVM.tempUserProfileImage.accept(nil)
+//        case .BACKGROUND:
+//          self.userVM.tempUserBackgroundImage.accept(nil)
+//        default: break
+//        }
+//      }.disposed(by: disposeBag)
+//
+//    confirmButton.rx.tap
+//      .throttle(.milliseconds(300), latest: false, scheduler: MainScheduler.instance)
+//      .bind { [weak self] in
+//        guard let self = self else { return }
+//        let imageSize = self.view.frame.width
+//
+//        let snapShot = self.snapshotAreaView.snapshotView(afterScreenUpdates: true)
+//        var asImage: UIImage {
+//          let renderer = UIGraphicsImageRenderer(bounds: snapShot!.frame)
+//          return renderer.image { rendererContext in
+//            self.snapshotAreaView.layer.render(in: rendererContext.cgContext)
+//          }
+//        }
+//
+//        switch self.userVM.pickerType {
+//        case .PROFILE: self.userVM.userProfileImage.accept(asImage)
+//        case .BACKGROUND: self.userVM.userBackgroundImage.accept((asImage, nil))
+//        default: break
+//        }
+//
+//        self.dismiss(animated: true)
+//      }.disposed(by: disposeBag)
+    
+  }
 }

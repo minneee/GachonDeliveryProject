@@ -212,6 +212,8 @@ class SettingViewController: UIViewController {
         let id = UserDefaults.standard.string(forKey: "id") ?? ""
         let param = ProfileRequest(userId: id)
         postProfile(param)
+        postGetProfileImage(param)
+        
     
         self.view.layoutIfNeeded()
         
@@ -295,7 +297,13 @@ class SettingViewController: UIViewController {
     
     // 프로필 편집으로 화면 이동
     @objc func gotToChangeProfileVC() {
-        guard let ChangeProfileVC = storyboard?.instantiateViewController(withIdentifier: "ChangeProfileVC") else {return}
+
+        guard let ChangeProfileVC = storyboard?.instantiateViewController(withIdentifier: "ChangeProfileVC") as? ChangeProfileViewController else {return}
+        
+        ChangeProfileVC.getImage = self.profileImageView.image
+        ChangeProfileVC.getNickname = self.userNameLabel.text ?? ""
+        ChangeProfileVC.getIntroduce = self.oneLineIntroduction.text ?? ""
+        
         navigationController?.pushViewController(ChangeProfileVC, animated: true)
     }
     
@@ -375,13 +383,13 @@ class SettingViewController: UIViewController {
                     if(response.success == true){
                         print("프로필 조회 성공")
                         
-                        print(response.photoPath)
                         
                         userNameLabel.text = response.nickname
                         oneLineIntroduction.text = response.introduce
-                        print(response.orderRate ?? 0)
-                        
-                        switch response.orderRate {
+                        print("🔊[DEBUG] \(response.orderRate ?? 0)")
+                        print("🔊[DEBUG] \(response.deliveryRate ?? 0)")
+                    
+                        switch response.orderRate ?? 0 {
                         case 0: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint0")
                         case 1: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint1")
                         case 2: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint2")
@@ -391,14 +399,14 @@ class SettingViewController: UIViewController {
                         default: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint0")
                         }
                         
-                        switch response.deliveryRate {
-                        case 0: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint0")
-                        case 1: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint1")
-                        case 2: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint2")
-                        case 3: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint3")
-                        case 4: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint4")
-                        case 5: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint5")
-                        default: orderPinwheelPointImageView.image = UIImage(named: "PinwheelPoint0")
+                        switch response.deliveryRate ?? 0 {
+                        case 0: deliveryPinwheelPointImageView.image = UIImage(named: "PinwheelPoint0")
+                        case 1: deliveryPinwheelPointImageView.image = UIImage(named: "PinwheelPoint1")
+                        case 2: deliveryPinwheelPointImageView.image = UIImage(named: "PinwheelPoint2")
+                        case 3: deliveryPinwheelPointImageView.image = UIImage(named: "PinwheelPoint3")
+                        case 4: deliveryPinwheelPointImageView.image = UIImage(named: "PinwheelPoint4")
+                        case 5: deliveryPinwheelPointImageView.image = UIImage(named: "PinwheelPoint5")
+                        default: deliveryPinwheelPointImageView.image = UIImage(named: "PinwheelPoint0")
                         }
                       
                     }
@@ -427,42 +435,104 @@ class SettingViewController: UIViewController {
             }
     }
     
-    
     func postGetProfileImage(_ parameters: ProfileRequest) {
-        AF.request("http://3.37.209.65:3000/give-img-url", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
-            .validate()
-            .responseDecodable(of: ProfileResponse.self) { [self] response in
-                switch response.result {
-                case .success(let response):
-                    if(response.success == true){
-                        print("프로필 사진 조회 성공")
-                        
-                        
-                    }
-                    
-                    else{
-                        print("프로필 사진 조회 실패\(response.message)")
-                        //alert message
-                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
-                        
-                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
-                        FailAlert.addAction(FailAction)
-                        self.present(FailAlert, animated: true, completion: nil)
-                    }
-                    
-                    
-                case .failure(let error):
-                    print(error)
-                    print("서버 통신 실패")
-                    let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
-                    
-                    let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
-                    serverFailAlert.addAction(serverFailAction)
-                    self.present(serverFailAlert, animated: true, completion: nil)
-                }
+        let destination: DownloadRequest.Destination = { _, _ in
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                                    .userDomainMask, true)[0]
+            let documentsURL = URL(fileURLWithPath: documentsPath, isDirectory: true)
+            let fileURL = documentsURL.appendingPathComponent("image.jpg")
+            
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+            
+        }
+        
+        AF.download("http://3.37.209.65:3000/give-img-url", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil, to: destination)//profileImageView.image?)
+            .downloadProgress(closure: { Progress in
+                //progressView
+            })
+            .response { response in
+                print("🔊[DEBUG] \(response)")
                 
+                if response.error == nil, let imagePath = response.fileURL?.path {
+                    let image = UIImage(contentsOfFile: imagePath)
+                    self.profileImageView.image = image
+                    //UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+                    
+                }
             }
+                
+                
+//            .responseDecodable{ response in
+//                switch response.result {
+//                case .success(let response):
+//                    if(response.success == true){
+//                        print("프로필 사진 조회 성공")
+//
+//
+//                    }
+//
+//                    else{
+//                        print("프로필 사진 조회 실패\(response.message)")
+//                        //alert message
+//                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+//
+//                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+//                        FailAlert.addAction(FailAction)
+//                        self.present(FailAlert, animated: true, completion: nil)
+//                    }
+//
+//
+//                case .failure(let error):
+//                    print(error)
+//                    print("서버 통신 실패")
+//                    let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+//
+//                    let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+//                    serverFailAlert.addAction(serverFailAction)
+//                    self.present(serverFailAlert, animated: true, completion: nil)
+//                }
+//
+//            }
     }
+    
+    
+    
+    
+//    func postGetProfileImage(_ parameters: ProfileRequest) {
+//        AF.request("http://3.37.209.65:3000/give-img-url", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+//            .validate()
+//            .responseDecodable(of: ProfileResponse.self) { [self] response in
+//                switch response.result {
+//                case .success(let response):
+//                    if(response.success == true){
+//                        print("프로필 사진 조회 성공")
+//
+//
+//                    }
+//
+//                    else{
+//                        print("프로필 사진 조회 실패\(response.message)")
+//                        //alert message
+//                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+//
+//                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+//                        FailAlert.addAction(FailAction)
+//                        self.present(FailAlert, animated: true, completion: nil)
+//                    }
+//
+//
+//                case .failure(let error):
+//                    print(error)
+//                    print("서버 통신 실패")
+//                    let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+//
+//                    let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+//                    serverFailAlert.addAction(serverFailAction)
+//                    self.present(serverFailAlert, animated: true, completion: nil)
+//                }
+//
+//            }
+//    }
     
     
     

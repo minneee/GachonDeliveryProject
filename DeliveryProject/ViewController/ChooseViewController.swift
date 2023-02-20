@@ -18,6 +18,7 @@ class ChooseViewController: UIViewController {
     @IBAction func goToChattingList(_ sender: Any) {
         guard let chattingListVC = storyboard?.instantiateViewController(withIdentifier: "ChattingListViewController") else {return}
         navigationController?.pushViewController(chattingListVC, animated: true)
+        
     }
     
     
@@ -39,6 +40,8 @@ class ChooseViewController: UIViewController {
     @IBAction func takeDelivery(_ sender: UIButton) {
         guard let myDeliveryListVC = storyboard?.instantiateViewController(withIdentifier: "MyDeliveryListVC") else{return}
         navigationController?.pushViewController(myDeliveryListVC, animated: true)
+//        let vc = EditProfileImageViewController()
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func viewDidLoad() {

@@ -36,15 +36,15 @@ class OrderViewController: UIViewController {
         super.viewDidLoad()
         print(DList, rowNum)
         
-        var startDeliTime = String(DList[rowNum].startDeliTime)
-        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
-        
-        var endDeliTime = String(DList[rowNum].endDeliTime)
-        endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))
+//        var startDeliTime = String(DList[rowNum].startDeliTime)
+//        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
+//
+//        var endDeliTime = String(DList[rowNum].endDeliTime)
+//        endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))
         
         startPlace.text = DList[rowNum].startingPoint
         endPlace.text = DList[rowNum].arrivingPoint
-        endTime.text = startDeliTime + " ~ " + endDeliTime
+        endTime.text = DList[rowNum].startDeliTime + " ~ " + DList[rowNum].endDeliTime
         menu.text = DList[rowNum].menu
         request.text = DList[rowNum].userWant
         deliveryTip.text = DList[rowNum].deliTip

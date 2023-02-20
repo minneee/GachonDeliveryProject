@@ -15,6 +15,5 @@ struct ProfileResponse: Decodable {
     var introduce: String?
     var orderRate: Int?
     var deliveryRate: Int?
-    var photoPath: String?
     
 }

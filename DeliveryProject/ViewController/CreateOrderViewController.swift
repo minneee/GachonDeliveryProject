@@ -35,14 +35,14 @@ class CreateOrderViewController: UIViewController {
     // 도착시간의 최단 시간
     @IBAction func startTime(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HHmm"
+        formatter.dateFormat = "HH:mm"
         startTimeString = formatter.string(from: startTime.date)
     }
     
     // 도착시간의 최장 시간
     @IBAction func endTime(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HHmm"
+        formatter.dateFormat = "HH:mm"
         endTimeString = formatter.string(from: endTIme.date)
     }
     
@@ -144,11 +144,11 @@ class CreateOrderViewController: UIViewController {
         
         let id = UserDefaults.standard.string(forKey: "id") ?? ""
         
-        let param = CreateOrderRequest(startingPoint: startPlaceTextView.text, arrivingPoint: endPlaceBtn.currentTitle ?? "", startDeliTime: Int(startTimeString) ?? 0, endDeliTime: Int(endTimeString) ?? 0, menu: menuTextView.text, userWant: requestTextView.text, deliTip: deliveryTipBtn.currentTitle ?? "", userId: id)
+        let param = CreateOrderRequest(startingPoint: startPlaceTextView.text, arrivingPoint: endPlaceBtn.currentTitle ?? "", startDeliTime: startTimeString , endDeliTime: endTimeString, menu: menuTextView.text, userWant: requestTextView.text, deliTip: deliveryTipBtn.currentTitle ?? "", userId: id)
     
         postCreateOrder(param)
         
-        print(startTimeString, endTimeString)
+        print("@@@@@\(startTimeString) \(endTimeString)")
         
 
         

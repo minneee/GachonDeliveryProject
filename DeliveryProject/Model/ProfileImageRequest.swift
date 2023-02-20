@@ -8,5 +8,5 @@
 import Foundation
 
 struct ProfileImageRequest:Encodable {
-    var photoPath: String
+    var userId: String
 }

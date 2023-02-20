@@ -18,8 +18,8 @@ struct HistoryResponse : Decodable {
 struct Data : Decodable{
     var startingPoint : String
     var arrivingPoint : String
-    var startDeliTime : Int
-    var endDeliTime : Int
+    var startDeliTime : String
+    var endDeliTime : String
     var menu : String
     var userWant : String
     var deliTip : String

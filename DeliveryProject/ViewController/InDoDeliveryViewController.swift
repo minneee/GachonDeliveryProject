@@ -62,14 +62,16 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
         
         var startingPoint : String? = startPlaceText.text
         var arrivingPoint : String? = placeButton.currentTitle
-        var endDeliTimeInt : Int?
+        var endDeliTime : String?
         
-        if endTimeHour.text == nil, endTimeMinute.text == nil{
-            endDeliTimeInt = nil
+        print("🔊[DEBUG] \(endTimeHour.text) \(endTimeMinute.text)")
+        
+        if endTimeHour.text == nil || endTimeHour.text == "" || endTimeMinute.text == nil || endTimeMinute.text == "" {
+            endDeliTime = ""
         }
         else{
-            var endDeliTimeString : String? = (endTimeHour.text ?? "") + (endTimeMinute.text ?? "")
-            endDeliTimeInt = Int(endDeliTimeString ?? "")
+            endDeliTime = (endTimeHour.text ?? "") + ":" + (endTimeMinute.text ?? "")
+            
         }
         
         
@@ -86,7 +88,7 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
             print("팁: ", tipButton.currentTitle ?? "")
             tipButton.setTitle("배달팁 ", for: .normal)
             tipButton.tintColor = .systemGray4
-            endDeliTimeInt = nil
+            endDeliTime = nil
         }
         
         if (startPlaceText.text == ""){
@@ -100,14 +102,29 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
         
 //        let param = BoardRequest(deliTip: "desc", startingPoint:"집", arrivingPoint:"가천관", endDeliTime: 2205)
        
+  
+//        if let deliTip = deliTip,
+//           let startingPoint = startingPoint,
+//           let arrivingPoint = arrivingPoint,
+//           let endDeliTime = endDeliTime {
+//
+            let param = BoardRequest(
+                deliTip: deliTip ?? "",
+                startingPoint: startingPoint ?? "",
+                arrivingPoint: arrivingPoint ?? "",
+                searchDeliTime: endDeliTime ?? ""
+            )
+
+            print(param)
+            
+            postOrderList(param)
+            
+//        } else {
+//            print("🔊[DEBUG] 뭔가 옵셔널")
+//
+//        }
         
-        let param = BoardRequest(deliTip: deliTip, startingPoint: startingPoint, arrivingPoint: arrivingPoint, endDeliTime: endDeliTimeInt)
         
-        print("deliTip : ", deliTip)
-        print("startingPoint : ", startingPoint)
-        print("arrivingPoint : ", arrivingPoint)
-        print("endDeliTime : ", endDeliTimeInt)
-        postOrderList(param)
         
 //         viewWillAppear(true)
        
@@ -270,15 +287,25 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
                 case .success(let response):
                     if(response.success == true){
                         print("주문목록 조회 성공")
-                                                
-                         dataList = response.data
+                        
+                        dataList = response.data
                         if dataList.count > 0 {
                             for i in 0...(dataList.count - 1) {
                                 startPlaceList.append(dataList[i].startingPoint)
                                 endPlaceList.append(dataList[i].arrivingPoint)
-                                startTimeList.append(String(dataList[i].startDeliTime))
-                                endTimeList.append(String(dataList[i].endDeliTime))
+//                                startTimeList.append(dataList[i].startDeliTime)
+//                                endTimeList.append(dataList[i].endDeliTime)
                                 deliveryTipList.append(dataList[i].deliTip)
+                                
+                                let splitStartTime = dataList[i].startDeliTime.split(separator: ":").map{String($0)}
+                                let startTime = splitStartTime[0] + ":" + splitStartTime[1]
+                                startTimeList.append(startTime)
+                                
+                                let splitEndTime = dataList[i].endDeliTime.split(separator: ":").map{String($0)}
+                                let endTime = splitEndTime[0] + ":" + splitEndTime[1]
+                                endTimeList.append(endTime)
+                                
+                                print("🔊[DEBUG] \(startTime) \(endTime)")
                                 
                             }
                         }
@@ -320,6 +347,7 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
                 case .success(let response):
                     if(response.success == true){
                         print("검색 조회 성공")
+                        print("🔊[DEBUG] 파람: \(parameters)")
                         print("💂🏻‍♀️\(response)")
                         
                         startPlaceList.removeAll()
@@ -333,17 +361,24 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
                             for i in 0...(dataList.count - 1) {
                                 startPlaceList.append(dataList[i].startingPoint)
                                 endPlaceList.append(dataList[i].arrivingPoint)
-                                startTimeList.append(String(dataList[i].startDeliTime))
-                                endTimeList.append(String(dataList[i].endDeliTime))
+//                                startTimeList.append(String(dataList[i].startDeliTime))
+//                                endTimeList.append(String(dataList[i].endDeliTime))
                                 deliveryTipList.append(dataList[i].deliTip)
                                 
+                                let splitStartTime = dataList[i].startDeliTime.split(separator: ":").map{String($0)}
+                                let startTime = splitStartTime[0] + ":" + splitStartTime[1]
+                                startTimeList.append(startTime)
+                                
+                                let splitEndTime = dataList[i].endDeliTime.split(separator: ":").map{String($0)}
+                                let endTime = splitEndTime[0] + ":" + splitEndTime[1]
+                                endTimeList.append(endTime)
                             }
                         }
                         
                         listTable.reloadData()
                         
                         print(dataList)
-                        viewWillAppear(true)
+                        
                     }
                     
                     else{
@@ -358,8 +393,7 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
                     
                     
                 case .failure(let error):
-                    print(error)
-                    print("서버 통신 실패")
+                    print("서버 통신 실패: \(error.localizedDescription)")
                     let loginFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
                     
                     let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
@@ -382,15 +416,15 @@ extension InDoDeliveryViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! DeliveryListTableViewCell
         
-        var startDeliTime = startTimeList[indexPath.row]
-        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
-        
-        var endDeliTime = endTimeList[indexPath.row]
-        endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))
+//        var startDeliTime = startTimeList[indexPath.row]
+//        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
+//
+//        var endDeliTime = endTimeList[indexPath.row]
+//        endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))
         
         cell.startPlace.text = startPlaceList[indexPath.row]
         cell.endPlace.text = endPlaceList[indexPath.row]
-        cell.startTime.text = startDeliTime + " ~ " + endDeliTime
+        cell.startTime.text = startTimeList[indexPath.row] + " ~ " + endTimeList[indexPath.row]
         cell.deliveryTip.text = deliveryTipList[indexPath.row]
         
         let view = UIView()

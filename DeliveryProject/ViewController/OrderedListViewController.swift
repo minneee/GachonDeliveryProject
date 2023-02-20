@@ -144,8 +144,8 @@ class OrderedListViewController: UIViewController {
                 switch response.result {
                 case .success(let response):
                     if(response.success == true){
-                        
                         print("주문 내역 불러오기 성공")
+                        
                         DList = response.data
                         print(DList, DList.count)
                         
@@ -201,14 +201,15 @@ extension OrderedListViewController: UITableViewDelegate, UITableViewDataSource 
         cell.menu.text = DList[indexPath.row].menu
         cell.request.text = DList[indexPath.row].userWant
         cell.deliveryTip.text = DList[indexPath.row].deliTip
+        cell.endTime.text = DList[indexPath.row].startDeliTime + " ~ " + DList[indexPath.row].endDeliTime
         
-        var startDeliTime = String(DList[indexPath.row].startDeliTime)
-        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
-        
-        var endDeliTime = String(DList[indexPath.row].endDeliTime)
-        endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))
-        
-        cell.endTime.text = startDeliTime + " ~ " + endDeliTime
+//        var startDeliTime = String(DList[indexPath.row].startDeliTime)
+//        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
+//
+//        var endDeliTime = String(DList[indexPath.row].endDeliTime)
+//        endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))
+//
+//        cell.endTime.text = startDeliTime + " ~ " + endDeliTime
         
         cell.modifyBtn.tag = indexPath.row
         cell.deleteBtn.tag = indexPath.row

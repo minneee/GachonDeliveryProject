@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var LoginButton: UIButton!
     
-    
+    let vc = IndicatorViewController()
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,6 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("bb")
         print(UserDefaults.standard.string(forKey: "id"))
         print(UserDefaults.standard.bool(forKey: "auto"))
         if(UserDefaults.standard.bool(forKey: "auto") == true){
@@ -65,8 +64,13 @@ class ViewController: UIViewController {
         let id = idTextField.text ?? ""
         let pw = pwTextField.text ?? ""
         
-        let param = LoginRequest(userId: id, userPw: pw)
+//        let param = LoginRequest(userId: id, userPw: pw)
+        
+        let param = LoginRequest(userId: "alsgml0221", userPw: "kmh475800!")
+        
+        showIndicatorView()
         postLogin(param)
+        
     }
     
     
@@ -74,59 +78,66 @@ class ViewController: UIViewController {
         AF.request("http://3.37.209.65:3000/Glogin", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: LoginResponse.self) { [self] response in
-                switch response.result {
-                case .success(let response):
-                    if(response.success == true){
-                        print("로그인 성공")
+                self.dismissIndicatorView {
+                    // dismissIndicatorView 클로져 수행
+                    switch response.result {
                         
-                        //기기에 아이디 저장
-                        UserDefaults.standard.set(idTextField.text, forKey: "id")
-                        
-                        print("\(autoLogin) + 자동")
-                        //자동 로그인
-                        if autoLogin == true {
-                            print("자동로그인 켜짐")
-                            UserDefaults.standard.set(true, forKey: "auto")
-                        }
-                        
-                        if response.memberTrueFalse == true {
-                            //이미 가입한 회원
-                            print("가입")
-                            guard let nextVC = self.storyboard?.instantiateViewController(identifier: "NavController") else {return}
-                            nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-                            self.present(nextVC, animated: true)
-                        }
-                        else {
-                            //가입하지 않은 회원
-                            print("미가입")
-                            guard let nextVC = self.storyboard?.instantiateViewController(identifier: "MemberNavController") else {return}
-                            nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-                            self.present(nextVC, animated: true)
+                    case .success(let response):
+                        if(response.success == true){
+                            print("로그인 성공")
+                            
+                            //기기에 아이디 저장
+//                            UserDefaults.standard.set(idTextField.text, forKey: "id")
+                            
+                            
+                            UserDefaults.standard.set("alsgml0221", forKey: "id")
+                            print("\(autoLogin) + 자동")
+                            //자동 로그인
+                            if autoLogin == true {
+                                print("자동로그인 켜짐")
+                                UserDefaults.standard.set(true, forKey: "auto")
+                            }
+                            
+                            if response.memberTrueFalse == true {
+                                //이미 가입한 회원
+                                print("가입")
+                                guard let nextVC = self.storyboard?.instantiateViewController(identifier: "NavController") else {return}
+                                nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                                self.present(nextVC, animated: true)
+                            }
+                            else {
+                                //가입하지 않은 회원
+                                print("미가입")
+                                guard let nextVC = self.storyboard?.instantiateViewController(identifier: "MemberNavController") else {return}
+                                nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                                self.present(nextVC, animated: true)
+                                
+                            }
                             
                         }
                         
-                    }
-                    
-                    else{
-                        print("로그인 실패\(response.message)")
-                        //alert message
-                        let loginFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        else{
+                            print("로그인 실패\(response.message)")
+                            //alert message
+                            let loginFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                            
+                            let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                            loginFailAlert.addAction(loginFailAction)
+                            self.present(loginFailAlert, animated: true, completion: nil)
+                        }
+                        
+                        
+                    case .failure(let error):
+                        print(error)
+                        print("서버 통신 실패")
+                        let loginFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
                         
                         let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
                         loginFailAlert.addAction(loginFailAction)
                         self.present(loginFailAlert, animated: true, completion: nil)
                     }
-                    
-                    
-                case .failure(let error):
-                    print(error)
-                    print("서버 통신 실패")
-                    let loginFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
-                    
-                    let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
-                    loginFailAlert.addAction(loginFailAction)
-                    self.present(loginFailAlert, animated: true, completion: nil)
                 }
+                
                 
             }
     }
@@ -140,5 +151,59 @@ class ViewController: UIViewController {
             self.present(viewControllerToPresent, animated: true, completion: nil)
         }
     }
+    
+    func showIndicatorView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.vc.modalPresentationStyle = .overFullScreen
+            self.present(self.vc, animated: false)
+            
+        }
+    }
+    
+    func dismissIndicatorView(_ completion: (()->())?) {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else { return }
+            self.vc.dismiss(animated: false) {
+                completion?()
+            }
+            
+        }
+    }
+    
 }
 
+import SnapKit
+import Then
+
+class IndicatorViewController: UIViewController {
+  
+  private let indicatorView = UIActivityIndicatorView()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+      self.view.backgroundColor = .black.withAlphaComponent(0.3)
+    self.view.addSubview(indicatorView)
+    indicatorView.snp.makeConstraints { make in
+      make.center.equalToSuperview()
+    }
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.startAnimating()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.stopAnimating()
+  }
+  
+  private func startAnimating() {
+    self.indicatorView.startAnimating()
+  }
+  
+  private func stopAnimating() {
+    self.indicatorView.stopAnimating()
+  }
+}

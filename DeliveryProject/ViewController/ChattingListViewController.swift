@@ -34,6 +34,8 @@ class ChattingListViewController: UIViewController {
 
     }
     
+    
+    
     //레이아웃 설정
     private func setupLayout() {
         //view 추가

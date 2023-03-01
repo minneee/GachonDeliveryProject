@@ -35,6 +35,7 @@
 		3DABD39C296ED88600677B84 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DABD39B296ED88600677B84 /* SettingViewController.swift */; };
 		3DABD39E296ED8EC00677B84 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DABD39D296ED8EC00677B84 /* NoticeViewController.swift */; };
 		3DABD3A0296ED91500677B84 /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DABD39F296ED91500677B84 /* NoticeTableViewCell.swift */; };
+		3DE4ED4429ADCFF5007A7097 /* ChattingSocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4ED4329ADCFF5007A7097 /* ChattingSocketIOManager.swift */; };
 		642C9A7586EC3B8545A70F76 /* Pods_DeliveryProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A8C270010A3EC04A6EE97 /* Pods_DeliveryProject.framework */; };
 		CB392678296C205A00DA319C /* MyOrderedListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB392677296C205A00DA319C /* MyOrderedListTableViewController.swift */; };
 		CB39267A296C209D00DA319C /* MyOrderedListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB392679296C209D00DA319C /* MyOrderedListTableViewCell.swift */; };
@@ -101,6 +102,7 @@
 		3DABD39B296ED88600677B84 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		3DABD39D296ED8EC00677B84 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		3DABD39F296ED91500677B84 /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
+		3DE4ED4329ADCFF5007A7097 /* ChattingSocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingSocketIOManager.swift; sourceTree = "<group>"; };
 		B57BA5D8250170EB420F4D58 /* Pods-DeliveryProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeliveryProject.release.xcconfig"; path = "Target Support Files/Pods-DeliveryProject/Pods-DeliveryProject.release.xcconfig"; sourceTree = "<group>"; };
 		CB392677296C205A00DA319C /* MyOrderedListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderedListTableViewController.swift; sourceTree = "<group>"; };
 		CB392679296C209D00DA319C /* MyOrderedListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderedListTableViewCell.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				3D81D5482993B5AF00F8ED52 /* ProfileImageResponse.swift */,
 				CBE7957E2993D00600856E1F /* BoardRequest.swift */,
 				CBE795802993D00E00856E1F /* BoardResponse.swift */,
+				3DE4ED4329ADCFF5007A7097 /* ChattingSocketIOManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				CB8B92F9296A72380008B497 /* QuestionViewController.swift in Sources */,
 				CB655AD72989727E005A3837 /* MyOrderRequest.swift in Sources */,
 				3D81D5472993B5A000F8ED52 /* ProfileImageRequest.swift in Sources */,
+				3DE4ED4429ADCFF5007A7097 /* ChattingSocketIOManager.swift in Sources */,
 				CB8B92F529693FB50008B497 /* ChangeProfileViewController.swift in Sources */,
 				CB39267A296C209D00DA319C /* MyOrderedListTableViewCell.swift in Sources */,
 				3DABD398296ED72400677B84 /* ChattingViewController.swift in Sources */,

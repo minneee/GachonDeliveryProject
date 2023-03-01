@@ -45,44 +45,6 @@ class OrderedListViewController: UIViewController {
         
     }
     
-    func deleteDelete(_ parameters: DeleteRequest) {
-        AF.request("http://3.37.209.65:3000/delete", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
-            .validate()
-            .responseDecodable(of: DeleteResponse.self) { [self] response in
-                switch response.result {
-                case .success(let response):
-                    if(response.success == true){
-                        
-                        print("주문서 삭제 성공")
-                        self.viewWillAppear(true)
-                        
-                        print(DList, DList.count)
-
-                    }
-                    
-                    else{
-                        print("주문서 삭제 실패 \(response.message)")
-                        //alert message
-                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
-                        
-                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
-                        FailAlert.addAction(FailAction)
-                        self.present(FailAlert, animated: true, completion: nil)
-                    }
-                    
-                    
-                case .failure(let error):
-                    print(error)
-                    print("서버 통신 실패")
-                    let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
-                    
-                    let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
-                    serverFailAlert.addAction(serverFailAction)
-                    self.present(serverFailAlert, animated: true, completion: nil)
-                }
-                
-            }
-    }
     
     
     override func viewDidLoad() {
@@ -149,6 +111,25 @@ class OrderedListViewController: UIViewController {
                         DList = response.data
                         print(DList, DList.count)
                         
+                        if DList.count > 0 {
+                            for i in 0...(DList.count - 1) {
+                                let splitStartTime = DList[i].startDeliTime.split(separator: ":").map{String($0)}
+                                let startTime = splitStartTime[0] + ":" + splitStartTime[1]
+                                DList[i].startDeliTime = startTime
+                                
+                                let splitEndTime = DList[i].endDeliTime.split(separator: ":").map{String($0)}
+                                let endTime = splitEndTime[0] + ":" + splitEndTime[1]
+                                DList[i].endDeliTime = endTime
+                                
+                                print("🔊[DEBUG] \(startTime) \(endTime)")
+                                
+                            }
+                        }
+                        
+//                        let splitStartTime = dataList[i].startDeliTime.split(separator: ":").map{String($0)}
+//                        let startTime = splitStartTime[0] + ":" + splitStartTime[1]
+//                        startTimeList.append(startTime)
+                        
                         orderedListTable.reloadData()
                         
                     }
@@ -177,6 +158,44 @@ class OrderedListViewController: UIViewController {
             }
     }
 
+    func deleteDelete(_ parameters: DeleteRequest) {
+        AF.request("http://3.37.209.65:3000/delete", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: DeleteResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        
+                        print("주문서 삭제 성공")
+                        self.viewWillAppear(true)
+                        
+                        print(DList, DList.count)
+
+                    }
+                    
+                    else{
+                        print("주문서 삭제 실패 \(response.message)")
+                        //alert message
+                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        FailAlert.addAction(FailAction)
+                        self.present(FailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    serverFailAlert.addAction(serverFailAction)
+                    self.present(serverFailAlert, animated: true, completion: nil)
+                }
+                
+            }
+    }
     
 
 

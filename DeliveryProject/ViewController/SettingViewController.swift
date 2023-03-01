@@ -451,7 +451,7 @@ class SettingViewController: UIViewController {
                 //progressView
             })
             .response { response in
-                print("🔊[DEBUG] \(response)")
+                print("🔊[DEBUG] profile \(response)")
                 
                 if response.error == nil, let imagePath = response.fileURL?.path {
                     let image = UIImage(contentsOfFile: imagePath)
@@ -459,6 +459,10 @@ class SettingViewController: UIViewController {
                     //UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
                     
                 }
+                if self.profileImageView.image == nil {
+                    self.profileImageView.image = UIImage(named: "profileImage")
+                }
+                print(self.profileImageView.image)
             }
                 
                 

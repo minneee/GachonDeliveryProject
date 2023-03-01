@@ -35,16 +35,17 @@ class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(DList, rowNum)
+
+        let splitStartTime = DList[rowNum].startDeliTime.split(separator: ":").map{String($0)}
+        let setStartTime = splitStartTime[0] + ":" + splitStartTime[1]
         
-//        var startDeliTime = String(DList[rowNum].startDeliTime)
-//        startDeliTime.insert(":", at: startDeliTime.index(startDeliTime.startIndex, offsetBy: 2))
-//
-//        var endDeliTime = String(DList[rowNum].endDeliTime)
-//        endDeliTime.insert(":", at: endDeliTime.index(endDeliTime.startIndex, offsetBy: 2))
+        let splitEndTime = DList[rowNum].endDeliTime.split(separator: ":").map{String($0)}
+        let setEndTime = splitEndTime[0] + ":" + splitEndTime[1]
+        
         
         startPlace.text = DList[rowNum].startingPoint
         endPlace.text = DList[rowNum].arrivingPoint
-        endTime.text = DList[rowNum].startDeliTime + " ~ " + DList[rowNum].endDeliTime
+        endTime.text = setStartTime + " ~ " + setEndTime
         menu.text = DList[rowNum].menu
         request.text = DList[rowNum].userWant
         deliveryTip.text = DList[rowNum].deliTip

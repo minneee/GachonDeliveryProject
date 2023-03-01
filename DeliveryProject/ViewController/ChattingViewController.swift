@@ -3,6 +3,7 @@ import UIKit
 import Alamofire
 import IQKeyboardManagerSwift
 import DropDown
+import SocketIO
 
 
 class ChattingViewController: UIViewController {

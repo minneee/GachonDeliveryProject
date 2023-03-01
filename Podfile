@@ -12,5 +12,5 @@ pod 'SnapKit'
 pod 'IQKeyboardManagerSwift'
 pod 'Then'
 pod 'Toast-Swift', '~> 5.0.1'
-
+pod 'Socket.IO-Client-Swift', '~> 16.0.1'
 end

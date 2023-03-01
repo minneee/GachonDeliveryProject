@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import MobileCoreServices
 
 class NewMemberProfileViewController: UIViewController {
     
@@ -20,16 +21,31 @@ class NewMemberProfileViewController: UIViewController {
     
     @IBOutlet weak var introduceOneLineTextField: UITextField!
     
+//    var getImage = UIImage(named: "profileImage")
+//    var getNickname = ""
+//    var getIntroduce = ""
+    
+    var newImage = UIImage(named: "profileImage")
+    let picker: UIImagePickerController! = UIImagePickerController()
+    //private var selectedImage: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         nicknameUnderLine()
         introduceUnderLine()
+        profileImageView.image = UIImage(named: "profileImage")
      
     }
     
 
     @IBAction func profileImageButtonAction(_ sender: Any) {
+        self.picker.sourceType = .photoLibrary
+        self.picker.delegate = self
+        self.picker.mediaTypes = [kUTTypeImage as String]
+        self.picker.modalPresentationStyle = .fullScreen
+        
+        self.present(self.picker, animated: true)
     }
     
     
@@ -37,47 +53,60 @@ class NewMemberProfileViewController: UIViewController {
         let id = UserDefaults.standard.string(forKey: "id") ?? ""
         let nickname = nicknameTextField.text ?? ""
         let introduce = introduceOneLineTextField.text ?? ""
-        let photoName = ""
-//        let param = ChangeProfileRequest(photoName: photoName, userId: id, nickname: nickname, introduce: introduce)
-//        postChangeProfile(param)
+        let param = ChangeProfileRequest(userId: id, nickname: nickname, introduce: introduce)
+        postChangeProfile(param)
     }
     
     
-    // 닉네임, 한 줄 소개 변경
+    // 프로필 변경
     func postChangeProfile(_ parameters: ChangeProfileRequest){
-        AF.request("http://3.37.209.65:3000/editmypage", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
-            .validate()
-            .responseDecodable(of: ChangeProfileResponse.self) { [self] response in
-                switch response.result {
-                case .success(let response):
-                    if(response.success == true){
-                        print("프로필 설정 성공")
-                        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "NavController") else {return}
-                        nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-                        self.present(nextVC, animated: true)
-                    }
-                    
-                    else{
-                        print("프로필 설정 실패\(response.message)")
-                        //alert message
-                        let changeFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
-                        
-                        let changeFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
-                        changeFailAlert.addAction(changeFailAction)
-                        self.present(changeFailAlert, animated: true, completion: nil)
-                    }
-                    
-                    
-                case .failure(let error):
-                    print(error)
-                    print("서버 통신 실패")
-                    let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
-                    
-                    let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
-                    serverFailAlert.addAction(serverFailAction)
-                    self.present(serverFailAlert, animated: true, completion: nil)
-                }
+        
+        let headers: HTTPHeaders = ["Content-type" : "multipart/form-data"]
+        
+        AF.upload(multipartFormData: { MultipartFormData in
+            
+            //이미지 설정
+            if let image = self.newImage?.jpegData(compressionQuality: 0.5) {
+                print("🔊[DEBUG] 이미지 설정")
+                MultipartFormData.append(image, withName: "photoName", fileName: "test.jpeg", mimeType: "image/jpeg")
             }
+            
+            MultipartFormData.append(parameters.userId.data(using: .utf8)!, withName: "userId")
+            MultipartFormData.append(parameters.nickname.data(using: .utf8)!, withName: "nickname")
+            MultipartFormData.append(parameters.introduce.data(using: .utf8)!, withName: "introduce")
+
+            
+        }, to: "http://3.37.209.65:3000/editmypage", method: .post, headers: headers).responseDecodable(of: ChangeProfileResponse.self) { [self] response in
+            switch response.result {
+            case .success(let response):
+                if(response.success == true){
+                    print("프로필 변경 성공")
+                    guard let nextVC = self.storyboard?.instantiateViewController(identifier: "NavController") else {return}
+                    nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                    self.present(nextVC, animated: true)
+                }
+                
+                else{
+                    print("프로필 변경 실패\(response.message)")
+                    //alert message
+                    let changeFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                    
+                    let changeFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    changeFailAlert.addAction(changeFailAction)
+                    self.present(changeFailAlert, animated: true, completion: nil)
+                }
+                
+                
+            case .failure(let error):
+                print(error)
+                print("서버 통신 실패")
+                let serverFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                
+                let serverFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                serverFailAlert.addAction(serverFailAction)
+                self.present(serverFailAlert, animated: true, completion: nil)
+            }
+        }
     }
     
     func nicknameUnderLine(){
@@ -106,5 +135,33 @@ class NewMemberProfileViewController: UIViewController {
         border.borderWidth = width
         introduceOneLineTextField.layer.addSublayer(border)
         introduceOneLineTextField.layer.masksToBounds = true
+    }
+}
+
+
+extension NewMemberProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! NSString
+        
+        if mediaType.isEqual(to: kUTTypeImage as NSString as String){
+            newImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        }
+        
+        
+        self.profileImageView.image = newImage
+        //self.selectedImage = newImage
+        picker.dismiss(animated: true)
+        //        picker.dismiss(animated: true) {
+        //            let vc = EditProfileImageViewController()
+        //            vc.inputImage = self.newImage
+        //            vc.modalPresentationStyle = .overFullScreen
+        //            self.present(vc, animated: true)
+        //        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LrR-lR-b2a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -1886,7 +1886,7 @@
                                             <fragment content="🚨">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleColorEmojiUI"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -1901,7 +1901,7 @@
                                             <fragment content="주의">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -1916,7 +1916,7 @@
                                             <fragment content="경고문구">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -1931,7 +1931,7 @@
                                             <fragment content="어쩌고">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -1946,7 +1946,7 @@
                                             <fragment content="저쩌고">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -1961,7 +1961,7 @@
                                             <fragment content="적어두면">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -1976,7 +1976,7 @@
                                             <fragment content="됩니다">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -1991,7 +1991,7 @@
                                             <fragment content="문구를">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -2006,7 +2006,7 @@
                                             <fragment content="머라고">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -2021,7 +2021,7 @@
                                             <fragment content="적어두면">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -2036,7 +2036,7 @@
                                             <fragment content="됩니다">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -2051,7 +2051,7 @@
                                             <fragment content="문구를">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -2066,7 +2066,7 @@
                                             <fragment content="머라고적지">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -2081,7 +2081,7 @@
                                             <fragment content="머라모리머">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -2096,7 +2096,7 @@
                                             <fragment content="마라탕">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -2111,7 +2111,7 @@
                                             <fragment content="머거야지">
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>

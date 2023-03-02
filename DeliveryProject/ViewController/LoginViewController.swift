@@ -64,9 +64,9 @@ class ViewController: UIViewController {
         let id = idTextField.text ?? ""
         let pw = pwTextField.text ?? ""
         
-//        let param = LoginRequest(userId: id, userPw: pw)
+        let param = LoginRequest(userId: id, userPw: pw)
         
-        let param = LoginRequest(userId: "alsgml0221", userPw: "kmh475800!")
+//        let param = LoginRequest(userId: "alsgml0221", userPw: "kmh475800!")
         
         showIndicatorView()
         postLogin(param)
@@ -87,10 +87,10 @@ class ViewController: UIViewController {
                             print("로그인 성공")
                             
                             //기기에 아이디 저장
-//                            UserDefaults.standard.set(idTextField.text, forKey: "id")
+                            UserDefaults.standard.set(self.idTextField.text, forKey: "id")
                             
                             
-                            UserDefaults.standard.set("alsgml0221", forKey: "id")
+//                            UserDefaults.standard.set("alsgml0221", forKey: "id")
                             print("\(autoLogin) + 자동")
                             //자동 로그인
                             if autoLogin == true {

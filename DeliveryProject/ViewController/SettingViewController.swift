@@ -319,7 +319,8 @@ class SettingViewController: UIViewController {
             
             //현재 비밀번호 확인 api 연결
             let param = WithdrawalRequest(userId: id, userPw: password)
-            self.postWithdrawal(param)
+            print(id, password)
+            self.deleteWithdrawal(param)
         }
         
         pwCheckAlert.addAction(pwCheckFalseAction)
@@ -331,7 +332,7 @@ class SettingViewController: UIViewController {
     }
     
     //회원 탈퇴
-    func postWithdrawal(_ parameters: WithdrawalRequest) {
+    func deleteWithdrawal(_ parameters: WithdrawalRequest) {
         AF.request("http://3.37.209.65:3000/Gsecede", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: WithdrawalResponse.self) { [self] response in
@@ -339,6 +340,7 @@ class SettingViewController: UIViewController {
                 case .success(let response):
                     if(response.success == true){
                         print("회원 탈퇴 성공")
+                        
                         
                         //자동로그인 해제
                         UserDefaults.standard.set(false, forKey: "auto")

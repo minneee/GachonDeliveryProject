@@ -52,7 +52,7 @@ class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
         let param = ChangeProfileRequest(userId: id, nickname: nickname, introduce: introduce)
         print(param)
         
-        postChangeProfile(param)
+        patchChangeProfile(param)
         
         
         
@@ -80,7 +80,7 @@ class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
     
     
     // 프로필 변경
-    func postChangeProfile(_ parameters: ChangeProfileRequest){
+    func patchChangeProfile(_ parameters: ChangeProfileRequest){
         
         let headers: HTTPHeaders = ["Content-type" : "multipart/form-data"]
         
@@ -98,7 +98,7 @@ class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
             MultipartFormData.append(parameters.introduce.data(using: .utf8)!, withName: "introduce")
 
             
-        }, to: "http://3.37.209.65:3000/editmypage", method: .post, headers: headers).responseDecodable(of: ChangeProfileResponse.self) { [self] response in
+        }, to: "http://3.37.209.65:3000/editmypage", method: .patch, headers: headers).responseDecodable(of: ChangeProfileResponse.self) { [self] response in
             switch response.result {
             case .success(let response):
                 if(response.success == true){

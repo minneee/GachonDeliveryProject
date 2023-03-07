@@ -176,6 +176,31 @@ class ChattingViewController: UIViewController {
         
         dropdown.show()
         
+        dropdown.selectionAction = { [weak self] (index, item) in
+            
+            switch index{
+            case 0:
+                print("신고하기")
+                guard let reportVC = self?.storyboard?.instantiateViewController(identifier: "ReportViewController") else { return }
+//                reportVC.otherUserNickName = 상대 닉네임 보내줘야 함
+                self?.navigationController?.pushViewController(reportVC, animated: true)
+                
+            case 1:
+                print("채팅방 나가기")
+                guard let chattingListVC = self?.storyboard?.instantiateViewController(identifier: "ChattingListViewController") else { return }
+                self?.navigationController?.pushViewController(chattingListVC, animated: true)
+            case 2:
+                print("배달 완료")
+                guard let starScoreVC = self?.storyboard?.instantiateViewController(identifier: "StarScoreViewController") else { return }
+                self?.navigationController?.pushViewController(starScoreVC, animated: true)
+                
+                
+            
+            default:
+                print("switch : default")
+            }
+        }
+        
     }
     
     
@@ -192,6 +217,8 @@ class ChattingViewController: UIViewController {
 //        dropdown.topAnchor.constraint(equalTo: chattingMenuImageView.bounds.height).isActive = true
 
     }
+    
+    
     
     
     // https://developer-eungb.tistory.com/34 드롭다운

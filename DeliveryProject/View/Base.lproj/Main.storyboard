@@ -1477,7 +1477,7 @@
         <!--별점 남기기-->
         <scene sceneID="Uj4-9d-bPW">
             <objects>
-                <viewController id="ggd-fD-Ap3" customClass="StarScoreViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StarScoreViewController" id="ggd-fD-Ap3" customClass="StarScoreViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d1m-qD-Nij">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1642,7 +1642,7 @@
         <!--사용자 신고-->
         <scene sceneID="VOo-k7-RBj">
             <objects>
-                <viewController id="C2k-OL-RRX" customClass="ReportViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReportViewController" id="C2k-OL-RRX" customClass="ReportViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oDX-ua-BcJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1669,6 +1669,9 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="신고하기"/>
+                                <connections>
+                                    <action selector="reportButton:" destination="C2k-OL-RRX" eventType="touchUpInside" id="h7c-L0-P5u"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DPi-B6-Hhg"/>

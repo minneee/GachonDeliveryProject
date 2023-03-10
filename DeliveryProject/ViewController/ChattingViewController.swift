@@ -112,8 +112,16 @@ class ChattingViewController: UIViewController {
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //네비게이션 바 없애기
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        
         //채팅창 tableView 제일 아래로 내리기
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }

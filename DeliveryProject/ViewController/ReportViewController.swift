@@ -14,7 +14,7 @@ class ReportViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var reportTextView: UITextView!
     
     // 상대 닉네임, 채팅 뷰에서 받아야 함
-    let otherUserNickName = ""
+    let otherUserNickName = "미니"
     
     // 신고하기 버튼
     @IBAction func reportButton(_ sender: UIButton) {
@@ -28,8 +28,10 @@ class ReportViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "신고하기"
         
-        self.navigationController?.navigationBar.topItem?.title = ""
+//        self.navigationController?.navigationBar.topItem?.title = "신고하기"
+        navigationController?.setNavigationBarHidden(false, animated: true)
         
         TextViewOption()
         

@@ -1639,7 +1639,7 @@
             </objects>
             <point key="canvasLocation" x="2741.2213740458014" y="1413.3802816901409"/>
         </scene>
-        <!--사용자 신고-->
+        <!--Report View Controller-->
         <scene sceneID="VOo-k7-RBj">
             <objects>
                 <viewController storyboardIdentifier="ReportViewController" id="C2k-OL-RRX" customClass="ReportViewController" customModule="DeliveryProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -1648,13 +1648,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="허위 신고 및 욕설, 비방글 작성 시 불이익을 당할지도?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4h2-Xp-Qly">
-                                <rect key="frame" x="28.666666666666657" y="20" width="357" height="21"/>
+                                <rect key="frame" x="28.666666666666657" y="30" width="357" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="아 왜 밑줄이 안 되는거야" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8gI-td-Vdq">
-                                <rect key="frame" x="28.666666666666657" y="71" width="357" height="200"/>
+                                <rect key="frame" x="28.666666666666657" y="81" width="357" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="xdL-aM-XCi"/>
@@ -1664,7 +1664,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hek-8a-YVE">
-                                <rect key="frame" x="28.666666666666657" y="301" width="357" height="34.666666666666686"/>
+                                <rect key="frame" x="28.666666666666657" y="311" width="357" height="34.666666666666686"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -1677,22 +1677,17 @@
                         <viewLayoutGuide key="safeArea" id="DPi-B6-Hhg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4h2-Xp-Qly" firstAttribute="top" secondItem="DPi-B6-Hhg" secondAttribute="top" constant="20" id="CQE-bT-fGE"/>
                             <constraint firstItem="8gI-td-Vdq" firstAttribute="top" secondItem="4h2-Xp-Qly" secondAttribute="bottom" constant="30" id="E8F-bd-CU9"/>
                             <constraint firstItem="hek-8a-YVE" firstAttribute="top" secondItem="8gI-td-Vdq" secondAttribute="bottom" constant="30" id="GdN-Aq-TTh"/>
                             <constraint firstItem="8gI-td-Vdq" firstAttribute="leading" secondItem="4h2-Xp-Qly" secondAttribute="leading" id="HuS-G0-SK6"/>
                             <constraint firstItem="hek-8a-YVE" firstAttribute="centerX" secondItem="oDX-ua-BcJ" secondAttribute="centerX" id="V4x-zX-LhM"/>
                             <constraint firstItem="hek-8a-YVE" firstAttribute="leading" secondItem="8gI-td-Vdq" secondAttribute="leading" id="dCM-DH-UHJ"/>
                             <constraint firstItem="4h2-Xp-Qly" firstAttribute="centerX" secondItem="oDX-ua-BcJ" secondAttribute="centerX" id="mGO-nq-sNY"/>
+                            <constraint firstItem="4h2-Xp-Qly" firstAttribute="top" secondItem="DPi-B6-Hhg" secondAttribute="top" constant="30" id="v5N-F4-PL2"/>
                             <constraint firstItem="8gI-td-Vdq" firstAttribute="trailing" secondItem="4h2-Xp-Qly" secondAttribute="trailing" id="zmj-8x-yye"/>
                             <constraint firstItem="hek-8a-YVE" firstAttribute="trailing" secondItem="8gI-td-Vdq" secondAttribute="trailing" id="zv6-OY-ZkS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="사용자 신고" id="pNI-Aw-XOM">
-                        <barButtonItem key="rightBarButtonItem" title="신고" id="ejc-pu-lwd">
-                            <color key="tintColor" systemColor="systemRedColor"/>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="reportTextView" destination="8gI-td-Vdq" id="bQw-fW-vOM"/>
                     </connections>

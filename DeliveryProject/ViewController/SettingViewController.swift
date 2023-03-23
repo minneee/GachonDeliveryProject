@@ -466,7 +466,8 @@ class SettingViewController: UIViewController {
                 }
                 print(self.profileImageView.image)
             }
-                
+        
+    }
                 
 //            .responseDecodable{ response in
 //                switch response.result {
@@ -499,7 +500,7 @@ class SettingViewController: UIViewController {
 //                }
 //
 //            }
-    }
+    
     
     
     

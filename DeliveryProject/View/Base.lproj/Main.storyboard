@@ -2159,7 +2159,12 @@
                         <outlet property="chattingMenuImageView" destination="Ff1-Tv-bEn" id="a3g-5k-YiP"/>
                         <outlet property="chattingTableView" destination="arB-T4-Z9D" id="t5A-u4-X8X"/>
                         <outlet property="chattingTextView" destination="znF-DP-TiM" id="nXb-ZU-O9b"/>
+                        <outlet property="deliveryScore" destination="an6-BF-Tbn" id="aHf-Vt-HT3"/>
+                        <outlet property="introduceLabel" destination="oS0-bl-7hr" id="D1O-8P-BT8"/>
+                        <outlet property="nicknameLabel" destination="6UY-IY-12j" id="GQj-ZB-CLT"/>
                         <outlet property="profileView" destination="O4A-Ei-RQj" id="sfJ-vJ-J5e"/>
+                        <outlet property="proflieImage" destination="GDq-gw-YhA" id="ThH-qt-5KE"/>
+                        <outlet property="receiveScore" destination="Nk8-di-fOX" id="lih-DQ-2Bm"/>
                         <outlet property="sendMessageButton" destination="cHG-OS-lu3" id="5uy-k0-nzv"/>
                     </connections>
                 </viewController>

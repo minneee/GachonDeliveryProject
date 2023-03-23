@@ -114,7 +114,7 @@ extension ChattingListViewController: UITableViewDelegate, UITableViewDataSource
         
         userCell.chattingUserLabel.text = self.chattingRoomList[indexPath.row].whoSend
         userCell.chattingContentLabel.text = self.chattingRoomList[indexPath.row].msg
-        userCell.chattingDateLabel.text = "23/02/01"
+        userCell.chattingDateLabel.text = self.chattingRoomList[indexPath.row].sendDay
 
         return userCell
     }

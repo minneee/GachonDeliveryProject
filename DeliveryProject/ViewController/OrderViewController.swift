@@ -25,7 +25,8 @@ class OrderViewController: UIViewController {
 
     @IBAction func chattingBtn(_ sender: UIButton) {
         
-        guard let chattingVC = storyboard?.instantiateViewController(withIdentifier: "ChattingVC") else {return}
+        guard let chattingVC = storyboard?.instantiateViewController(withIdentifier: "ChattingVC") as? ChattingViewController else {return}
+        chattingVC.otherUserId = DList[rowNum].userId
         navigationController?.pushViewController(chattingVC, animated: true)
         print("asd")
     }

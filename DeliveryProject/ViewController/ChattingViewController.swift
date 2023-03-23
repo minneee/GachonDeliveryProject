@@ -13,6 +13,10 @@ class ChattingViewController: UIViewController {
     // 메뉴 드롭다운 리스트 
     let dropdownList = ["사용자 신고하기", "채팅방 나가기", "배달 완료"]
     
+    // 주문서 작성자 아이디
+    var otherUserId : String = ""
+    var otherUserNickname = ""
+    
     
     @IBOutlet weak var announcementView: UIView!
     
@@ -34,9 +38,21 @@ class ChattingViewController: UIViewController {
     
     @IBOutlet weak var sendMessageButton: UIButton!
     
+    @IBOutlet weak var proflieImage: UIImageView!
     
-    var speechBubbleList: [String] = ["hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로크기가 이쁘게 될까>지이이이인짜 지이이이인짜지이이이인짜 긴 글이 들어가면 자동으로"]
-
+    @IBOutlet weak var nicknameLabel: UILabel!
+    
+    @IBOutlet weak var introduceLabel: UILabel!
+    
+    @IBOutlet weak var receiveScore: UIImageView!
+    
+    @IBOutlet weak var deliveryScore: UIImageView!
+    
+    
+    
+    var speechBubbleList: [String] = ["hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 "]
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,6 +132,16 @@ class ChattingViewController: UIViewController {
         super.viewWillAppear(animated)
         //네비게이션 바 없애기
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        print(otherUserId)
+        let id = UserDefaults.standard.string(forKey: "id") ?? ""
+        let param = FindChatRoomRequest(myUserId: id, otherUserId: otherUserId)
+        postFindChatRoom(param)
+        
+        let param1 = ProfileRequest(userId: otherUserId)
+        postGetProfileImage(param1)
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -199,7 +225,16 @@ class ChattingViewController: UIViewController {
                 self?.navigationController?.pushViewController(chattingListVC, animated: true)
             case 2:
                 print("배달 완료")
-                guard let starScoreVC = self?.storyboard?.instantiateViewController(identifier: "StarScoreViewController") else { return }
+                guard let starScoreVC = self?.storyboard?.instantiateViewController(identifier: "StarScoreViewController") as? StarScoreViewController else { return }
+                let id = UserDefaults.standard.string(forKey: "id") ?? ""
+                
+                // 내 아이디와 주문서 작성 아이디가 같다면(내가 주문자라면)
+                if( id == self?.otherUserId){
+                    starScoreVC.deliverNickname = self?.otherUserNickname ?? ""
+                } else{
+                    starScoreVC.receiverNickname = self?.otherUserNickname ?? ""
+                }
+                
                 self?.navigationController?.pushViewController(starScoreVC, animated: true)
                 
                 
@@ -208,6 +243,98 @@ class ChattingViewController: UIViewController {
                 print("switch : default")
             }
         }
+        
+    }
+    
+    func postFindChatRoom(_ parameters: FindChatRoomRequest) {
+        AF.request("http://3.37.209.65:3000/find-room", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: FindChatRoomResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        otherUserNickname = response.otherUserData?.nickname ?? ""
+                        nicknameLabel.text = response.otherUserData?.nickname
+                        introduceLabel.text = response.otherUserData?.introduce
+                        
+                        switch response.otherUserData?.orderRate ?? 0 {
+                        case 0: receiveScore.image = UIImage(named: "PinwheelPoint0")
+                        case 1: receiveScore.image = UIImage(named: "PinwheelPoint1")
+                        case 2: receiveScore.image = UIImage(named: "PinwheelPoint2")
+                        case 3: receiveScore.image = UIImage(named: "PinwheelPoint3")
+                        case 4: receiveScore.image = UIImage(named: "PinwheelPoint4")
+                        case 5: receiveScore.image = UIImage(named: "PinwheelPoint5")
+                        default: receiveScore.image = UIImage(named: "PinwheelPoint0")
+                        }
+                        
+                        switch response.otherUserData?.deliveryRate ?? 0 {
+                        case 0: deliveryScore.image = UIImage(named: "PinwheelPoint0")
+                        case 1: deliveryScore.image = UIImage(named: "PinwheelPoint1")
+                        case 2: deliveryScore.image = UIImage(named: "PinwheelPoint2")
+                        case 3: deliveryScore.image = UIImage(named: "PinwheelPoint3")
+                        case 4: deliveryScore.image = UIImage(named: "PinwheelPoint4")
+                        case 5: deliveryScore.image = UIImage(named: "PinwheelPoint5")
+                        default: deliveryScore.image = UIImage(named: "PinwheelPoint0")
+                        }
+                
+                    }
+                    
+                    else{
+                        print("채팅방 찾기 실패\(response.message)")
+                        //alert message
+                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        FailAlert.addAction(FailAction)
+                        self.present(FailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let FailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    FailAlert.addAction(FailAction)
+                    self.present(FailAlert, animated: true, completion: nil)
+                }
+                
+                
+                
+            }
+    }
+    
+    
+    func postGetProfileImage(_ parameters: ProfileRequest) {
+        let destination: DownloadRequest.Destination = { _, _ in
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                                    .userDomainMask, true)[0]
+            let documentsURL = URL(fileURLWithPath: documentsPath, isDirectory: true)
+            let fileURL = documentsURL.appendingPathComponent("image.jpg")
+            
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+            
+        }
+        
+        AF.download("http://3.37.209.65:3000/give-img-url", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil, to: destination)//profileImageView.image?)
+            .downloadProgress(closure: { Progress in
+                //progressView
+            })
+            .response { response in
+                print("🔊[DEBUG] profile \(response)")
+                
+                if response.error == nil, let imagePath = response.fileURL?.path {
+                    let image = UIImage(contentsOfFile: imagePath)
+                    self.proflieImage.image = image
+                    //UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+                    
+                }
+                if self.proflieImage.image == nil {
+                    self.proflieImage.image = UIImage(named: "profileImage")
+                }
+                print(self.proflieImage.image ?? "")
+            }
         
     }
     

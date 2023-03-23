@@ -55,6 +55,8 @@
 		CB655AD72989727E005A3837 /* MyOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655AD62989727E005A3837 /* MyOrderRequest.swift */; };
 		CB655AD9298CF961005A3837 /* DeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655AD8298CF961005A3837 /* DeleteRequest.swift */; };
 		CB655ADB298CF96C005A3837 /* DeleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB655ADA298CF96C005A3837 /* DeleteResponse.swift */; };
+		CB883A4129CB19FD0087096D /* FindChatRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB883A4029CB19FD0087096D /* FindChatRoomRequest.swift */; };
+		CB883A4329CB1A090087096D /* FindChatRoomResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB883A4229CB1A090087096D /* FindChatRoomResponse.swift */; };
 		CB8B92EE296316BE0008B497 /* CreateOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92ED296316BE0008B497 /* CreateOrderViewController.swift */; };
 		CB8B92F529693FB50008B497 /* ChangeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92F429693FB50008B497 /* ChangeProfileViewController.swift */; };
 		CB8B92F9296A72380008B497 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92F8296A72380008B497 /* QuestionViewController.swift */; };
@@ -126,6 +128,8 @@
 		CB655AD62989727E005A3837 /* MyOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderRequest.swift; sourceTree = "<group>"; };
 		CB655AD8298CF961005A3837 /* DeleteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRequest.swift; sourceTree = "<group>"; };
 		CB655ADA298CF96C005A3837 /* DeleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteResponse.swift; sourceTree = "<group>"; };
+		CB883A4029CB19FD0087096D /* FindChatRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindChatRoomRequest.swift; sourceTree = "<group>"; };
+		CB883A4229CB1A090087096D /* FindChatRoomResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindChatRoomResponse.swift; sourceTree = "<group>"; };
 		CB8B92ED296316BE0008B497 /* CreateOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderViewController.swift; sourceTree = "<group>"; };
 		CB8B92F429693FB50008B497 /* ChangeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileViewController.swift; sourceTree = "<group>"; };
 		CB8B92F8296A72380008B497 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 				CBDDD19829B714E4008E559E /* ReportResponse.swift */,
 				3D21DF9629BB73FC00617C4F /* ChattingRoomListRequest.swift */,
 				3D21DF9829BB740C00617C4F /* ChattingRoomListResponse.swift */,
+				CB883A4029CB19FD0087096D /* FindChatRoomRequest.swift */,
+				CB883A4229CB1A090087096D /* FindChatRoomResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -446,6 +452,7 @@
 				CBF3F18A295C801D00612C6D /* ChooseViewController.swift in Sources */,
 				CB655ADB298CF96C005A3837 /* DeleteResponse.swift in Sources */,
 				CB60AEAF2961611300E1F18F /* OrderedListTableViewCell.swift in Sources */,
+				CB883A4129CB19FD0087096D /* FindChatRoomRequest.swift in Sources */,
 				CBAA43162983E4AD009C6DA7 /* ChangeProfileResponse.swift in Sources */,
 				CB60AEAA29615F9F00E1F18F /* OrderViewController.swift in Sources */,
 				3D20B9882959ACF000849DA6 /* AppDelegate.swift in Sources */,
@@ -468,6 +475,7 @@
 				CBE7957F2993D00600856E1F /* BoardRequest.swift in Sources */,
 				CBDDD19729B714C6008E559E /* ReportRequest.swift in Sources */,
 				3D15FE472983CF6400DB252B /* ProfileResponse.swift in Sources */,
+				CB883A4329CB1A090087096D /* FindChatRoomResponse.swift in Sources */,
 				3D81D5492993B5AF00F8ED52 /* ProfileImageResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

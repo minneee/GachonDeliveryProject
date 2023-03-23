@@ -1503,9 +1503,7 @@
                                             <constraint firstAttribute="width" secondItem="YSS-pm-Hg2" secondAttribute="height" multiplier="1:1" id="GRS-Rs-utq"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain">
-                                            <backgroundConfiguration key="background" image="Gachon"/>
-                                        </buttonConfiguration>
+                                        <buttonConfiguration key="configuration" style="plain" image="Gachon"/>
                                         <connections>
                                             <action selector="oneStarBtn:" destination="ggd-fD-Ap3" eventType="touchUpInside" id="aFc-Up-oQM"/>
                                         </connections>
@@ -1516,9 +1514,7 @@
                                             <constraint firstAttribute="width" secondItem="aHa-7x-zkS" secondAttribute="height" multiplier="1:1" id="UT4-cq-4zB"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain">
-                                            <backgroundConfiguration key="background" image="Gachon"/>
-                                        </buttonConfiguration>
+                                        <buttonConfiguration key="configuration" style="plain" image="Gachon"/>
                                         <connections>
                                             <action selector="twoStarBtn:" destination="ggd-fD-Ap3" eventType="touchUpInside" id="V1Q-8z-sEI"/>
                                         </connections>
@@ -1529,9 +1525,7 @@
                                             <constraint firstAttribute="width" secondItem="2oz-NL-B3c" secondAttribute="height" multiplier="1:1" id="5qn-cN-u4G"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain">
-                                            <backgroundConfiguration key="background" image="Gachon"/>
-                                        </buttonConfiguration>
+                                        <buttonConfiguration key="configuration" style="plain" image="Gachon"/>
                                         <connections>
                                             <action selector="threeStarBtn:" destination="ggd-fD-Ap3" eventType="touchUpInside" id="b1r-K7-CP8"/>
                                         </connections>
@@ -1542,9 +1536,7 @@
                                             <constraint firstAttribute="width" secondItem="Hdw-FS-u6H" secondAttribute="height" multiplier="1:1" id="1oB-1r-hRV"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain">
-                                            <backgroundConfiguration key="background" image="Gachon"/>
-                                        </buttonConfiguration>
+                                        <buttonConfiguration key="configuration" style="plain" image="Gachon"/>
                                         <connections>
                                             <action selector="fourStarBtn:" destination="ggd-fD-Ap3" eventType="touchUpInside" id="w52-Ov-MIX"/>
                                         </connections>
@@ -1555,9 +1547,7 @@
                                             <constraint firstAttribute="width" secondItem="cvn-o7-7jU" secondAttribute="height" multiplier="1:1" id="cWP-7r-Acp"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain">
-                                            <backgroundConfiguration key="background" image="Gachon"/>
-                                        </buttonConfiguration>
+                                        <buttonConfiguration key="configuration" style="plain" image="Gachon"/>
                                         <connections>
                                             <action selector="fiveStarBtn:" destination="ggd-fD-Ap3" eventType="touchUpInside" id="NlO-LD-6aq"/>
                                         </connections>
@@ -1591,9 +1581,18 @@
                             <constraint firstItem="jAq-86-bXA" firstAttribute="centerX" secondItem="d1m-qD-Nij" secondAttribute="centerX" id="xH0-k8-eip"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="별점 남기기" id="FHT-UB-raN">
-                        <barButtonItem key="rightBarButtonItem" title="완료" id="2Iy-AP-zJj"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="별점 남기기" id="9ie-2d-7P0">
+                        <barButtonItem key="rightBarButtonItem" title="확인" id="shY-Oq-77E"/>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="fiveStarBtn" destination="cvn-o7-7jU" id="NMY-f2-pr2"/>
+                        <outlet property="fourStarBtn" destination="Hdw-FS-u6H" id="Q9i-6a-ZZn"/>
+                        <outlet property="oneStarBtn" destination="YSS-pm-Hg2" id="OK2-LA-bu4"/>
+                        <outlet property="threeStarBtn" destination="2oz-NL-B3c" id="1ZB-Tk-jcU"/>
+                        <outlet property="twoStarBtn" destination="aHa-7x-zkS" id="rUO-W9-m0B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y07-u3-DZ4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

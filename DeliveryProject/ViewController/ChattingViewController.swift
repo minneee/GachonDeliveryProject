@@ -13,7 +13,9 @@ class ChattingViewController: UIViewController {
     // 메뉴 드롭다운 리스트 
     let dropdownList = ["사용자 신고하기", "채팅방 나가기", "배달 완료"]
     
+    // 주문서 작성자 아이디
     var otherUserId : String = ""
+    var otherUserNickname = ""
     
     
     @IBOutlet weak var announcementView: UIView!
@@ -223,7 +225,16 @@ class ChattingViewController: UIViewController {
                 self?.navigationController?.pushViewController(chattingListVC, animated: true)
             case 2:
                 print("배달 완료")
-                guard let starScoreVC = self?.storyboard?.instantiateViewController(identifier: "StarScoreViewController") else { return }
+                guard let starScoreVC = self?.storyboard?.instantiateViewController(identifier: "StarScoreViewController") as? StarScoreViewController else { return }
+                let id = UserDefaults.standard.string(forKey: "id") ?? ""
+                
+                // 내 아이디와 주문서 작성 아이디가 같다면(내가 주문자라면)
+                if( id == self?.otherUserId){
+                    starScoreVC.deliverNickname = self?.otherUserNickname ?? ""
+                } else{
+                    starScoreVC.receiverNickname = self?.otherUserNickname ?? ""
+                }
+                
                 self?.navigationController?.pushViewController(starScoreVC, animated: true)
                 
                 
@@ -242,6 +253,7 @@ class ChattingViewController: UIViewController {
                 switch response.result {
                 case .success(let response):
                     if(response.success == true){
+                        otherUserNickname = response.otherUserData?.nickname ?? ""
                         nicknameLabel.text = response.otherUserData?.nickname
                         introduceLabel.text = response.otherUserData?.introduce
                         

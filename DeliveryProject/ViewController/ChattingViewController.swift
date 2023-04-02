@@ -228,7 +228,7 @@ class ChattingViewController: UIViewController {
                 guard let starScoreVC = self?.storyboard?.instantiateViewController(identifier: "StarScoreViewController") as? StarScoreViewController else { return }
                 let id = UserDefaults.standard.string(forKey: "id") ?? ""
                 
-                // 내 아이디와 주문서 작성 아이디가 같다면(내가 주문자라면)
+                // 내 아이디와 주문서 작성 아이디가 같다면(내가 주문자라면 배달 닉네임에 상대 닉네임 전달)
                 if( id == self?.otherUserId){
                     starScoreVC.deliverNickname = self?.otherUserNickname ?? ""
                 } else{

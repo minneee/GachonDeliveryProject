@@ -20,9 +20,8 @@ class ReportViewController: UIViewController, UITextViewDelegate {
     @IBAction func reportButton(_ sender: UIButton) {
         let userId = UserDefaults.standard.string(forKey: "id") ?? ""
         
-        let param = ReportRequest(userId: userId, nickName: otherUserNickName, warningContent: reportTextView.text)
+        let param = ReportRequest(userId: userId, nickname: otherUserNickName, warningContent: reportTextView.text)
         postReport(param)
-        
     }
     
     
@@ -92,11 +91,13 @@ class ReportViewController: UIViewController, UITextViewDelegate {
                     if(response.success == true){
                         print("신고하기 성공")
                         
-                        let FailAlert = UIAlertController(title: "접수 완료", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        let successAlert = UIAlertController(title: "접수 완료", message: response.message, preferredStyle: UIAlertController.Style.alert)
                         
-                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
-                        FailAlert.addAction(FailAction)
-                        self.present(FailAlert, animated: true, completion: nil)
+                        let successAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { _ in                        self.navigationController?.popViewController(animated: true)
+                        })
+                        successAlert.addAction(successAction)
+                        self.present(successAlert, animated: true, completion: nil)
+                        
                         
                     }
                     

@@ -66,12 +66,20 @@ class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
         introduceUnderLine()
         self.navigationController?.navigationBar.topItem?.title = ""
         
+        
         self.nicknameText.delegate = self
         self.introduceText.delegate = self
         
         profileImage.image = getImage
         nicknameText.text = getNickname
         introduceText.text = getIntroduce
+                
+        //프로필 사진 둥글게 만들기
+        profileImage.layer.cornerRadius = profileImage.frame.width / 2 - 5
+        profileImage.clipsToBounds = true
+
+
+        
 
         
         
@@ -90,6 +98,8 @@ class ChangeProfileViewController: UIViewController, UITextFieldDelegate {
             if let image = self.selectedImage?.jpegData(compressionQuality: 0.5) {
                 print("🔊[DEBUG] 이미지 설정")
                 MultipartFormData.append(image, withName: "photoName", fileName: "test.jpeg", mimeType: "image/jpeg")
+                
+
             }
             
             

@@ -333,6 +333,12 @@ class ChattingViewController: UIViewController {
                 if self.proflieImage.image == nil {
                     self.proflieImage.image = UIImage(named: "profileImage")
                 }
+                
+                //프로필 사진 둥글게 만들기
+                self.proflieImage.contentMode = .scaleAspectFill
+                self.proflieImage.layer.cornerRadius = self.proflieImage.frame.width / 2
+                self.proflieImage.clipsToBounds = true
+                
                 print(self.proflieImage.image ?? "")
             }
         

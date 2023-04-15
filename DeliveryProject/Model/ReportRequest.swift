@@ -9,6 +9,6 @@ import Foundation
 
 struct ReportRequest : Encodable{
     var userId : String
-    var nickName : String
+    var nickname : String
     var warningContent : String
 }

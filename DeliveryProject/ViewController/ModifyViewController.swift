@@ -77,7 +77,7 @@ class ModifyViewController: UIViewController {
     }
     
     func putModify(_ parameters: ModifyRequest) {
-        AF.request("http://3.37.209.65:3000/modify", method: .put , parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://43.200.179.53:3000/modify", method: .put , parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: ModifyResponse.self) { [self] response in
                 switch response.result {

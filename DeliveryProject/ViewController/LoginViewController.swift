@@ -75,7 +75,7 @@ class ViewController: UIViewController {
     
     
     func postLogin(_ parameters: LoginRequest) {
-        AF.request("http://3.37.209.65:3000/Glogin", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://43.200.179.53:3000/Glogin", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: LoginResponse.self) { [self] response in
                 self.dismissIndicatorView {

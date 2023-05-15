@@ -280,7 +280,7 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
     
     // 전체 주문서 목록
     func getOrderList () {
-        AF.request("http://3.37.209.65:3000/board", method: .get, headers: nil)
+        AF.request("http://43.200.179.53:3000/board", method: .get, headers: nil)
             .validate()
             .responseDecodable(of: OrderListResponse.self) { [self] response in
                 switch response.result {
@@ -340,7 +340,7 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
     
     // 검색 주문서 목록
     func postOrderList (_ parameters: BoardRequest) {
-        AF.request("http://3.37.209.65:3000/board", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://43.200.179.53:3000/board", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: BoardResponse.self) { [self] response in
                 switch response.result {

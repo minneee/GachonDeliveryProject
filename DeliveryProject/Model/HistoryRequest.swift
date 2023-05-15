@@ -8,5 +8,5 @@
 import Foundation
 
 struct HistoryRequest : Encodable {
-    var userId : String
+    
 }

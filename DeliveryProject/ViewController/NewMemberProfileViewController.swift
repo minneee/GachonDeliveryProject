@@ -76,7 +76,7 @@ class NewMemberProfileViewController: UIViewController {
             MultipartFormData.append(parameters.introduce.data(using: .utf8)!, withName: "introduce")
 
             
-        }, to: "http://3.37.209.65:3000/editmypage", method: .patch, headers: headers).responseDecodable(of: ChangeProfileResponse.self) { [self] response in
+        }, to: "http://43.200.179.53:3000/editmypage", method: .patch, headers: headers).responseDecodable(of: ChangeProfileResponse.self) { [self] response in
             switch response.result {
             case .success(let response):
                 if(response.success == true){

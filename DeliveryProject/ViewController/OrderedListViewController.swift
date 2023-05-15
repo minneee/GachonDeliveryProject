@@ -100,7 +100,7 @@ class OrderedListViewController: UIViewController {
         
    
     func postMyOrder(_ parameters: MyOrderRequest) {
-        AF.request("http://3.37.209.65:3000/myorder", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://43.200.179.53:3000/myorder", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: MyOrderResponse.self) { [self] response in
                 switch response.result {
@@ -159,7 +159,7 @@ class OrderedListViewController: UIViewController {
     }
 
     func deleteDelete(_ parameters: DeleteRequest) {
-        AF.request("http://3.37.209.65:3000/delete", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://43.200.179.53:3000/delete", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: DeleteResponse.self) { [self] response in
                 switch response.result {

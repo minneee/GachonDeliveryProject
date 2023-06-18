@@ -6,6 +6,7 @@ import DropDown
 import SocketIO
 
 
+
 class ChattingViewController: UIViewController {
     
     let dropdown = DropDown()
@@ -16,6 +17,8 @@ class ChattingViewController: UIViewController {
     // 주문서 작성자 아이디
     var otherUserId : String = ""
     var otherUserNickname = ""
+    
+    var roomId: String = "-1"
     
     
     @IBOutlet weak var announcementView: UIView!
@@ -111,6 +114,11 @@ class ChattingViewController: UIViewController {
         self.chattingMenuImageView.isUserInteractionEnabled = true
         self.chattingMenuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.chattingMenu)))
         
+        //소켓 오픈
+        ChattingSocketIOManager.shared.socket.connect()
+        //메시지 표시
+        receiveMessage()
+        chattingTableView.reloadData()
         
 //        //스크롤?
 //        for _ in 0...20 {
@@ -134,9 +142,10 @@ class ChattingViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         
         print(otherUserId)
-        let id = UserDefaults.standard.string(forKey: "id") ?? ""
-        let param = FindChatRoomRequest(myUserId: id, otherUserId: otherUserId)
-        postFindChatRoom(param)
+        
+        let param = ChatRecordRequest(roomId: roomId)
+        postChatRecord(param)
+//        postFindChatRoom(param)
         
         let param1 = ProfileRequest(userId: otherUserId)
         postGetProfileImage(param1)
@@ -156,6 +165,33 @@ class ChattingViewController: UIViewController {
         }
       }
     
+    //메시지 보내기 버튼
+    @IBAction func sendMessageButtonAction(_ sender: Any) {
+        sendMessage(msginput: chattingTextView.text ?? "", roomName: "채팅방1", nickname: "미니")
+        
+        //chattingTableView.reloadData()
+        chattingTextView.text = ""
+        print("🌟")
+        
+    }
+    
+    //받은 메시지 보기
+    func receiveMessage() {
+        ChattingSocketIOManager.shared.socket.on("message") { dataArray, ack in
+            print("👀\(dataArray)")
+            var chat = type(of: dataArray)
+            print(chat)
+            self.speechBubbleList.append("\(dataArray[0] as! String): \(dataArray[1] as! String)")
+            self.chattingTableView.reloadData()
+            
+            
+        }
+    }
+    
+    //메시지 보내기
+    func sendMessage(msginput: String, roomName: String, nickname: String) {
+        ChattingSocketIOManager.shared.socket.emit("message", msginput, roomName, nickname)
+    }
     
     
     @objc func keyboardWillShowHandle(notification:NSNotification) {
@@ -244,6 +280,48 @@ class ChattingViewController: UIViewController {
             }
         }
         
+    }
+    
+    func postChatRecord(_ parameters: ChatRecordRequest) {
+        AF.request("http://3.37.209.65:3000/record", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: ChatRecordResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        print("👀\(response.data)")
+                        for i in response.data! {
+                            speechBubbleList.append(i.msg)
+                            print("😀\(i.msg)")
+                            chattingTableView.reloadData()
+                        }
+                
+                    }
+                    
+                    else{
+                        print("채팅 불러오기 실패\(response.message)")
+                        //alert message
+                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        FailAlert.addAction(FailAction)
+                        self.present(FailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let FailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    FailAlert.addAction(FailAction)
+                    self.present(FailAlert, animated: true, completion: nil)
+                }
+                
+                
+                
+            }
     }
     
     func postFindChatRoom(_ parameters: FindChatRoomRequest) {

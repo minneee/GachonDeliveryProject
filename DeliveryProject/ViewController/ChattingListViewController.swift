@@ -10,7 +10,7 @@ import SnapKit
 import Then
 import Alamofire
 
-var chattingUserList: [String] = ["1번 User", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 User"]
+//var chattingUserList: [String] = ["1번 User", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 User"]
 
 class ChattingListViewController: UIViewController {
     
@@ -36,7 +36,7 @@ class ChattingListViewController: UIViewController {
         
         
         let id = UserDefaults.standard.string(forKey: "id") ?? ""
-        let param = ChattingRoomListRequest(myUserId: id)
+        let param = ChattingRoomListRequest(userId: id)
         postRoomList(param)
 
     }
@@ -64,26 +64,29 @@ class ChattingListViewController: UIViewController {
     func postRoomList(_ parameters: ChattingRoomListRequest) {
         AF.request("http://3.37.209.65:3000/find-room-mine", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
-            .responseDecodable(of: ChattingRoomListResponse.self) { [self] response in
+            .responseDecodable(of: ChattingRoomListResponse.self) { [weak self] response in
                 switch response.result {
                 case .success(let response):
                     if(response.success == true){
+                        print(parameters)
+                        print(response)
                         if response.data != nil {
-                            chattingRoomList = response.data!
+                            self?.chattingRoomList = response.data!
+                            DispatchQueue.main.async { [weak self] in
+                                guard let self else { return }
+                                self.chattingListTableView.reloadData()
+                            }
                         }
-                
-                        
-                        
                     }
                     
                     else{
-                        print("로그인 실패\(response.message)")
+                        print("채팅목록 불러오기 실패\(response.message)")
                         //alert message
                         let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
                         
                         let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
                         FailAlert.addAction(FailAction)
-                        self.present(FailAlert, animated: true, completion: nil)
+                        self?.present(FailAlert, animated: true, completion: nil)
                     }
                     
                     
@@ -94,7 +97,7 @@ class ChattingListViewController: UIViewController {
                     
                     let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
                     FailAlert.addAction(FailAction)
-                    self.present(FailAlert, animated: true, completion: nil)
+                    self?.present(FailAlert, animated: true, completion: nil)
                 }
                 
                 
@@ -104,20 +107,29 @@ class ChattingListViewController: UIViewController {
     
 }
 
-extension ChattingListViewController: UITableViewDelegate, UITableViewDataSource {
+extension ChattingListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.chattingRoomList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userCell = tableView.dequeueReusableCell(withIdentifier: "ChattingListTableViewCell", for: indexPath) as! ChattingListTableViewCell
+        print(userCell)
         
         userCell.chattingUserLabel.text = self.chattingRoomList[indexPath.row].whoSend
         userCell.chattingContentLabel.text = self.chattingRoomList[indexPath.row].msg
         userCell.chattingDateLabel.text = self.chattingRoomList[indexPath.row].sendDay
-
+        
         return userCell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // 화면 이동
+        guard let chattingVC = storyboard?.instantiateViewController(withIdentifier: "ChattingVC") as? ChattingViewController else {return}
+        
+        chattingVC.roomId = String(self.chattingRoomList[indexPath.row].roomId)
+        
+        self.navigationController?.pushViewController(chattingVC, animated: true)
+    }
 }

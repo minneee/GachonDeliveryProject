@@ -8,5 +8,5 @@
 import Foundation
 
 struct ChattingRoomListRequest: Encodable {
-    var myUserId: String
+    var userId: String
 }

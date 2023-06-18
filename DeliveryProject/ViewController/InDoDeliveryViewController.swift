@@ -95,14 +95,12 @@ class InDoDeliveryViewController: UIViewController, UITextFieldDelegate{
             startingPoint = nil
         }
 
-
-        
+ 
  
         
         
 //        let param = BoardRequest(deliTip: "desc", startingPoint:"집", arrivingPoint:"가천관", endDeliTime: 2205)
        
-  
 //        if let deliTip = deliTip,
 //           let startingPoint = startingPoint,
 //           let arrivingPoint = arrivingPoint,

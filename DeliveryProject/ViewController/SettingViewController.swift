@@ -228,9 +228,6 @@ class SettingViewController: UIViewController {
         self.setupLayout()
         
         self.view.backgroundColor = .white
-        
-
-        
 
         // 공지사항 버튼
         noticeButton.addTarget(self, action: #selector(goToNoticeVC),for: .touchUpInside)
@@ -465,6 +462,11 @@ class SettingViewController: UIViewController {
                     self.profileImageView.image = UIImage(named: "profileImage")
                 }
                 print(self.profileImageView.image)
+                
+                //프로필 사진 둥글게 만들기
+                self.profileImageView.contentMode = .scaleAspectFill
+                self.profileImageView.layer.cornerRadius = self.profileImageView.frame.width / 2
+                self.profileImageView.clipsToBounds = true
             }
         
     }

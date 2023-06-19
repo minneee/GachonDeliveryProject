@@ -39,6 +39,13 @@ class QuestionViewController: UIViewController, UITextViewDelegate {
                 case .success(let response):
                     if(response.success == true){
                         print("문의 성공")
+                        
+                        let successAlert = UIAlertController(title: "접수 완료", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let successAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { _ in                        self.navigationController?.popViewController(animated: true)
+                        })
+                        successAlert.addAction(successAction)
+                        self.present(successAlert, animated: true, completion: nil)
                     }
                     
                     else{

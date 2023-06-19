@@ -1,8 +1,8 @@
 PODS:
-  - Alamofire (5.5.0)
+  - Alamofire (5.6.4)
   - DropDown (2.3.13)
-  - IQKeyboardManagerSwift (6.5.9)
-  - SnapKit (5.0.1)
+  - IQKeyboardManagerSwift (6.5.11)
+  - SnapKit (5.6.0)
   - Socket.IO-Client-Swift (16.0.1):
     - Starscream (~> 4.0)
   - Starscream (4.0.4)
@@ -30,15 +30,15 @@ SPEC REPOS:
     - Toast-Swift
 
 SPEC CHECKSUMS:
-  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
-  IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Socket.IO-Client-Swift: c116d6dc9fd6be9c259bacfe143f8725bce7d79e
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 2ee96c93db0e7e2d748c4aa6e1af6d8126050262
+PODFILE CHECKSUM: 7ad6e2eb3eb3a2b9a9be51d29f8e7b5fdf8919da
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0

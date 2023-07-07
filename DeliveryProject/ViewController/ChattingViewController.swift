@@ -21,6 +21,62 @@ class ChattingViewController: UIViewController {
     var roomId: String = "-1"
     
     
+    // Message 구조체를 저장할 배열 생성
+    var speechBubbleList: [Message] = []
+    
+    // chatRecordData 저장할 배열 생성
+    var chatRecordList : [chatRecordData] = []
+    
+    
+    // 채팅 메시지 구조체 생성
+    struct Message {
+        let content : String
+        let roomName : String
+        let nickname : String
+        var isMyMessage : Bool
+        
+        init(content : String, isMyMessage : Bool, roomName : String, nickname : String){
+            self.content = content
+            self.isMyMessage = isMyMessage
+            self.nickname = nickname
+            self.roomName = roomName
+        }
+        
+
+        init?(data: [String : sendMessageStruct]){
+            guard let msginput = data["message"]?.msginput as? String,
+                  let roomName = data["message"]?.roomName as? String,
+                  let nickname = data["message"]?.nickname as? String,
+                  let isMyMessage = data["message"]?.isMyMessage as? Bool else{ return }
+            
+            self.content = msginput
+            self.roomName = roomName
+            self.nickname = nickname
+            self.isMyMessage = isMyMessage
+        }
+        
+        init? (data: chatRecordData){
+            guard let msginput = data.msg as? String,
+                  let nickname = data.nickname as? String else{ return }
+             
+            self.content = msginput
+            self.nickname = nickname
+        }
+        
+        
+    }
+    
+    
+    
+    // 메시지 전송 시 value 형태
+    struct sendMessageStruct{
+        let msginput : String
+        let roomName : String
+        let nickname : String
+        var isMyMessage : Bool
+    }
+    
+    
     @IBOutlet weak var announcementView: UIView!
     
     @IBOutlet weak var chattingTableView: UITableView!
@@ -53,8 +109,11 @@ class ChattingViewController: UIViewController {
     
     
     
-    var speechBubbleList: [String] = ["hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 "]
+//    var speechBubbleList: [String] = ["hi", "지이이이인짜 긴 글이 들어가면 자동으로 크기가 이쁘게 될까>지이이이인짜 ", "hi", "지이이이인짜 긴 글이 들어가면 "]
     
+    
+    
+
     
     
     override func viewDidLoad() {
@@ -167,13 +226,25 @@ class ChattingViewController: UIViewController {
     
     //메시지 보내기 버튼
     @IBAction func sendMessageButtonAction(_ sender: Any) {
-        sendMessage(msginput: chattingTextView.text ?? "", roomName: "채팅방1", nickname: "미니")
+//        sendMessage(msginput: chattingTextView.text ?? "", roomName: "채팅방1", nickname: "미니"))
         
-        //chattingTableView.reloadData()
+        sendMessage(msginput: chattingTextView.text ?? "", roomName: "채팅방1", nickname: "미니", isMyMessage: true)
+        
+        
+        chattingTableView.reloadData()
         chattingTextView.text = ""
         print("🌟")
         
     }
+    
+    //메시지 보내기
+    func sendMessage(msginput: String, roomName: String, nickname: String, isMyMessage : Bool) {
+        var messageInfo = sendMessageStruct(msginput: msginput, roomName: roomName, nickname: nickname, isMyMessage: isMyMessage)
+        messageInfo.isMyMessage = true
+        
+        ChattingSocketIOManager.shared.socket.emit("message", messageInfo as! SocketData)
+    }
+    
     
     //받은 메시지 보기
     func receiveMessage() {
@@ -181,17 +252,22 @@ class ChattingViewController: UIViewController {
             print("👀\(dataArray)")
             var chat = type(of: dataArray)
             print(chat)
-            self.speechBubbleList.append("\(dataArray[0] as! String): \(dataArray[1] as! String)")
+//            self.speechBubbleList.append("\(dataArray[0] as! String): \(dataArray[1] as! String)")
+            
+            guard let messageData = dataArray[0] as? [String : sendMessageStruct],
+                  var message = Message(data: messageData) else { return }
+            
+
+            self.speechBubbleList.append(message)
+            
+                                    
             self.chattingTableView.reloadData()
             
             
         }
     }
     
-    //메시지 보내기
-    func sendMessage(msginput: String, roomName: String, nickname: String) {
-        ChattingSocketIOManager.shared.socket.emit("message", msginput, roomName, nickname)
-    }
+ 
     
     
     @objc func keyboardWillShowHandle(notification:NSNotification) {
@@ -289,12 +365,23 @@ class ChattingViewController: UIViewController {
                 switch response.result {
                 case .success(let response):
                     if(response.success == true){
-                        print("👀\(response.data)")
+                        print("👀\(String(describing: response.data))")
+                        
+                        
                         for i in response.data! {
-                            speechBubbleList.append(i.msg)
+//                            chatRecordList.append(i)  // chatRecordData 타입의 responseData를 chatRecordData에 저장
+                            
+                            let recordMessage = i
+                            let msg = Message(data: recordMessage)
+                            
+                            // 채팅 nickname이랑 자신의 nickname 비교하여 isMyMessage 타입 정의
+//                            if (i.nickname == " ")
                             print("😀\(i.msg)")
-                            chattingTableView.reloadData()
                         }
+                        
+                        
+                        chattingTableView.reloadData()
+                        
                 
                     }
                     
@@ -564,26 +651,59 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         return speechBubbleList.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row % 2 == 0 {
-            let userCell = tableView.dequeueReusableCell(withIdentifier: "ChattingTableViewYourCell", for: indexPath) as! ChattingTableViewYourCell
 
-            userCell.speechYourDateLabel.text = "2022.12.25"
-            userCell.speechYourLabel.text = speechBubbleList[indexPath.row]
+        // speechBubbleList 배열의 값의 isMyMessage가 true이면 myCell, false면 yourCell
+        let cellIdentifier = speechBubbleList[indexPath.row].isMyMessage ? "ChattingTableViewMyCell" : "ChattingTableViewYourCell"
 
-            return userCell
-        }
-        else {
+        if(cellIdentifier == "ChattingTableViewMyCell"){
             let userCell = tableView.dequeueReusableCell(withIdentifier: "ChattingTableViewMyCell", for: indexPath) as! ChattingTableViewMyCell
 
-            userCell.speechDateLabel.text = "2022.12.25"
-            userCell.speechLabel.text = speechBubbleList[indexPath.row]
 
+            // speechBubbleList에 date 속성 추가해야 할듯
+//            userCell.speechDateLabel.text = speechBubbleList[indexPath.row].date
+            userCell.speechLabel.text = speechBubbleList[indexPath.row].content
             return userCell
         }
-        
-        
+
+        // 상대 채팅이면
+        else{
+            let userCell = tableView.dequeueReusableCell(withIdentifier: "ChattingTableViewYourCell", for: indexPath) as! ChattingTableViewYourCell
+
+
+            // speechBubbleList에 date 속성 추가해야 할듯
+//            userCell.speechYourDateLabel.text = speechBubbleList[indexPath.row].date
+            userCell.speechYourLabel.text = speechBubbleList[indexPath.row].content
+            return userCell
+        }
+    
     }
+    
+    
+    
+    
+    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        if indexPath.row % 2 == 0 {
+//            let userCell = tableView.dequeueReusableCell(withIdentifier: "ChattingTableViewYourCell", for: indexPath) as! ChattingTableViewYourCell
+//
+//            userCell.speechYourDateLabel.text = "2022.12.25"
+//            userCell.speechYourLabel.text = speechBubbleList[indexPath.row]
+//
+//            return userCell
+//        }
+//        else {
+//            let userCell = tableView.dequeueReusableCell(withIdentifier: "ChattingTableViewMyCell", for: indexPath) as! ChattingTableViewMyCell
+//
+//            userCell.speechDateLabel.text = "2022.12.25"
+//            userCell.speechLabel.text = speechBubbleList[indexPath.row]
+//
+//            return userCell
+//        }
+//
+//
+//    }
     
    
 }

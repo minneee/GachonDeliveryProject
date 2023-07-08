@@ -23,6 +23,7 @@ class OrderViewController: UIViewController {
     
     
 
+    // 채팅 버튼을 눌렀을 때 chattingViewController의 roomId 값을 설정해줘야 함
     @IBAction func chattingBtn(_ sender: UIButton) {
         
         guard let chattingVC = storyboard?.instantiateViewController(withIdentifier: "ChattingVC") as? ChattingViewController else {return}

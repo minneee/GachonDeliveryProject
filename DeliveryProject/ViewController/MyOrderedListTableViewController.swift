@@ -13,6 +13,7 @@ class MyOrderedListTableViewController: UITableViewController {
     @IBOutlet var MyOrderedListTable: UITableView!
     
     var DList : [Data] = []
+    var id = ""
     
     
     override func viewDidLoad() {
@@ -23,9 +24,10 @@ class MyOrderedListTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        let id = UserDefaults.standard.string(forKey: "id") ?? ""
-        let param = HistoryRequest(userId: id)
-        postHistory(param)
+        id = UserDefaults.standard.string(forKey: "id") ?? ""
+//        let param = HistoryRequest(userId: id)
+//        postHistory(param)
+        postHistory(HistoryRequest())
         
     }
 
@@ -63,7 +65,7 @@ class MyOrderedListTableViewController: UITableViewController {
     }
     
     func postHistory(_ parameters: HistoryRequest) {
-        AF.request("http://3.37.209.65:3000/history", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://3.37.209.65:3000/history/\(id)", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: HistoryResponse.self) { [self] response in
                 switch response.result {

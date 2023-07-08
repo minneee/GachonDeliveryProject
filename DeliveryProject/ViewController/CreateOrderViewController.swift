@@ -155,7 +155,7 @@ class CreateOrderViewController: UIViewController {
     }
     
     func postCreateOrder(_ parameters: CreateOrderRequest) {
-        AF.request("http://3.37.209.65:3000/add", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://43.200.179.53:3000/add", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: CreateOrderResponse.self) { [self] response in
                 switch response.result {
@@ -165,7 +165,6 @@ class CreateOrderViewController: UIViewController {
                         navigationController?.popViewController(animated: true)
                         // 계속 data를 0으로만 뜸
                         print(response.data ?? 0, response.message, response.success)
-                        
                         
                     }
                     

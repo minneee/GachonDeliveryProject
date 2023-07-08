@@ -330,7 +330,7 @@ class SettingViewController: UIViewController {
     
     //회원 탈퇴
     func deleteWithdrawal(_ parameters: WithdrawalRequest) {
-        AF.request("http://3.37.209.65:3000/Gsecede", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://43.200.179.53:3000/Gsecede", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: WithdrawalResponse.self) { [self] response in
                 switch response.result {
@@ -374,7 +374,7 @@ class SettingViewController: UIViewController {
     
     //프로필 보기
     func postProfile(_ parameters: ProfileRequest) {
-        AF.request("http://3.37.209.65:3000/mypage", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://43.200.179.53:3000/mypage", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: ProfileResponse.self) { [self] response in
                 switch response.result {
@@ -445,7 +445,7 @@ class SettingViewController: UIViewController {
             
         }
         
-        AF.download("http://3.37.209.65:3000/give-img-url", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil, to: destination)//profileImageView.image?)
+        AF.download("http://43.200.179.53:3000/give-img-url", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil, to: destination)//profileImageView.image?)
             .downloadProgress(closure: { Progress in
                 //progressView
             })

@@ -32,7 +32,7 @@ class QuestionViewController: UIViewController, UITextViewDelegate {
     }
     
     func postSuggestion(_ parameters: SuggestionRequest){
-        AF.request("http://3.37.209.65:3000/suggestion", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://43.200.179.53:3000/suggestion", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: LoginResponse.self) { [self] response in
                 switch response.result {

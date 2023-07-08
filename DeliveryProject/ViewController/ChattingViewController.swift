@@ -18,7 +18,11 @@ class ChattingViewController: UIViewController {
     var otherUserId : String = ""
     var otherUserNickname = ""
     
-    var roomId: String = "-1"
+    
+    var myNickname : String = ""
+    
+//    var roomId: String = "-1"
+    var roomId : Int = -1
     
     
     // Message 구조체를 저장할 배열 생성
@@ -44,23 +48,26 @@ class ChattingViewController: UIViewController {
         
 
         init?(data: [String : sendMessageStruct]){
-            guard let msginput = data["message"]?.msginput as? String,
-                  let roomName = data["message"]?.roomName as? String,
-                  let nickname = data["message"]?.nickname as? String,
-                  let isMyMessage = data["message"]?.isMyMessage as? Bool else{ return }
+            let msginput = data["message"]?.msginput as? String
+            let roomName = data["message"]?.roomName as? String
+            let nickname = data["message"]?.nickname as? String
+            let isMyMessage = data["message"]?.isMyMessage as? Bool
             
-            self.content = msginput
-            self.roomName = roomName
-            self.nickname = nickname
-            self.isMyMessage = isMyMessage
+            
+            self.content = msginput ?? ""
+            self.roomName = roomName ?? ""
+            self.nickname = nickname ?? ""
+            self.isMyMessage = isMyMessage ?? false
         }
         
         init? (data: chatRecordData){
-            guard let msginput = data.msg as? String,
-                  let nickname = data.nickname as? String else{ return }
+            let msginput = data.msg
+            let nickname = data.nickname
              
             self.content = msginput
             self.nickname = nickname
+            self.roomName = ""
+            self.isMyMessage = false
         }
         
         
@@ -202,12 +209,22 @@ class ChattingViewController: UIViewController {
         
         print(otherUserId)
         
-        let param = ChatRecordRequest(roomId: roomId)
+        let id = UserDefaults().string(forKey: "id") ?? ""
+        let param2 = FindChatRoomRequest(myUserId: id , otherUserId: otherUserId)
+        postFindChatRoom(param2)
+        
+        
+        
+        // 과거 채팅 내역 API만 roomId가 String 타입임
+        let param = ChatRecordRequest(roomId: String(roomId))
         postChatRecord(param)
-//        postFindChatRoom(param)
+        
+
         
         let param1 = ProfileRequest(userId: otherUserId)
         postGetProfileImage(param1)
+        
+        
         
         
     }
@@ -228,7 +245,7 @@ class ChattingViewController: UIViewController {
     @IBAction func sendMessageButtonAction(_ sender: Any) {
 //        sendMessage(msginput: chattingTextView.text ?? "", roomName: "채팅방1", nickname: "미니"))
         
-        sendMessage(msginput: chattingTextView.text ?? "", roomName: "채팅방1", nickname: "미니", isMyMessage: true)
+        sendMessage(msginput: chattingTextView.text ?? "", roomName: String(roomId), nickname: "미니", isMyMessage: true)
         
         
         chattingTableView.reloadData()
@@ -441,7 +458,9 @@ class ChattingViewController: UIViewController {
                         case 5: deliveryScore.image = UIImage(named: "PinwheelPoint5")
                         default: deliveryScore.image = UIImage(named: "PinwheelPoint0")
                         }
-                
+                        
+                        
+                        roomId = response.roomId ?? -1
                     }
                     
                     else{

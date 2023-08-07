@@ -8,5 +8,5 @@
 import Foundation
 
 struct ChatRecordRequest: Encodable {
-    var roomId: String
+    var roomId: Int
 }

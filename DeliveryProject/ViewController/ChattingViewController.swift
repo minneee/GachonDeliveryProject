@@ -35,27 +35,27 @@ class ChattingViewController: UIViewController {
     // 채팅 메시지 구조체 생성
     struct Message {
         let content : String
-        let roomName : String
+        let roomId : Int
         let nickname : String
         var isMyMessage : Bool
         
-        init(content : String, isMyMessage : Bool, roomName : String, nickname : String){
+        init(content : String, isMyMessage : Bool, roomId : Int, nickname : String){
             self.content = content
             self.isMyMessage = isMyMessage
             self.nickname = nickname
-            self.roomName = roomName
+            self.roomId = roomId
         }
         
 
         init?(data: [String : sendMessageStruct]){
             let msginput = data["message"]?.msginput as? String
-            let roomName = data["message"]?.roomName as? String
+            let roomId = data["message"]?.roomId as? Int
             let nickname = data["message"]?.nickname as? String
             let isMyMessage = data["message"]?.isMyMessage as? Bool
             
             
             self.content = msginput ?? ""
-            self.roomName = roomName ?? ""
+            self.roomId = roomId ?? -1
             self.nickname = nickname ?? ""
             self.isMyMessage = isMyMessage ?? false
         }
@@ -66,7 +66,7 @@ class ChattingViewController: UIViewController {
              
             self.content = msginput
             self.nickname = nickname
-            self.roomName = ""
+            self.roomId = -1
             self.isMyMessage = false
         }
         
@@ -78,7 +78,7 @@ class ChattingViewController: UIViewController {
     // 메시지 전송 시 value 형태
     struct sendMessageStruct{
         let msginput : String
-        let roomName : String
+        let roomId : Int
         let nickname : String
         var isMyMessage : Bool
     }
@@ -216,7 +216,7 @@ class ChattingViewController: UIViewController {
         
         
         // 과거 채팅 내역 API만 roomId가 String 타입임
-        let param = ChatRecordRequest(roomId: String(roomId))
+        let param = ChatRecordRequest(roomId: roomId)
         postChatRecord(param)
         
 
@@ -245,7 +245,7 @@ class ChattingViewController: UIViewController {
     @IBAction func sendMessageButtonAction(_ sender: Any) {
 //        sendMessage(msginput: chattingTextView.text ?? "", roomName: "채팅방1", nickname: "미니"))
         
-        sendMessage(msginput: chattingTextView.text ?? "", roomName: String(roomId), nickname: "미니", isMyMessage: true)
+        sendMessage(msginput: chattingTextView.text ?? "", roomId: roomId, nickname: "미니", isMyMessage: true)
         
         
         chattingTableView.reloadData()
@@ -255,8 +255,8 @@ class ChattingViewController: UIViewController {
     }
     
     //메시지 보내기
-    func sendMessage(msginput: String, roomName: String, nickname: String, isMyMessage : Bool) {
-        var messageInfo = sendMessageStruct(msginput: msginput, roomName: roomName, nickname: nickname, isMyMessage: isMyMessage)
+    func sendMessage(msginput: String, roomId: Int, nickname: String, isMyMessage : Bool) {
+        var messageInfo = sendMessageStruct(msginput: msginput, roomId: roomId, nickname: nickname, isMyMessage: isMyMessage)
         messageInfo.isMyMessage = true
         
         ChattingSocketIOManager.shared.socket.emit("message", messageInfo as! SocketData)

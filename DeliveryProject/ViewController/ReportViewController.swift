@@ -14,7 +14,7 @@ class ReportViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var reportTextView: UITextView!
     
     // 상대 닉네임, 채팅 뷰에서 받아야 함
-    let otherUserNickName = "미니"
+    var otherUserNickName = ""
     
     // 신고하기 버튼
     @IBAction func reportButton(_ sender: UIButton) {

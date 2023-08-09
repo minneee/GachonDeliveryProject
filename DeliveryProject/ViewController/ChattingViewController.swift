@@ -221,6 +221,12 @@ class ChattingViewController: UIViewController {
         let param2 = FindChatRoomRequest(myUserId: id , otherUserId: otherUserId)
         postFindChatRoom(param2)
         
+        // completion Handler를 이용
+//        postFindChatRoom(param2){
+//            // 과거 채팅 내역 불러오기
+//            let param = ChatRecordRequest(roomId: roomId)
+//            postChatRecord(param)
+//        }
         
         // 상대 프로필 가져오기
         let param1 = ProfileRequest(userId: otherUserId)
@@ -360,8 +366,9 @@ class ChattingViewController: UIViewController {
             switch index{
             case 0:
                 print("신고하기")
-                guard let reportVC = self?.storyboard?.instantiateViewController(identifier: "ReportViewController") else { return }
+                guard let reportVC = self?.storyboard?.instantiateViewController(identifier: "ReportViewController") as? ReportViewController else { return }
 //                reportVC.otherUserNickName = 상대 닉네임 보내줘야 함
+                reportVC.otherUserNickName = self?.otherUserNickname ?? ""
                 self?.navigationController?.pushViewController(reportVC, animated: true)
                 
             case 1:

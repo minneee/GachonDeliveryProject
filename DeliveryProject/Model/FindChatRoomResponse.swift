@@ -9,6 +9,7 @@ import Foundation
 struct FindChatRoomResponse : Decodable{
     var roomId : Int?
     var otherUserData : UserData?
+    var myData : myData
     var success: Bool
     var message : String
     var property : Int
@@ -19,4 +20,8 @@ struct UserData : Decodable{
     var introduce : String
     var orderRate : Int?
     var deliveryRate : Int?
+}
+
+struct myData :Decodable{
+    var nickname : String
 }

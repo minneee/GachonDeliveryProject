@@ -28,47 +28,53 @@ class ChattingViewController: UIViewController {
     // Message 구조체를 저장할 배열 생성
     var speechBubbleList: [Message] = []
     
-    // chatRecordData 저장할 배열 생성
-    var chatRecordList : [chatRecordData] = []
+//    // 이전 대화를 저장할 배열 생성
+//    var chatRecordList : [Message] = []
     
     
     // 채팅 메시지 구조체 생성
     struct Message {
         let content : String
-        let roomName : String
+        let roomId : Int
         let nickname : String
         var isMyMessage : Bool
+        let sendTime : String
         
-        init(content : String, isMyMessage : Bool, roomName : String, nickname : String){
+        init(content : String, isMyMessage : Bool, roomId : Int, nickname : String, sendTime : String){
             self.content = content
             self.isMyMessage = isMyMessage
             self.nickname = nickname
-            self.roomName = roomName
+            self.roomId = roomId
+            self.sendTime = sendTime
         }
         
 
         init?(data: [String : sendMessageStruct]){
             let msginput = data["message"]?.msginput as? String
-            let roomName = data["message"]?.roomName as? String
+            let roomId = data["message"]?.roomId as? Int
             let nickname = data["message"]?.nickname as? String
             let isMyMessage = data["message"]?.isMyMessage as? Bool
+            let sendTime = data["message"]?.sendTime as? String
             
             
             self.content = msginput ?? ""
-            self.roomName = roomName ?? ""
+            self.roomId = roomId ?? -1
             self.nickname = nickname ?? ""
             self.isMyMessage = isMyMessage ?? false
+            self.sendTime = sendTime ?? ""
         }
         
-        init? (data: chatRecordData){
-            let msginput = data.msg
-            let nickname = data.nickname
-             
-            self.content = msginput
-            self.nickname = nickname
-            self.roomName = ""
-            self.isMyMessage = false
-        }
+//        init? (data: chatRecordData){
+//            let msginput = data.msg
+//            let nickname = data.nickname
+//
+//
+//            self.content = msginput
+//            self.nickname = nickname
+//            self.roomId = roomId
+//            self.isMyMessage = false
+//            self.sendTime = data.sendDay
+//        }
         
         
     }
@@ -78,9 +84,10 @@ class ChattingViewController: UIViewController {
     // 메시지 전송 시 value 형태
     struct sendMessageStruct{
         let msginput : String
-        let roomName : String
+        let roomId : Int
         let nickname : String
         var isMyMessage : Bool
+        let sendTime : String
     }
     
     
@@ -209,23 +216,26 @@ class ChattingViewController: UIViewController {
         
         print(otherUserId)
         
+        // roomId 찾기
         let id = UserDefaults().string(forKey: "id") ?? ""
         let param2 = FindChatRoomRequest(myUserId: id , otherUserId: otherUserId)
         postFindChatRoom(param2)
         
+        // completion Handler를 이용
+//        postFindChatRoom(param2){
+//            // 과거 채팅 내역 불러오기
+//            let param = ChatRecordRequest(roomId: roomId)
+//            postChatRecord(param)
+//        }
         
-        
-        // 과거 채팅 내역 API만 roomId가 String 타입임
-        let param = ChatRecordRequest(roomId: String(roomId))
-        postChatRecord(param)
-        
-
-        
+        // 상대 프로필 가져오기
         let param1 = ProfileRequest(userId: otherUserId)
         postGetProfileImage(param1)
         
         
-        
+        // 과거 채팅 내역 불러오기
+        let param = ChatRecordRequest(roomId: roomId)
+        postChatRecord(param)
         
     }
     
@@ -245,7 +255,17 @@ class ChattingViewController: UIViewController {
     @IBAction func sendMessageButtonAction(_ sender: Any) {
 //        sendMessage(msginput: chattingTextView.text ?? "", roomName: "채팅방1", nickname: "미니"))
         
-        sendMessage(msginput: chattingTextView.text ?? "", roomName: String(roomId), nickname: "미니", isMyMessage: true)
+        
+        // 메시지를 보내는 시간을 받아서 같이 넘김
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+        
+        let sendTime = dateFormatter.string(from: currentDate)
+        print("sendTime : ", sendTime)
+        
+        
+        sendMessage(msginput: chattingTextView.text ?? "", roomId: roomId, nickname: myNickname, isMyMessage: true, sendTime: sendTime)
         
         
         chattingTableView.reloadData()
@@ -255,8 +275,10 @@ class ChattingViewController: UIViewController {
     }
     
     //메시지 보내기
-    func sendMessage(msginput: String, roomName: String, nickname: String, isMyMessage : Bool) {
-        var messageInfo = sendMessageStruct(msginput: msginput, roomName: roomName, nickname: nickname, isMyMessage: isMyMessage)
+    func sendMessage(msginput: String, roomId: Int, nickname: String, isMyMessage : Bool, sendTime : String) {
+        var messageInfo = sendMessageStruct(msginput: msginput, roomId: roomId, nickname: nickname, isMyMessage: isMyMessage, sendTime: sendTime)
+        
+        // 자신이 메시지를 보내는 것이기 때문에 isMyMessage를 true로 설정
         messageInfo.isMyMessage = true
         
         ChattingSocketIOManager.shared.socket.emit("message", messageInfo as! SocketData)
@@ -274,12 +296,12 @@ class ChattingViewController: UIViewController {
             guard let messageData = dataArray[0] as? [String : sendMessageStruct],
                   var message = Message(data: messageData) else { return }
             
+            // 받은 메시지이기 때문에 isMyMessage를 false로 설정
+            message.isMyMessage = false
+            
 
             self.speechBubbleList.append(message)
-            
-                                    
             self.chattingTableView.reloadData()
-            
             
         }
     }
@@ -344,8 +366,9 @@ class ChattingViewController: UIViewController {
             switch index{
             case 0:
                 print("신고하기")
-                guard let reportVC = self?.storyboard?.instantiateViewController(identifier: "ReportViewController") else { return }
+                guard let reportVC = self?.storyboard?.instantiateViewController(identifier: "ReportViewController") as? ReportViewController else { return }
 //                reportVC.otherUserNickName = 상대 닉네임 보내줘야 함
+                reportVC.otherUserNickName = self?.otherUserNickname ?? ""
                 self?.navigationController?.pushViewController(reportVC, animated: true)
                 
             case 1:
@@ -386,13 +409,18 @@ class ChattingViewController: UIViewController {
                         
                         
                         for i in response.data! {
-//                            chatRecordList.append(i)  // chatRecordData 타입의 responseData를 chatRecordData에 저장
                             
-                            let recordMessage = i
-                            let msg = Message(data: recordMessage)
+                            // 이전 채팅 기록의 닉네임을 자신의 닉네임과 비교하여 isMyMessage를 구분
+                            var isMyMessage = true
+                            if(i.nickname != myNickname){
+                                isMyMessage = false
+                            }
                             
-                            // 채팅 nickname이랑 자신의 nickname 비교하여 isMyMessage 타입 정의
-//                            if (i.nickname == " ")
+                            // Message 구조체 타입의 인스턴스 생성
+                            let msg = Message(content: i.msg, isMyMessage: isMyMessage, roomId: roomId, nickname: i.nickname, sendTime: i.sendDay)
+                            
+                            // 이전 채팅 기록을 저장
+                            speechBubbleList.append(msg)
                             print("😀\(i.msg)")
                         }
                         
@@ -667,7 +695,8 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 //tableView
 extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return speechBubbleList.count
+        
+        return  speechBubbleList.count
     }
     
     
@@ -680,8 +709,8 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
             let userCell = tableView.dequeueReusableCell(withIdentifier: "ChattingTableViewMyCell", for: indexPath) as! ChattingTableViewMyCell
 
 
-            // speechBubbleList에 date 속성 추가해야 할듯
-//            userCell.speechDateLabel.text = speechBubbleList[indexPath.row].date
+            // label에 sendTime과 content 추가
+            userCell.speechDateLabel.text = speechBubbleList[indexPath.row].sendTime
             userCell.speechLabel.text = speechBubbleList[indexPath.row].content
             return userCell
         }
@@ -691,8 +720,8 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
             let userCell = tableView.dequeueReusableCell(withIdentifier: "ChattingTableViewYourCell", for: indexPath) as! ChattingTableViewYourCell
 
 
-            // speechBubbleList에 date 속성 추가해야 할듯
-//            userCell.speechYourDateLabel.text = speechBubbleList[indexPath.row].date
+            // label에 sendTime과 content 추가
+            userCell.speechYourDateLabel.text = speechBubbleList[indexPath.row].sendTime
             userCell.speechYourLabel.text = speechBubbleList[indexPath.row].content
             return userCell
         }

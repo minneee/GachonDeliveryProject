@@ -10,7 +10,9 @@ import SnapKit
 import Then
 import Alamofire
 
-var noticeList: [String] = ["1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지"]
+//var noticeList: [String] = ["1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지", "4번 공지", "1번 공지", "2번 공지사항 제목은 좀 길어요", "3번 공지3번 공지3번 공지3번 공지"]
+
+var noticeList : [String : String] = ["1번 공지" : "23/01/01", "2번 공지" : "23/02/02"]
 
 class NoticeViewController: UIViewController {
     
@@ -80,8 +82,11 @@ extension NoticeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userCell = tableView.dequeueReusableCell(withIdentifier: "NoticeTableViewCell", for: indexPath) as! NoticeTableViewCell
         
-        userCell.noticeDateLabel.text = "23/01/01"
-        userCell.noticeTitleLabel.text = noticeList[indexPath.row]
+        var date = [String](noticeList.values)
+        var contents = [String](noticeList.keys)
+        
+        userCell.noticeDateLabel.text = date[indexPath.row]
+        userCell.noticeTitleLabel.text = contents[indexPath.row]
 
         return userCell
     }

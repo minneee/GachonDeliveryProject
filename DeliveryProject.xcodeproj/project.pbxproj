@@ -296,10 +296,10 @@
 				CB8B92FA296A770B0008B497 /* ReportViewController.swift */,
 				CB392677296C205A00DA319C /* MyOrderedListTableViewController.swift */,
 				CB39267B296C52D200DA319C /* StarScoreViewController.swift */,
-				3DABD397296ED72400677B84 /* ChattingViewController.swift */,
 				3DABD39B296ED88600677B84 /* SettingViewController.swift */,
 				3DABD39D296ED8EC00677B84 /* NoticeViewController.swift */,
 				CB39267D296FD76600DA319C /* ModifyViewController.swift */,
+				3DABD397296ED72400677B84 /* ChattingViewController.swift */,
 				3D749F832972B21800F512D8 /* ChattingListViewController.swift */,
 				3D2C8032298B99140070698D /* NewMemberProfileViewController.swift */,
 			);

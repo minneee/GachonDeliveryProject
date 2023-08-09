@@ -128,6 +128,11 @@ extension ChattingListViewController: UITableViewDelegate, UITableViewDataSource
         // 화면 이동
         guard let chattingVC = storyboard?.instantiateViewController(withIdentifier: "ChattingVC") as? ChattingViewController else {return}
         
+        /*  chatiingViewController의 otherUserId는 주문서 작성자의 ID인데
+            chattingListViewController에서 상대의 userId를 넘겨주게 되면
+            주문서 작성자 시점에서 배달하는 사람 ID를 넘겨주게 됨 
+        */
+//        chattingVC.otherUserId = self.chattingRoomList[indexPath.row].userId
         chattingVC.roomId = self.chattingRoomList[indexPath.row].roomId 
         
         self.navigationController?.pushViewController(chattingVC, animated: true)

@@ -10,4 +10,6 @@ import Foundation
 struct FindChatRoomRequest: Encodable{
     var myUserId : String
     var otherUserId : String
+    var deliverId : String
+    var articleId : Int
 }

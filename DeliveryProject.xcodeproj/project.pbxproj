@@ -60,6 +60,12 @@
 		CB8B92F529693FB50008B497 /* ChangeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92F429693FB50008B497 /* ChangeProfileViewController.swift */; };
 		CB8B92F9296A72380008B497 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92F8296A72380008B497 /* QuestionViewController.swift */; };
 		CB8B92FB296A770B0008B497 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B92FA296A770B0008B497 /* ReportViewController.swift */; };
+		CB97FA672A8E12E0004D4D52 /* EndDeliveryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB97FA662A8E12E0004D4D52 /* EndDeliveryRequest.swift */; };
+		CB97FA692A8E12ED004D4D52 /* EndDeliveryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB97FA682A8E12ED004D4D52 /* EndDeliveryResponse.swift */; };
+		CB97FA6B2A8E1919004D4D52 /* DeliverRatingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB97FA6A2A8E1919004D4D52 /* DeliverRatingRequest.swift */; };
+		CB97FA6D2A8E192C004D4D52 /* DeliverRatingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB97FA6C2A8E192C004D4D52 /* DeliverRatingResponse.swift */; };
+		CB97FA6F2A8E1940004D4D52 /* OrderRatingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB97FA6E2A8E1940004D4D52 /* OrderRatingRequest.swift */; };
+		CB97FA712A8E194E004D4D52 /* OrderRatingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB97FA702A8E194E004D4D52 /* OrderRatingResponse.swift */; };
 		CBAA43142983E46B009C6DA7 /* ChangeProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAA43132983E46B009C6DA7 /* ChangeProfileRequest.swift */; };
 		CBAA43162983E4AD009C6DA7 /* ChangeProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAA43152983E4AD009C6DA7 /* ChangeProfileResponse.swift */; };
 		CBAA43182983F26F009C6DA7 /* SuggestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAA43172983F26F009C6DA7 /* SuggestionRequest.swift */; };
@@ -135,6 +141,12 @@
 		CB8B92F429693FB50008B497 /* ChangeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileViewController.swift; sourceTree = "<group>"; };
 		CB8B92F8296A72380008B497 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		CB8B92FA296A770B0008B497 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		CB97FA662A8E12E0004D4D52 /* EndDeliveryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndDeliveryRequest.swift; sourceTree = "<group>"; };
+		CB97FA682A8E12ED004D4D52 /* EndDeliveryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndDeliveryResponse.swift; sourceTree = "<group>"; };
+		CB97FA6A2A8E1919004D4D52 /* DeliverRatingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverRatingRequest.swift; sourceTree = "<group>"; };
+		CB97FA6C2A8E192C004D4D52 /* DeliverRatingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverRatingResponse.swift; sourceTree = "<group>"; };
+		CB97FA6E2A8E1940004D4D52 /* OrderRatingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRatingRequest.swift; sourceTree = "<group>"; };
+		CB97FA702A8E194E004D4D52 /* OrderRatingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRatingResponse.swift; sourceTree = "<group>"; };
 		CBAA43132983E46B009C6DA7 /* ChangeProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileRequest.swift; sourceTree = "<group>"; };
 		CBAA43152983E4AD009C6DA7 /* ChangeProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileResponse.swift; sourceTree = "<group>"; };
 		CBAA43172983F26F009C6DA7 /* SuggestionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionRequest.swift; sourceTree = "<group>"; };
@@ -217,6 +229,12 @@
 				CB883A4229CB1A090087096D /* FindChatRoomResponse.swift */,
 				F22FE84329FFC2E000266DD5 /* ChatRecordRequest.swift */,
 				F22FE84529FFC36700266DD5 /* ChatRecordResponse.swift */,
+				CB97FA662A8E12E0004D4D52 /* EndDeliveryRequest.swift */,
+				CB97FA682A8E12ED004D4D52 /* EndDeliveryResponse.swift */,
+				CB97FA6A2A8E1919004D4D52 /* DeliverRatingRequest.swift */,
+				CB97FA6C2A8E192C004D4D52 /* DeliverRatingResponse.swift */,
+				CB97FA6E2A8E1940004D4D52 /* OrderRatingRequest.swift */,
+				CB97FA702A8E194E004D4D52 /* OrderRatingResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -440,8 +458,10 @@
 				3D749F8B2972BA7500F512D8 /* ChattingTableViewYourCell.swift in Sources */,
 				CB655ACD298910C2005A3837 /* ModifyResponse.swift in Sources */,
 				3DABD3A0296ED91500677B84 /* NoticeTableViewCell.swift in Sources */,
+				CB97FA6B2A8E1919004D4D52 /* DeliverRatingRequest.swift in Sources */,
 				CB6453A2295D710500EC7620 /* InDoDeliveryViewController.swift in Sources */,
 				3DABD39A296ED85C00677B84 /* ChattingTableViewMyCell.swift in Sources */,
+				CB97FA672A8E12E0004D4D52 /* EndDeliveryRequest.swift in Sources */,
 				3D2C8037298BDC4C0070698D /* WithdrawalResponse.swift in Sources */,
 				CB8B92F9296A72380008B497 /* QuestionViewController.swift in Sources */,
 				CB655AD72989727E005A3837 /* MyOrderRequest.swift in Sources */,
@@ -471,15 +491,19 @@
 				CBAA431E29869981009C6DA7 /* CreateOrderResponse.swift in Sources */,
 				3D20B98A2959ACF000849DA6 /* SceneDelegate.swift in Sources */,
 				CB39267C296C52D200DA319C /* StarScoreViewController.swift in Sources */,
+				CB97FA712A8E194E004D4D52 /* OrderRatingResponse.swift in Sources */,
 				CBE795812993D00E00856E1F /* BoardResponse.swift in Sources */,
 				CBAA431C29869974009C6DA7 /* CreateOrderRequest.swift in Sources */,
 				CB655AD529896C3B005A3837 /* MyOrderResponse.swift in Sources */,
 				3DABD39C296ED88600677B84 /* SettingViewController.swift in Sources */,
 				CB655ACF29893D11005A3837 /* HistoryRequest.swift in Sources */,
+				CB97FA6D2A8E192C004D4D52 /* DeliverRatingResponse.swift in Sources */,
 				CB655ACB298910B1005A3837 /* ModifyRequest.swift in Sources */,
 				CBB259D829606286004EAB37 /* DeliveryListTableViewCell.swift in Sources */,
 				CB39267E296FD76600DA319C /* ModifyViewController.swift in Sources */,
+				CB97FA6F2A8E1940004D4D52 /* OrderRatingRequest.swift in Sources */,
 				CB8B92EE296316BE0008B497 /* CreateOrderViewController.swift in Sources */,
+				CB97FA692A8E12ED004D4D52 /* EndDeliveryResponse.swift in Sources */,
 				CBE7957F2993D00600856E1F /* BoardRequest.swift in Sources */,
 				CBDDD19729B714C6008E559E /* ReportRequest.swift in Sources */,
 				3D15FE472983CF6400DB252B /* ProfileResponse.swift in Sources */,

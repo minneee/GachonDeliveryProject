@@ -48,7 +48,7 @@ class CreateOrderViewController: UIViewController {
     
     let dropdown = DropDown()
     
-    let endPlaceList = ["AI공학관", "가천관", "중앙도서관"]
+    let endPlaceList = ["전체", "AI공학관", "가천관", "중앙도서관", "제 1기숙사", "제 2기숙사", "제 3기숙사", "비전타워", "산학협력관1" , "산학협력관2", "전자정보도서관", "예술대학", "학생회관", "글로벌센터"]
     let deliveryTipList = ["무료", "500원", "1000원", "1500원"]
     
     

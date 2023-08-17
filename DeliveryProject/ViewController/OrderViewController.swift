@@ -28,7 +28,13 @@ class OrderViewController: UIViewController {
         
         guard let chattingVC = storyboard?.instantiateViewController(withIdentifier: "ChattingVC") as? ChattingViewController else {return}
         chattingVC.otherUserId = DList[rowNum].userId
+        
+        // 채팅뷰 컨트롤러에 배달하는 사람 아이디에 자신의 아이디를 넘겨줌 
+        chattingVC.deliverId = UserDefaults.standard.string(forKey: "id") ?? ""
         navigationController?.pushViewController(chattingVC, animated: true)
+        
+        
+        
         }
     
     

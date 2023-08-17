@@ -393,7 +393,7 @@ class ChattingViewController: UIViewController {
                 
                 // starScoreVC에 자신의 닉네임 전달 
                 starScoreVC.myNickname = self?.myNickname ?? ""
-                starScoreVC.otherNickname = self?.otherUserNickname ?? ""
+                starScoreVC.otherUserNickname = self?.otherUserNickname ?? ""
                 
                 
                 // 내 아이디와 deliverId가 같다면 자신이 배달원 -> StarScoreVC의 deliverNickname에 자신의 닉네임 전달

@@ -3,7 +3,7 @@
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -1583,7 +1583,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="별점 남기기" id="9ie-2d-7P0">
-                        <barButtonItem key="rightBarButtonItem" title="확인" id="shY-Oq-77E"/>
+                        <barButtonItem key="rightBarButtonItem" title="확인" id="shY-Oq-77E">
+                            <connections>
+                                <action selector="submitButton:" destination="ggd-fD-Ap3" id="bYh-AI-LZ1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

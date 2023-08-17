@@ -14,15 +14,20 @@ class ChattingViewController: UIViewController {
     // 메뉴 드롭다운 리스트 
     let dropdownList = ["사용자 신고하기", "채팅방 나가기", "배달 완료"]
     
-    // 주문서 작성자 아이디
+    // 상대방 아이디, 닉네임
     var otherUserId : String = ""
     var otherUserNickname = ""
+    
+    // 배달하는 사람 아이디, 닉네임
+    var deliverId : String = ""
+    var deliverNickname = ""
     
     
     var myNickname : String = ""
     
-//    var roomId: String = "-1"
     var roomId : Int = -1
+    
+    var articleId : Int = -1
     
     
     // Message 구조체를 저장할 배열 생성
@@ -218,7 +223,7 @@ class ChattingViewController: UIViewController {
         
         // roomId 찾기
         let id = UserDefaults().string(forKey: "id") ?? ""
-        let param2 = FindChatRoomRequest(myUserId: id , otherUserId: otherUserId)
+        let param2 = FindChatRoomRequest(myUserId: id , otherUserId: otherUserId, deliverId: deliverId, articleId: articleId)
         postFindChatRoom(param2)
         
         // completion Handler를 이용
@@ -378,13 +383,24 @@ class ChattingViewController: UIViewController {
             case 2:
                 print("배달 완료")
                 guard let starScoreVC = self?.storyboard?.instantiateViewController(identifier: "StarScoreViewController") as? StarScoreViewController else { return }
+                
                 let id = UserDefaults.standard.string(forKey: "id") ?? ""
                 
-                // 내 아이디와 주문서 작성 아이디가 같다면(내가 주문자라면 배달 닉네임에 상대 닉네임 전달)
-                if( id == self?.otherUserId){
-                    starScoreVC.deliverNickname = self?.otherUserNickname ?? ""
+                // 배달 완료 API
+                let param3 = EndDeliveryRequest(nickname: self!.deliverNickname, articleId: self!.articleId )
+                
+                self?.postEndDelivery(param3)
+                
+                // starScoreVC에 자신의 닉네임 전달 
+                starScoreVC.myNickname = self?.myNickname ?? ""
+                starScoreVC.otherUserNickname = self?.otherUserNickname ?? ""
+                
+                
+                // 내 아이디와 deliverId가 같다면 자신이 배달원 -> StarScoreVC의 deliverNickname에 자신의 닉네임 전달
+                if( id == self?.deliverId){
+                    starScoreVC.deliverNickname = self?.myNickname ?? ""
                 } else{
-                    starScoreVC.receiverNickname = self?.otherUserNickname ?? ""
+                    starScoreVC.deliverNickname = self?.otherUserNickname ?? ""
                 }
                 
                 self?.navigationController?.pushViewController(starScoreVC, animated: true)
@@ -466,6 +482,15 @@ class ChattingViewController: UIViewController {
                         otherUserNickname = response.otherUserData?.nickname ?? ""
                         nicknameLabel.text = response.otherUserData?.nickname
                         introduceLabel.text = response.otherUserData?.introduce
+                        
+                        // 배달원 닉네임 설정
+                        deliverNickname = response.deliverNickname
+                        
+                        // 내 닉네임 설정
+                        myNickname = response.myData.nickname
+                        
+                        // articleId 설정
+                        articleId = response.articleId
                         
                         switch response.otherUserData?.orderRate ?? 0 {
                         case 0: receiveScore.image = UIImage(named: "PinwheelPoint0")
@@ -555,6 +580,46 @@ class ChattingViewController: UIViewController {
             }
         
     }
+    
+    // 배달 완료 API
+    func postEndDelivery(_ parameters: EndDeliveryRequest) {
+        AF.request("http://43.200.179.53:3000/end-delivery", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: FindChatRoomResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                      
+                        // 배달 완료 확인 메시지
+                        print(response.message)
+                    }
+                    
+                    else{
+                        print("배달 완료 실패\(response.message)")
+                        //alert message
+                        let FailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        FailAlert.addAction(FailAction)
+                        self.present(FailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let FailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    FailAlert.addAction(FailAction)
+                    self.present(FailAlert, animated: true, completion: nil)
+                }
+                
+                
+                
+            }
+    }
+    
     
     
     // 채팅 설정  드롭다운

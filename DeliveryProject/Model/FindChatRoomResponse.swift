@@ -8,6 +8,8 @@
 import Foundation
 struct FindChatRoomResponse : Decodable{
     var roomId : Int?
+    var deliverNickname : String
+    var articleId : Int
     var otherUserData : UserData?
     var myData : myData
     var success: Bool

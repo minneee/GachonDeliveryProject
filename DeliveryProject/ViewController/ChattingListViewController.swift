@@ -15,7 +15,7 @@ import Alamofire
 class ChattingListViewController: UIViewController {
     
     var chattingRoomList: [RoomInfo] = []
-
+    
     lazy var chattingListTableView = UITableView().then {
         $0.delegate = self
         $0.dataSource = self
@@ -72,6 +72,7 @@ class ChattingListViewController: UIViewController {
                         print(response)
                         if response.data != nil {
                             self?.chattingRoomList = response.data!
+                            
                             DispatchQueue.main.async { [weak self] in
                                 guard let self else { return }
                                 self.chattingListTableView.reloadData()
@@ -133,7 +134,12 @@ extension ChattingListViewController: UITableViewDelegate, UITableViewDataSource
             주문서 작성자 시점에서 배달하는 사람 ID를 넘겨주게 됨 
         */
 //        chattingVC.otherUserId = self.chattingRoomList[indexPath.row].userId
-        chattingVC.roomId = self.chattingRoomList[indexPath.row].roomId 
+        chattingVC.roomId = self.chattingRoomList[indexPath.row].roomId
+        
+        chattingVC.articleId = self.chattingRoomList[indexPath.row].articleId
+        
+        chattingVC.deliverNickname = self.chattingRoomList[indexPath.row].deliverNickname
+        
         
         self.navigationController?.pushViewController(chattingVC, animated: true)
     }

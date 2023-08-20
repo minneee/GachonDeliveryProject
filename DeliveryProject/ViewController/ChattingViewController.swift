@@ -405,7 +405,6 @@ class ChattingViewController: UIViewController {
                 
                 self?.navigationController?.pushViewController(starScoreVC, animated: true)
                 
-                
             
             default:
                 print("switch : default")

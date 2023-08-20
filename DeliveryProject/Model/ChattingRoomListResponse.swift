@@ -21,4 +21,6 @@ struct RoomInfo: Decodable {
     var whoSend: String
     var msg: String
     var sendDay: String // 마지막으로 보낸 날
+    var articleId : Int
+    var deliverNickname : String
 }
